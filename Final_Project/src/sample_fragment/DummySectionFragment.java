@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.example.final_project.R;
 
+
+//Hello
 public class DummySectionFragment extends Fragment {
 	/**
 	 * empty fragment.
