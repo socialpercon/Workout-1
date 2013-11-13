@@ -9,12 +9,9 @@ import android.widget.TextView;
 
 import com.example.final_project.R;
 
-
-//Hello
 public class DummySectionFragment extends Fragment {
 	/**
-	 * empty fragment.
-	 * GET IT SON
+	 * empty fragment. GET IT SON
 	 */
 	public static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -24,8 +21,8 @@ public class DummySectionFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(
-				R.layout.fragment_viewpager_nav_dummy, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_viewpager_nav_dummy,
+				container, false);
 		TextView dummyTextView = (TextView) rootView
 				.findViewById(R.id.section_label);
 		dummyTextView.setText(Integer.toString(getArguments().getInt(

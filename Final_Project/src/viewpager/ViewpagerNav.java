@@ -9,6 +9,8 @@ package viewpager;
 
 import java.util.Locale;
 
+import plannerfragment.PlannerFragment;
+
 import sample_fragment.DummySectionFragment;
 import searchfragment.SearchFragment;
 import splash.SplashScreen;
@@ -26,14 +28,15 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 
-public class ViewpagerNav extends FragmentActivity implements ActionBar.TabListener {
-	
+public class ViewpagerNav extends FragmentActivity implements
+		ActionBar.TabListener {
+
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	ViewPager mViewPager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_viewpager_nav);
 		// Set up the action bar.
@@ -41,14 +44,16 @@ public class ViewpagerNav extends FragmentActivity implements ActionBar.TabListe
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
-		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+		mSectionsPagerAdapter = new SectionsPagerAdapter(
+				getSupportFragmentManager());
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		// When swiping between different sections, select the corresponding
 		// tab. We can also use ActionBar.Tab#select() to do this if we have
 		// a reference to the Tab.
-		mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+		mViewPager
+				.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 					@Override
 					public void onPageSelected(int position) {
 						actionBar.setSelectedNavigationItem(position);
@@ -65,44 +70,41 @@ public class ViewpagerNav extends FragmentActivity implements ActionBar.TabListe
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
-		
+
 		Intent intent = getIntent();
 		setStartup(intent.getStringExtra(SplashScreen.EXTRA_MESSAGE), actionBar);
 	}
 
-	private void setStartup(String stringExtra, ActionBar ab) 
-	{
+	private void setStartup(String stringExtra, ActionBar ab) {
 		/***************************************/
-		//add cases here for first screen
+		// add cases here for first screen
 		/***************************************/
-		if (stringExtra.equals("default"))
-		{
+		if (stringExtra.equals("default")) {
 			ab.setSelectedNavigationItem(1);
 		}
-		
+
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) 
-	{
+	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.viewpager_nav, menu);
 		return true;
 	}
 
 	@Override
-	public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) 
-	{
+	public void onTabSelected(ActionBar.Tab tab,
+			FragmentTransaction fragmentTransaction) {
 		mViewPager.setCurrentItem(tab.getPosition());
 	}
 
 	@Override
-	public void onTabUnselected(ActionBar.Tab tab,FragmentTransaction fragmentTransaction) 
-	{
+	public void onTabUnselected(ActionBar.Tab tab,
+			FragmentTransaction fragmentTransaction) {
 	}
 
 	@Override
-	public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) 
-	{
+	public void onTabReselected(ActionBar.Tab tab,
+			FragmentTransaction fragmentTransaction) {
 	}
 
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -112,17 +114,18 @@ public class ViewpagerNav extends FragmentActivity implements ActionBar.TabListe
 		}
 
 		@Override
-		public Fragment getItem(int position) {			
-			
+		public Fragment getItem(int position) {
+
 			Fragment fragment = new DummySectionFragment();
-			if (position == 1)
-			{
+			if (position == 1) {
 				fragment = new SearchFragment();
+			} else if (position == 2) {
+				fragment = new PlannerFragment();
 			}
 			/***************************************/
-			//add new retrieval statements here
+			// add new retrieval statements here
 			/***************************************/
-			
+
 			Bundle args = new Bundle();
 			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
 			fragment.setArguments(args);
@@ -132,7 +135,7 @@ public class ViewpagerNav extends FragmentActivity implements ActionBar.TabListe
 		@Override
 		public int getCount() {
 			/***************************************/
-			//update this number when you add a new frag
+			// update this number when you add a new frag
 			/***************************************/
 			return 3;
 		}
@@ -148,13 +151,11 @@ public class ViewpagerNav extends FragmentActivity implements ActionBar.TabListe
 			case 2:
 				return getString(R.string.title_section3).toUpperCase(l);
 				/***************************************/
-				//add new names here and in strings.xml
+				// add new names here and in strings.xml
 				/***************************************/
 			}
 			return null;
 		}
 	}
-
-
 
 }
