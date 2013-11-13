@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Workout Planner"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView1"
@@ -24,8 +24,37 @@
 
     <Spinner
         android:id="@+id/planner_muscleGroupSpinner"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <ListView
+            android:id="@+id/planner_list_suggestedExercises"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:padding="7dp"
+            android:scrollbars="vertical"
+            android:textColor="@android:color/black" >
+        </ListView>
+
+        <ListView
+            android:id="@+id/planner_list_plannedWorkout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:padding="7dp"
+            android:scrollbars="vertical"
+            android:textColor="@android:color/black" >
+        </ListView>
+    </LinearLayout>
 
 </LinearLayout>
