@@ -35,7 +35,7 @@ public class GPS extends Fragment implements LocationListener{
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
 	{
-		View rootView = inflater.inflate(R.layout.layout_gps, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_gps, container, false);
 		coordinates_= (TextView) rootView.findViewById(R.id.coordlist);
 		friends_ = (TextView) rootView.findViewById(R.id.friendlist);
 		add_ = (Button) rootView.findViewById(R.id.addserv);
