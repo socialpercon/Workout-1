@@ -24,12 +24,13 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f090029;
-        public static final int addlistpop_CancelButton=0x7f090028;
-        public static final int addlistpop_CreateButton=0x7f090027;
-        public static final int addlistpop_setsField=0x7f090026;
-        public static final int addlistpop_timeField=0x7f090024;
-        public static final int addlistpop_workoutNameField=0x7f090023;
+        public static final int action_settings=0x7f09002e;
+        public static final int addlistpop_CancelButton=0x7f09002d;
+        public static final int addlistpop_CreateButton=0x7f09002c;
+        public static final int addlistpop_setsField=0x7f09002b;
+        public static final int addlistpop_timeField=0x7f09002a;
+        public static final int addlistpop_workoutNameField=0x7f090029;
+        public static final int addserv=0x7f090025;
         public static final int btn_Show=0x7f090019;
         public static final int btn_cancel=0x7f090017;
         public static final int btn_clear=0x7f090018;
@@ -44,6 +45,9 @@ public final class R {
         public static final int checkBox3=0x7f090013;
         public static final int checkBox4=0x7f090014;
         public static final int checkBox5=0x7f090015;
+        public static final int coordlist=0x7f090027;
+        public static final int editName=0x7f090024;
+        public static final int friendlist=0x7f090028;
         public static final int heartrate_progressBar=0x7f090003;
         public static final int pager=0x7f090001;
         public static final int plannerTitle=0x7f090004;
@@ -56,11 +60,12 @@ public final class R {
         public static final int radio1=0x7f09000f;
         public static final int radio2=0x7f090010;
         public static final int radioGroup1=0x7f09000d;
+        public static final int removeserv=0x7f090023;
         public static final int section_label=0x7f090020;
         public static final int statusView=0x7f090005;
         public static final int textView1=0x7f090002;
         public static final int textView2=0x7f090021;
-        public static final int textView3=0x7f090025;
+        public static final int textView3=0x7f090026;
         public static final int textViewURL=0x7f090016;
         public static final int webLoc=0x7f09001c;
         public static final int webLocation=0x7f09001d;
@@ -75,8 +80,9 @@ public final class R {
         public static final int fragment_search=0x7f030004;
         public static final int fragment_viewpager_nav_dummy=0x7f030005;
         public static final int fragment_workout=0x7f030006;
-        public static final int popup_planner_addlist=0x7f030007;
-        public static final int popup_planner_workoutname=0x7f030008;
+        public static final int layout_gps=0x7f030007;
+        public static final int popup_planner_addlist=0x7f030008;
+        public static final int popup_planner_workoutname=0x7f030009;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -88,7 +94,7 @@ public final class R {
         public static final int song=0x7f040000;
     }
     public static final class string {
-        public static final int ListFont=0x7f060008;
+        public static final int ListFont=0x7f060009;
         public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060000;
         public static final int hello_world=0x7f060002;
@@ -97,6 +103,7 @@ public final class R {
         public static final int title_section2=0x7f060005;
         public static final int title_section3=0x7f060006;
         public static final int title_section4=0x7f060007;
+        public static final int title_section5=0x7f060008;
     }
     public static final class style {
         /** 
