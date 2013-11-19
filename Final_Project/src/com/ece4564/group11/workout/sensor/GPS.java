@@ -45,7 +45,6 @@ public class GPS extends Fragment implements LocationListener{
 		status_ = (TextView) rootView.findViewById(R.id.statusView);
 		
 		lManager_ = (LocationManager) this.getActivity().getSystemService(this.getActivity().LOCATION_SERVICE);
-		lManager_.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, Criteria.ACCURACY_FINE, this);
 		
 		init();
 		setUpListeners();
@@ -57,6 +56,15 @@ public class GPS extends Fragment implements LocationListener{
 	{
 		add_.setEnabled(false);
 		displayLocation(null);
+		
+		if (lManager_.getProvider(LocationManager.GPS_PROVIDER) == null)
+		{
+			status_.setText("NO GPS device found. GPS Functionality is required.");
+		}
+		else
+		{
+			lManager_.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, Criteria.ACCURACY_FINE, this);
+		}
 	}
 	
 	private void setUpListeners()

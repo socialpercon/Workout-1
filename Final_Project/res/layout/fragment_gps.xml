@@ -8,81 +8,86 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <TextView
+        android:id="@+id/friendlist"
+        android:layout_width="110dp"
+        android:layout_height="175dp"
+        android:layout_alignBaseline="@+id/coordlist"
+        android:layout_alignBottom="@+id/coordlist"
+        android:layout_alignRight="@+id/statusView"
+        android:text="People Near You:"
+        android:textSize="15sp" />
+
+    <TextView
         android:id="@+id/statusView"
         android:layout_width="350dp"
-        android:layout_height="250dp"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
+        android:layout_alignRight="@+id/editName"
         android:gravity="center"
         android:text="Find a Workout Buddy!"
-        android:textSize="50sp" />
-
-    <Button
-        android:id="@+id/removeserv"
-        android:layout_width="200dp"
-        android:layout_height="65dp"
-        android:layout_alignRight="@+id/editName"
-        android:layout_alignTop="@+id/addserv"
-        android:background="#2990FF"
-        android:text="I&apos;m Getting out here" />
-
-    <EditText
-        android:id="@+id/editName"
-        android:layout_width="300dp"
-        android:layout_height="35dp"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_toRightOf="@+id/textView3"
-        android:background="#D9D9D9"
-        android:ems="10" 
-        android:singleLine="true"/>
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="200dp"
-        android:layout_height="75dp"
+        android:layout_height="25dp"
+        android:layout_above="@+id/friendlist"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/statusView"
-        android:layout_marginLeft="49dp"
-        android:layout_marginTop="39dp"
+        android:layout_marginBottom="21dp"
         android:text="Getting GPS Coordinates..."
-        android:textSize="25sp" />
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/coordlist"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="175dp"
         android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:textSize="20sp" />
+        android:layout_centerVertical="true"
+        android:textSize="13sp" />
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:layout_above="@+id/addserv"
+        android:layout_marginBottom="22dp"
+        android:layout_toRightOf="@+id/textView3"
+        android:background="#D9D9D9"
+        android:ems="10"
+        android:singleLine="true" >
+
+        <requestFocus />
+    </EditText>
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_above="@+id/addserv"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_alignBaseline="@+id/editName"
+        android:layout_alignBottom="@+id/editName"
         android:layout_alignLeft="@+id/coordlist"
         android:text="Appear As:"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/addserv"
-        android:layout_width="200dp"
-        android:layout_height="65dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="41dp"
+        android:layout_marginLeft="14dp"
         android:background="#2990FF"
-        android:text="I&apos;m Lonely. Find Me A Friend..." />
+        android:text="Find a Friend"
+        android:textSize="13sp" />
 
-    <TextView
-        android:id="@+id/friendlist"
-        android:layout_width="160dp"
-        android:layout_height="275dp"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
+    <Button
+        android:id="@+id/removeserv"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/addserv"
         android:layout_toRightOf="@+id/coordlist"
-        android:text="People Near You:"
-        android:textSize="20sp" />
+        android:text="I&apos;m Getting Outta Here"
+        android:textSize="13sp"
+         android:background="#2990FF" />
     
 </RelativeLayout>

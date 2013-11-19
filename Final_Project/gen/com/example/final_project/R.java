@@ -21,11 +21,12 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int buddybutton_64px=0x7f020000;
-        public static final int heartbutton_64px=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int plannerbutt_64px=0x7f020003;
-        public static final int setbutton_64px=0x7f020004;
+        public static final int background_img_nex7=0x7f020000;
+        public static final int buddybutton_64px=0x7f020001;
+        public static final int heartbutton_64px=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int plannerbutt_64px=0x7f020004;
+        public static final int setbutton_64px=0x7f020005;
     }
     public static final class id {
         public static final int action_settings=0x7f090032;
@@ -34,7 +35,7 @@ public final class R {
         public static final int addlistpop_setsField=0x7f09002f;
         public static final int addlistpop_timeField=0x7f09002e;
         public static final int addlistpop_workoutNameField=0x7f09002d;
-        public static final int addserv=0x7f090009;
+        public static final int addserv=0x7f09000b;
         public static final int btn_Show=0x7f090024;
         public static final int btn_cancel=0x7f090022;
         public static final int btn_clear=0x7f090023;
@@ -49,14 +50,14 @@ public final class R {
         public static final int checkBox3=0x7f09001e;
         public static final int checkBox4=0x7f09001f;
         public static final int checkBox5=0x7f090020;
-        public static final int coordlist=0x7f09000c;
-        public static final int editName=0x7f090008;
-        public static final int friendlist=0x7f09000d;
+        public static final int coordlist=0x7f090007;
+        public static final int editName=0x7f090009;
+        public static final int friendlist=0x7f090006;
         public static final int heartrate_progressBar=0x7f09000f;
         public static final int imageButton1=0x7f090001;
         public static final int imageButton2=0x7f090002;
-        public static final int imageButton3=0x7f090004;
-        public static final int imageButton4=0x7f090003;
+        public static final int imageButton3=0x7f090003;
+        public static final int imageButton4=0x7f090004;
         public static final int pager=0x7f090005;
         public static final int plannerTitle=0x7f090010;
         public static final int planner_ListPopupButton=0x7f090014;
@@ -68,12 +69,12 @@ public final class R {
         public static final int radio1=0x7f09001a;
         public static final int radio2=0x7f09001b;
         public static final int radioGroup1=0x7f090018;
-        public static final int removeserv=0x7f090007;
+        public static final int removeserv=0x7f09000d;
         public static final int section_label=0x7f09002b;
-        public static final int statusView=0x7f090006;
+        public static final int statusView=0x7f090008;
         public static final int textView1=0x7f09000e;
-        public static final int textView2=0x7f09000b;
-        public static final int textView3=0x7f09000a;
+        public static final int textView2=0x7f09000a;
+        public static final int textView3=0x7f09000c;
         public static final int textViewURL=0x7f090021;
         public static final int webLoc=0x7f090027;
         public static final int webLocation=0x7f090028;
