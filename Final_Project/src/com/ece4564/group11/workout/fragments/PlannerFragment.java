@@ -35,6 +35,8 @@ public class PlannerFragment extends Fragment {
 	private String addWorkoutName_;
 	private String addWorkoutTime_;
 	private String addWorkoutSets_;
+	private ArrayList<String> workoutList_;
+	private ArrayAdapter<String> workoutAdapter_;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,6 +95,9 @@ public class PlannerFragment extends Fragment {
 						Log.d("Add List Pop Sets", addListSets_.getText()
 								.toString());
 						setWorkoutPlanSets(addListSets_.getText().toString());
+
+						workoutList_.add(getWorkoutPlanName());
+						workoutAdapter_.notifyDataSetChanged();
 
 						dialog.dismiss();
 					}
@@ -179,16 +184,11 @@ public class PlannerFragment extends Fragment {
 
 	// Need to improve this function after finishing the pop-up
 	public void createPlannedWorkoutListView() {
-		List<String> list = new ArrayList<String>();
+		workoutList_ = new ArrayList<String>();
+		workoutAdapter_ = new ArrayAdapter<String>(getActivity(),
+				android.R.layout.simple_list_item_1, workoutList_);
+		plannedWorkoutList_.setAdapter(workoutAdapter_);
 
-		int i = 1;
-		while (i < 11) {
-			list.add("workout plan" + i);
-			i++;
-		}
-
-		plannedWorkoutList_.setAdapter(new ArrayAdapter<String>(getActivity(),
-				android.R.layout.simple_list_item_1, list));
 		plannedWorkoutList_.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
