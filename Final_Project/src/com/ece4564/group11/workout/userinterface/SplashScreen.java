@@ -1,6 +1,5 @@
 package com.ece4564.group11.workout.userinterface;
 
-
 import com.example.final_project.R;
 
 import android.os.Bundle;
@@ -24,7 +23,6 @@ public class SplashScreen extends Activity {
 		startButton_ = (Button) findViewById(R.id.button1);
 		
 		setUpClickListeners();
-		
 	}
 
 	@Override

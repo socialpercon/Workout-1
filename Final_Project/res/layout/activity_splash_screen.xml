@@ -16,4 +16,39 @@
         android:layout_centerVertical="true"
         android:text="Button" />
 
+    <Button
+        android:id="@+id/hr_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button1"
+        android:layout_marginTop="32dp"
+        android:text="heart" />
+
+    <Button
+        android:id="@+id/planner_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/hr_button"
+        android:layout_alignBottom="@+id/hr_button"
+        android:layout_toRightOf="@+id/hr_button"
+        android:text="plan" />
+
+    <Button
+        android:id="@+id/buddy_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/planner_button"
+        android:layout_alignBottom="@+id/planner_button"
+        android:layout_toRightOf="@+id/planner_button"
+        android:text="buddy" />
+
+    <Button
+        android:id="@+id/settings_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/buddy_button"
+        android:layout_toRightOf="@+id/buddy_button"
+        android:text="set" />
+
 </RelativeLayout>
