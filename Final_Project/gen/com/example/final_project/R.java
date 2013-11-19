@@ -29,7 +29,7 @@ public final class R {
         public static final int setbutton_64px=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f090032;
+        public static final int action_settings=0x7f090037;
         public static final int addlistpop_CancelButton=0x7f090031;
         public static final int addlistpop_CreateButton=0x7f090030;
         public static final int addlistpop_setsField=0x7f09002f;
@@ -52,6 +52,11 @@ public final class R {
         public static final int checkBox5=0x7f090020;
         public static final int coordlist=0x7f090007;
         public static final int editName=0x7f090009;
+        public static final int editlistpop_CancelButton=0x7f090036;
+        public static final int editlistpop_EditButton=0x7f090035;
+        public static final int editlistpop_setsField=0x7f090034;
+        public static final int editlistpop_timeField=0x7f090033;
+        public static final int editlistpop_workoutNameField=0x7f090032;
         public static final int friendlist=0x7f090006;
         public static final int heartrate_progressBar=0x7f09000f;
         public static final int imageButton1=0x7f090001;
@@ -91,7 +96,8 @@ public final class R {
         public static final int fragment_viewpager_nav_dummy=0x7f030006;
         public static final int fragment_workout=0x7f030007;
         public static final int popup_planner_addlist=0x7f030008;
-        public static final int popup_planner_workoutname=0x7f030009;
+        public static final int popup_planner_editlist=0x7f030009;
+        public static final int popup_planner_workoutname=0x7f03000a;
     }
     public static final class menu {
         public static final int main=0x7f080000;
