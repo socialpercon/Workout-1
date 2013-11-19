@@ -16,39 +16,40 @@
         android:layout_centerVertical="true"
         android:text="Button" />
 
-    <Button
-        android:id="@+id/hr_button"
+    <ImageButton
+        android:id="@+id/imageButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/imageButton2"
+        android:background="#00000000"
+        android:src="@drawable/heartbutton_64px" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/button1"
-        android:layout_marginTop="32dp"
-        android:text="heart" />
+        android:background="#00000000"
+        android:src="@drawable/setbutton_64px" />
 
-    <Button
-        android:id="@+id/planner_button"
+    <ImageButton
+        android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/hr_button"
-        android:layout_alignBottom="@+id/hr_button"
-        android:layout_toRightOf="@+id/hr_button"
-        android:text="plan" />
+        android:layout_alignTop="@+id/imageButton3"
+        android:layout_toRightOf="@+id/imageButton1"
+        android:background="#00000000"
+        android:src="@drawable/plannerbutt_64px" />
 
-    <Button
-        android:id="@+id/buddy_button"
+    <ImageButton
+        android:id="@+id/imageButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/planner_button"
-        android:layout_alignBottom="@+id/planner_button"
-        android:layout_toRightOf="@+id/planner_button"
-        android:text="buddy" />
-
-    <Button
-        android:id="@+id/settings_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/buddy_button"
-        android:layout_toRightOf="@+id/buddy_button"
-        android:text="set" />
+        android:layout_below="@+id/button1"
+        android:layout_toLeftOf="@+id/imageButton4"
+        android:background="#00000000"
+        android:src="@drawable/buddybutton_64px" />
 
 </RelativeLayout>
