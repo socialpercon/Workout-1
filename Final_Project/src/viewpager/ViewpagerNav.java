@@ -7,6 +7,8 @@ package viewpager;
 //how stuff works.
 /***************************************/
 
+import heartratefragment.HeartRateFragment;
+
 import java.util.Locale;
 
 import plannerfragment.PlannerFragment;
@@ -14,6 +16,7 @@ import plannerfragment.PlannerFragment;
 import sample_fragment.DummySectionFragment;
 import searchfragment.SearchFragment;
 import splash.SplashScreen;
+import workoutfragment.WorkoutFragment;
 
 import com.example.final_project.R;
 
@@ -117,11 +120,23 @@ public class ViewpagerNav extends FragmentActivity implements
 		public Fragment getItem(int position) {
 
 			Fragment fragment = new DummySectionFragment();
-			if (position == 1) {
+			switch (position) {
+			case 0:
+				fragment = new HeartRateFragment();
+				break;
+
+			case 1:
 				fragment = new SearchFragment();
-			} else if (position == 2) {
+				break;
+			case 2:
 				fragment = new PlannerFragment();
+				break;
+			case 3:
+				fragment = new WorkoutFragment();
+				break;
+
 			}
+
 			/***************************************/
 			// add new retrieval statements here
 			/***************************************/
@@ -137,7 +152,7 @@ public class ViewpagerNav extends FragmentActivity implements
 			/***************************************/
 			// update this number when you add a new frag
 			/***************************************/
-			return 3;
+			return 4;
 		}
 
 		@Override
@@ -150,6 +165,8 @@ public class ViewpagerNav extends FragmentActivity implements
 				return getString(R.string.title_section2).toUpperCase(l);
 			case 2:
 				return getString(R.string.title_section3).toUpperCase(l);
+			case 3:
+				return getString(R.string.title_section4).toUpperCase(l);
 				/***************************************/
 				// add new names here and in strings.xml
 				/***************************************/

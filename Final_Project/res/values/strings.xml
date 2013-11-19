@@ -5,8 +5,9 @@
     <string name="action_settings"></string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_viewpager_nav">Work it Out</string>
-    <string name="title_section1">Section 1</string>
+    <string name="title_section1">Heart Rate</string>
     <string name="title_section2">Search</string>
     <string name="title_section3">Workout Planner</string>
+    <string name="title_section4">My Workout</string>
 
 </resources>
