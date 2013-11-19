@@ -1,5 +1,7 @@
 package com.ece4564.group11.workout.userinterface;
 
+import java.util.Random;
+
 import com.example.final_project.R;
 
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class SplashScreen extends Activity {
 
@@ -20,6 +23,10 @@ public class SplashScreen extends Activity {
 	ImageButton buddyButton_;
 	ImageButton settingsButton_;
 	ImageButton workoutButton_;
+	
+	TextView quote_;
+	// Used to choose a quote at random
+	Random r = new Random();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,8 @@ public class SplashScreen extends Activity {
 		buddyButton_  = (ImageButton) findViewById(R.id.imageButton3);
 		settingsButton_ = (ImageButton) findViewById(R.id.imageButton4);
 		workoutButton_ = (ImageButton) findViewById(R.id.imageButton5);
+		
+		quote_ = (TextView) findViewById(R.id.textView1);
 		
 		setUpClickListeners();
 	}

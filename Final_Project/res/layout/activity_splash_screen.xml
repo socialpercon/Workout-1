@@ -58,4 +58,15 @@
         android:background="#00000000"
         android:src="@drawable/buddybutton_64px" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageButton1"
+        android:layout_alignRight="@+id/imageButton4"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text=" &quot;You&apos;re a wizard, Harry.&quot; "
+        android:textStyle="italic" />
+
 </RelativeLayout>
