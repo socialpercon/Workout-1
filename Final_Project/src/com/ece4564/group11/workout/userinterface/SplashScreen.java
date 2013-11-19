@@ -9,18 +9,29 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class SplashScreen extends Activity {
 
 	public final static String EXTRA_MESSAGE = "message";
-	Button startButton_;
+	//Button startButton_;
+	ImageButton heartButton_;
+	ImageButton plannerButton_;
+	ImageButton buddyButton_;
+	ImageButton settingsButton_;
+	ImageButton workoutButton_;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash_screen);
 		
-		startButton_ = (Button) findViewById(R.id.button1);
+		//startButton_ = (Button) findViewById(R.id.button1);
+		heartButton_ = (ImageButton) findViewById(R.id.imageButton1);
+		plannerButton_  = (ImageButton) findViewById(R.id.imageButton2);
+		buddyButton_  = (ImageButton) findViewById(R.id.imageButton3);
+		settingsButton_ = (ImageButton) findViewById(R.id.imageButton4);
+		workoutButton_ = (ImageButton) findViewById(R.id.imageButton5);
 		
 		setUpClickListeners();
 	}
@@ -34,7 +45,8 @@ public class SplashScreen extends Activity {
 	
 	private void setUpClickListeners()
 	{
-		startButton_.setOnClickListener(
+
+		heartButton_.setOnClickListener(
 				new OnClickListener()
 				{
 					@Override
@@ -44,6 +56,49 @@ public class SplashScreen extends Activity {
 					}
 				}
 		);
+		plannerButton_.setOnClickListener(
+				new OnClickListener()
+				{
+					@Override
+					public void onClick(View arg0) 
+					{
+						startApp(2);
+					}
+				}
+		);
+		buddyButton_.setOnClickListener(
+				new OnClickListener()
+				{
+					@Override
+					public void onClick(View arg0) 
+					{
+						startApp(3);
+					}
+				}
+		);
+		/*
+		 settingButton_.setOnClickListener(
+				new OnClickListener()
+				{
+					@Override
+					public void onClick(View arg0) 
+					{
+						startApp(4);
+					}
+				}
+		);
+		 */
+		workoutButton_.setOnClickListener(
+				new OnClickListener()
+				{
+					@Override
+					public void onClick(View arg0) 
+					{
+						startApp(5);
+					}
+				}
+		);
+		
 	}
 	
 	@SuppressWarnings("unused")
@@ -55,10 +110,22 @@ public class SplashScreen extends Activity {
 		switch (id) 
 		{
 			case 1:	
-					intent.putExtra(EXTRA_MESSAGE, "default");
-					break;
+				intent.putExtra(EXTRA_MESSAGE, "heart");
+				break;
+			case 2:
+				intent.putExtra(EXTRA_MESSAGE, "planner");
+				break;
+			case 3:
+				intent.putExtra(EXTRA_MESSAGE, "buddy");
+				break;
+			//case 4:
+			//	intent.putExtra(EXTRA_MESSAGE, "settings");
+			//	break;
+			case 5:
+				intent.putExtra(EXTRA_MESSAGE, "workout");
+				break;
 			default:
-					break;
+				break;
 		}
 		
 		startActivity(intent);

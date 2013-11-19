@@ -82,8 +82,14 @@ public class ViewpagerNav extends FragmentActivity implements
 		/***************************************/
 		// add cases here for first screen
 		/***************************************/
-		if (stringExtra.equals("default")) {
-			ab.setSelectedNavigationItem(1);
+		if(stringExtra.equals("heart")) {
+			ab.setSelectedNavigationItem(0);
+		}else if(stringExtra.equals("planner")){
+			ab.setSelectedNavigationItem(2);
+		}else if(stringExtra.equals("buddy")){
+			ab.setSelectedNavigationItem(4);
+		}else if(stringExtra.equals("workout")){
+			ab.setSelectedNavigationItem(3);
 		}
 
 	}

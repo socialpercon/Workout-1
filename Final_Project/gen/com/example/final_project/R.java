@@ -27,6 +27,7 @@ public final class R {
         public static final int ic_launcher=0x7f020003;
         public static final int plannerbutt_64px=0x7f020004;
         public static final int setbutton_64px=0x7f020005;
+        public static final int startbutton_h64px=0x7f020006;
     }
     public static final class id {
         public static final int action_settings=0x7f090037;
@@ -44,7 +45,6 @@ public final class R {
         public static final int btn_maint=0x7f09002a;
         public static final int btn_startwo=0x7f090029;
         public static final int btn_store=0x7f090025;
-        public static final int button1=0x7f090000;
         public static final int checkBox1=0x7f09001c;
         public static final int checkBox2=0x7f09001d;
         public static final int checkBox3=0x7f09001e;
@@ -60,9 +60,10 @@ public final class R {
         public static final int friendlist=0x7f090006;
         public static final int heartrate_progressBar=0x7f09000f;
         public static final int imageButton1=0x7f090001;
-        public static final int imageButton2=0x7f090002;
+        public static final int imageButton2=0x7f090004;
         public static final int imageButton3=0x7f090003;
-        public static final int imageButton4=0x7f090004;
+        public static final int imageButton4=0x7f090002;
+        public static final int imageButton5=0x7f090000;
         public static final int pager=0x7f090005;
         public static final int plannerTitle=0x7f090010;
         public static final int planner_ListPopupButton=0x7f090014;
