@@ -67,6 +67,22 @@ public class GPS extends Fragment implements LocationListener{
 		}
 	}
 	
+	
+	
+	@Override
+	public void onPause() 
+	{
+		super.onPause();
+		lManager_.removeUpdates(this);
+	}
+
+	@Override
+	public void onResume() 
+	{
+		super.onResume();
+		init();
+	}
+
 	private void setUpListeners()
 	{
 		add_.setOnClickListener(
@@ -100,8 +116,6 @@ public class GPS extends Fragment implements LocationListener{
 			coordinates_.setText("Latitude: Pending...\n");
 			coordinates_.append("Longitude: Pending...\n");
 			coordinates_.append("Altitude: Pending...\n");
-			coordinates_.append("Accuracy: Pending...\n");
-			coordinates_.append("GPS Time: Pending...");
 		}
 		else
 		{

@@ -16,6 +16,7 @@ import com.ece4564.group11.workout.fragments.HeartRateFragment;
 import com.ece4564.group11.workout.fragments.PlannerFragment;
 import com.ece4564.group11.workout.fragments.WorkoutFragment;
 import com.ece4564.group11.workout.sensor.GPS;
+import com.ece4564.group11.workout.sensor.HeartRateMonitor;
 import com.ece4564.group11.workout.testexample.DummySectionFragment;
 import com.ece4564.group11.workout.testexample.SearchFragment;
 import com.example.final_project.R;
@@ -128,7 +129,7 @@ public class ViewpagerNav extends FragmentActivity implements
 			Fragment fragment = new DummySectionFragment();
 			switch (position) {
 			case 0:
-				fragment = new HeartRateFragment();
+				fragment = new HeartRateMonitor();
 				break;
 			case 1:
 				fragment = new SearchFragment();
