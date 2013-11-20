@@ -150,9 +150,23 @@ public class PlannerFragment extends Fragment {
 	public void createSpinnerList() {
 		List<String> list = new ArrayList<String>();
 		// Add the muscle group here
-		list.add("list1");
-		list.add("list2");
-		list.add("list3");
+		list.add("Abdominals");
+		list.add("Abductors");
+		list.add("Adductors");
+		list.add("Biceps");
+		list.add("Calves");
+		list.add("Chest");
+		list.add("Forearms");
+		list.add("Glutes");
+		list.add("Hamstrings");
+		list.add("Lats");
+		list.add("Lower Back");
+		list.add("Middle Back");
+		list.add("Neck");
+		list.add("Quadriceps");
+		list.add("Shoulders");
+		list.add("Traps");
+		list.add("Triceps");
 
 		ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(
 				getActivity(), android.R.layout.simple_spinner_item, list);

@@ -12,7 +12,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 public class GetHtml {
-	public String getInternetData(String muscleGroup) throws IOException, URISyntaxException {
+	public String getHtmlStrings(String muscleGroup) throws IOException, URISyntaxException {
 		BufferedReader in = null;
 		String data = null;
 		try{
