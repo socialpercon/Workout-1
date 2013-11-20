@@ -17,46 +17,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="80dp"
         android:background="#00000000"
-        android:src="@drawable/startbutton_h64px" />
-
-    <ImageButton
-        android:id="@+id/imageButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/imageButton5"
-        android:layout_alignLeft="@+id/imageButton5"
-        android:layout_marginBottom="17dp"
-        android:background="#00000000"
-        android:src="@drawable/heartbutton_64px" />
-
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageButton5"
-        android:layout_alignTop="@+id/imageButton3"
-        android:background="#00000000"
-        android:src="@drawable/setbutton_64px" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageButton1"
-        android:layout_marginLeft="14dp"
-        android:layout_toRightOf="@+id/imageButton1"
-        android:background="#00000000"
-        android:src="@drawable/plannerbutt_64px" />
-
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageButton2"
-        android:layout_marginRight="16dp"
-        android:layout_toLeftOf="@+id/imageButton4"
-        android:background="#00000000"
-        android:src="@drawable/buddybutton_64px" />
+        android:src="@drawable/startbutton_600" />
 
     <TextView
         android:id="@+id/textView1"
@@ -66,8 +27,48 @@
         android:layout_alignLeft="@+id/imageButton1"
         android:layout_alignRight="@+id/imageButton4"
         android:layout_marginBottom="28dp"
+        android:textSize="36"
         android:gravity="center"
         android:text=" &quot;You&apos;re a wizard, Harry.&quot; "
         android:textStyle="italic" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageButton5"
+        android:layout_alignLeft="@+id/imageButton5"
+        android:layout_marginBottom="36dp"
+        android:background="#00000000"
+        android:src="@drawable/heartbutton_600" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/imageButton5"
+        android:layout_alignTop="@+id/imageButton3"
+        android:background="#00000000"
+        android:src="@drawable/setbutton_600" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageButton2"
+        android:layout_marginLeft="35dp"
+        android:layout_toRightOf="@+id/imageButton2"
+        android:background="#00000000"
+        android:src="@drawable/buddybutton_600" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageButton1"
+        android:layout_marginLeft="34dp"
+        android:layout_toRightOf="@+id/imageButton1"
+        android:background="#00000000"
+        android:src="@drawable/plannerbutton_600" />
 
 </RelativeLayout>
