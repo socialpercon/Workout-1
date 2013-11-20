@@ -13,6 +13,9 @@ import android.view.View;
 
 
 /**
+ * Source code written by Justin Wetherell. Remains Unchanged.
+ * 
+ -------------original comments follow-----------------------------------------
  * This class extends the View class and is designed draw the heartbeat image.
  * 
  * @author Justin Wetherell <phishman3579@gmail.com>

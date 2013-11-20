@@ -23,6 +23,10 @@ import android.widget.TextView;
 
 
 /**
+ * Modified from source code written by Justin Wetherell. Adapted to fit into
+ * a fragment as well as fixed camera.
+ * 
+ -------------original comments follow-----------------------------------------
  * This class extends Activity to handle a picture preview, process the preview
  * for a red values and determine a heart beat.
  * 
