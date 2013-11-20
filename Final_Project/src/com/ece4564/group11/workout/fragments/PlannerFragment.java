@@ -7,6 +7,7 @@ import com.example.final_project.R;
 
 import android.support.v4.app.Fragment;
 import android.app.Dialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
