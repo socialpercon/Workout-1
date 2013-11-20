@@ -27,7 +27,6 @@
         android:layout_alignLeft="@+id/imageButton1"
         android:layout_alignRight="@+id/imageButton4"
         android:layout_marginBottom="28dp"
-        android:textSize="36"
         android:gravity="center"
         android:text=" &quot;You&apos;re a wizard, Harry.&quot; "
         android:textStyle="italic" />
