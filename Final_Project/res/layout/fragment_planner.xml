@@ -57,12 +57,25 @@
         </ListView>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/planner_ListPopupButton"
-        style="?android:attr/buttonStyleSmall"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Add to List" />
+        android:layout_gravity="right"
+        android:layout_marginRight="3dp" >
+
+        <Button
+            android:id="@+id/planner_ListPopupButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add to List" />
+
+        <Button
+            android:id="@+id/planner_saveListButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save" />
+    </LinearLayout>
 
 </LinearLayout>

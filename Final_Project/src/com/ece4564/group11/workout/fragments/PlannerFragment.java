@@ -50,6 +50,12 @@ public class PlannerFragment extends Fragment {
 	private Button editListEditButton_;
 	private Button editListCancelButton_;
 
+	// save workout list dialog variables
+	private EditText saveWorkoutName_;
+	private EditText saveWorkoutTag_;
+	private Button saveDialogSaveButton_;
+	private Button saveDialogCancelButton_;
+
 	// workout list variables
 	private String workoutName_;
 	private String workoutTime_;
@@ -307,5 +313,9 @@ public class PlannerFragment extends Fragment {
 				dialog.show();
 			}
 		});
+	}
+
+	public void savePlannedWorkoutList() {
+
 	}
 }
