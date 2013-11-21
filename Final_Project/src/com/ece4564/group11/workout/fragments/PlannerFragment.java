@@ -40,12 +40,11 @@ public class PlannerFragment extends Fragment {
 	private String addWorkoutSets_;
 	private ArrayList<String> workoutList_;
 	private ArrayAdapter<String> workoutAdapter_;
-	
+
 	public boolean FirstLoad = true;
 	private List<String> muscleGrpList_;
 	private String selectedMuscleGrp_;
-	
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -61,28 +60,36 @@ public class PlannerFragment extends Fragment {
 				.findViewById(R.id.planner_list_plannedWorkout);
 
 		muscleGrpList_ = createSpinnerList();
-		
+
 		/*
-		 * Listener links the muscleGroupSpinner and the suggestedExercises listView
+		 * Listener links the muscleGroupSpinner and the suggestedExercises
+		 * listView
 		 */
-		muscleGrpSpinner_.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-				if(FirstLoad){
-		    		FirstLoad = false;
-		    		return;            		
-		    	}
-		     	String selectedMuscleGrp_ = muscleGrpSpinner_.getItemAtPosition(i).toString();
-		     	createSuggestedExerciseListView(selectedMuscleGrp_);
-		     	//System.out.println("\nSELECTED MUSCLE : " + SpinnerChoice);
-			//Toast.makeText(muscleGrpSpinner_.getContext(), "You selected..." + SpinnerChoice, Toast.LENGTH_LONG).show();
-		    } 
-		    public void onNothingSelected(AdapterView<?> adapterView) {
-		        return;
-		    } 
-		});
+		muscleGrpSpinner_
+				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+					public void onItemSelected(AdapterView<?> adapterView,
+							View view, int i, long l) {
+						if (FirstLoad) {
+							FirstLoad = false;
+							return;
+						}
+						String selectedMuscleGrp_ = muscleGrpSpinner_
+								.getItemAtPosition(i).toString();
+						createSuggestedExerciseListView(selectedMuscleGrp_);
+						// System.out.println("\nSELECTED MUSCLE : " +
+						// SpinnerChoice);
+						// Toast.makeText(muscleGrpSpinner_.getContext(),
+						// "You selected..." + SpinnerChoice,
+						// Toast.LENGTH_LONG).show();
+					}
+
+					public void onNothingSelected(AdapterView<?> adapterView) {
+						return;
+					}
+				});
 		//
-		
-		//createSuggestedExerciseListView();
+
+		// createSuggestedExerciseListView();
 		createPlannedWorkoutListView();
 		addListPopupWindow();
 
@@ -202,7 +209,7 @@ public class PlannerFragment extends Fragment {
 		spinnerAdapter
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		muscleGrpSpinner_.setAdapter(spinnerAdapter);
-		return list;		
+		return list;
 	}
 
 	// Need to improve this function after finishing the pop-up
@@ -214,7 +221,7 @@ public class PlannerFragment extends Fragment {
 			list.add("ex" + i);
 			i++;
 		}
-		
+
 		suggestedExercisesList_.setAdapter(new ArrayAdapter<String>(
 				getActivity(), android.R.layout.simple_list_item_1, list));
 		suggestedExercisesList_
