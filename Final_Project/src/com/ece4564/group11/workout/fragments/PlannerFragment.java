@@ -1,5 +1,10 @@
 package com.ece4564.group11.workout.fragments;
 
+/**
+ * Planner Fragment class. User can select their workout body parts and create
+ * their own workout plan
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,19 +30,30 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class PlannerFragment extends Fragment {
-
+	// fragment variables
 	private Spinner muscleGrpSpinner_;
 	private ListView suggestedExercisesList_;
 	private ListView plannedWorkoutList_;
 	private Button addListButton_;
+
+	// addlist dialog variables
 	private EditText addListWorkoutName_;
 	private EditText addListTime_;
 	private EditText addListSets_;
 	private Button addListCreateButton_;
 	private Button addListCancelButton_;
-	private String addWorkoutName_;
-	private String addWorkoutTime_;
-	private String addWorkoutSets_;
+
+	// editlist dialog variables
+	private EditText editListWorkoutName_;
+	private EditText editListTime_;
+	private EditText editListSets_;
+	private Button editListEditButton_;
+	private Button editListCancelButton_;
+
+	// workout list variables
+	private String workoutName_;
+	private String workoutTime_;
+	private String workoutSets_;
 	private ArrayList<String> workoutList_;
 	private ArrayAdapter<String> workoutAdapter_;
 
@@ -160,27 +176,27 @@ public class PlannerFragment extends Fragment {
 	}
 
 	public void setWorkoutPlanName(String name) {
-		addWorkoutName_ = name;
+		workoutName_ = name;
 	}
 
 	public String getWorkoutPlanName() {
-		return addWorkoutName_;
+		return workoutName_;
 	}
 
 	public void setWorkoutPlanTime(String time) {
-		addWorkoutTime_ = time;
+		workoutTime_ = time;
 	}
 
 	public String getWorkoutPlanTime() {
-		return addWorkoutTime_;
+		return workoutTime_;
 	}
 
 	public void setWorkoutPlanSets(String sets) {
-		addWorkoutSets_ = sets;
+		workoutSets_ = sets;
 	}
 
 	public String getWorkoutPlanSets() {
-		return addWorkoutSets_;
+		return workoutSets_;
 	}
 
 	public List<String> createSpinnerList() {
@@ -245,9 +261,50 @@ public class PlannerFragment extends Fragment {
 		plannedWorkoutList_.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
+			public void onItemClick(AdapterView<?> parentAdapter, View v,
+					int position, long id) {
+				final Dialog dialog = new Dialog(getActivity());
+				dialog.setContentView(R.layout.popup_planner_editlist);
+				dialog.setTitle("Edit");
+				editListEditButton_ = (Button) dialog
+						.findViewById(R.id.editlistpop_EditButton);
+				editListWorkoutName_ = (EditText) dialog
+						.findViewById(R.id.editlistpop_workoutNameField);
+				editListTime_ = (EditText) dialog
+						.findViewById(R.id.editlistpop_timeField);
+				editListSets_ = (EditText) dialog
+						.findViewById(R.id.editlistpop_setsField);
 
+				editListCancelButton_ = (Button) dialog
+						.findViewById(R.id.editlistpop_CancelButton);
+				String selectedTitle = plannedWorkoutList_.getItemAtPosition(
+						position).toString();
+				Log.d("Selected to edit:", selectedTitle);
+				OnClickListener editButtonListener = new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+
+						workoutList_.add(getWorkoutPlanName());
+						workoutAdapter_.notifyDataSetChanged();
+
+						dialog.dismiss();
+					}
+
+				};
+
+				editListEditButton_.setOnClickListener(editButtonListener);
+
+				OnClickListener cancelButtonListener = new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+
+				};
+				editListCancelButton_.setOnClickListener(cancelButtonListener);
+				dialog.show();
 			}
 		});
 	}
