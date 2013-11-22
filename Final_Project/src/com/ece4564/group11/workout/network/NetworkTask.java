@@ -123,11 +123,18 @@ public class NetworkTask extends AsyncTask<String, Integer, HttpEntity>{
 			try 
 			{
 					jOb  = new JSONObject(EntityUtils.toString(result));
+					if (jOb.length() == 0)
+					{
+						friend_.setText("There are no people near you.");
+						return;
+					}
 					names = jOb.names();
 					for (int i = 0; i < names.length(); i ++)
 					{
+						friend_.setText("People Near You:");
 						friend_.append(names.getString(i));
 					}
+					status_.setText("Results Displayed!");
 			} 
 			catch (Exception e) 
 			{
