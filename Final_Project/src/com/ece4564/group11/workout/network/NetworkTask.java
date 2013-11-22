@@ -1,5 +1,4 @@
 package com.ece4564.group11.workout.network;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -7,7 +6,6 @@ import java.util.UUID;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.ParseException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -110,7 +108,7 @@ public class NetworkTask extends AsyncTask<String, Integer, HttpEntity>{
 		
 		if (statuscode_ == 204)
 		{
-			status_.setText("Removed from Area");
+			status_.setText("Successfully Removed from Area.");
 		}
 		else if (statuscode_ == 400)
 		{
@@ -123,18 +121,19 @@ public class NetworkTask extends AsyncTask<String, Integer, HttpEntity>{
 			try 
 			{
 					jOb  = new JSONObject(EntityUtils.toString(result));
+					status_.setText("Results displayed!");
 					if (jOb.length() == 0)
 					{
-						friend_.setText("There are no people near you.");
+						friend_.setText("There are no people near you.\n");
+						
 						return;
 					}
 					names = jOb.names();
 					for (int i = 0; i < names.length(); i ++)
 					{
-						friend_.setText("People Near You:");
-						friend_.append(names.getString(i));
+						friend_.setText("People Near You:\n");
+						friend_.append(names.getString(i) + "\n");
 					}
-					status_.setText("Results Displayed!");
 			} 
 			catch (Exception e) 
 			{
