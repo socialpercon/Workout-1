@@ -9,6 +9,7 @@ package com.ece4564.group11.workout.userinterface;
 
 import java.util.Locale;
 
+import com.ece4564.group11.workout.fragments.ExtrasFragment;
 import com.ece4564.group11.workout.fragments.PlannerFragment;
 import com.ece4564.group11.workout.fragments.WorkoutFragment;
 import com.ece4564.group11.workout.sensor.GPS;
@@ -80,14 +81,23 @@ public class ViewpagerNav extends FragmentActivity implements
 		/***************************************/
 		// add cases here for first screen
 		/***************************************/
-		if (stringExtra.equals("heart")) {
-			ab.setSelectedNavigationItem(0);
-		} else if (stringExtra.equals("planner")) {
-			ab.setSelectedNavigationItem(2);
-		} else if (stringExtra.equals("buddy")) {
-			ab.setSelectedNavigationItem(4);
-		} else if (stringExtra.equals("workout")) {
+		if (stringExtra.equals("heart")) 
+		{
+			ab.setSelectedNavigationItem(5);
+			Intent intent = new Intent(this, HeartRateMonitor.class);
+			startActivity(intent);
+		} 
+		else if (stringExtra.equals("planner")) 
+		{
+			ab.setSelectedNavigationItem(1);
+		} 
+		else if (stringExtra.equals("buddy")) 
+		{
 			ab.setSelectedNavigationItem(3);
+		} 
+		else if (stringExtra.equals("workout")) 
+		{
+			ab.setSelectedNavigationItem(2);
 		}
 
 	}
@@ -126,22 +136,22 @@ public class ViewpagerNav extends FragmentActivity implements
 			Fragment fragment = new DummySectionFragment();
 			switch (position) {
 			case 0:
-					fragment = new HeartRateMonitor();
-					break;
-			case 1:
 					fragment = new SearchFragment();
 					break;
-			case 2:
+			case 1:
 					fragment = new PlannerFragment();
 					break;
-			case 3:
+			case 2:
 					fragment = new WorkoutFragment();
 					break;
-			case 4:
+			case 3:
 					fragment = new GPS();
 					break;
-			case 5:
+			case 4:
 					fragment = new testfrag();
+					break;
+			case 5:
+					fragment = new ExtrasFragment();
 					break;
 
 			}

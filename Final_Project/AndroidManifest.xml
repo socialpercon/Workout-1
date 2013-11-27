@@ -48,6 +48,11 @@
             android:name="com.ece4564.group11.workout.media.FileExplore"
             android:label="@string/title_activity_viewpager_nav" >
         </activity>
+        
+        <activity
+            android:name="com.ece4564.group11.workout.sensor.HeartRateMonitor"
+            android:label="@string/heart_rate" >
+        </activity>
     </application>
 
 </manifest>

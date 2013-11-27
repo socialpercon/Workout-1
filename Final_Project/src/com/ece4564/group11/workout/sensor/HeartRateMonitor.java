@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.example.final_project.R;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.hardware.Camera;
@@ -32,7 +33,7 @@ import android.widget.TextView;
  * 
  * @author Justin Wetherell <phishman3579@gmail.com>
  */
-public class HeartRateMonitor extends Fragment {
+public class HeartRateMonitor extends Activity {
 
     private static final String TAG = "HeartRateMonitor";
     private static final AtomicBoolean processing = new AtomicBoolean(false);
@@ -66,23 +67,23 @@ public class HeartRateMonitor extends Fragment {
     private static final int[] beatsArray = new int[beatsArraySize];
     private static double beats = 0;
     private static long startTime = 0;
+	
+	@Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_heart);
 
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
-	{
-		View rootView = inflater.inflate(R.layout.fragment_heart, container, false);
-		
-		super.onCreate(savedInstanceState);
-		preview = (SurfaceView) rootView.findViewById(R.id.preview);
+        preview = (SurfaceView) findViewById(R.id.preview);
         previewHolder = preview.getHolder();
         previewHolder.addCallback(surfaceCallback);
         previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        image = rootView.findViewById(R.id.image);
-        text = (TextView) rootView.findViewById(R.id.text);
-        torch_ = (TextView) rootView.findViewById(R.id.torchtext);
-        PowerManager pm = (PowerManager) this.getActivity().getSystemService(Context.POWER_SERVICE);
+
+        image = findViewById(R.id.image);
+        text = (TextView) findViewById(R.id.text);
+        torch_ = (TextView) findViewById(R.id.torchtext);
+        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNotDimScreen");
-		return rootView;
-	}
+    }
 
     /**
      * {@inheritDoc}

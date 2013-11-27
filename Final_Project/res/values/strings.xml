@@ -5,12 +5,13 @@
     <string name="action_settings"></string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_viewpager_nav">Work it Out</string>
-    <string name="title_section1">Heart Rate</string>
-    <string name="title_section2">Search</string>
-    <string name="title_section3">Workout Planner</string>
-    <string name="title_section4">My Workout</string>
-	<string name="title_section5">Amigos</string>
-	<string name="title_section6">TestPage</string>
+    <string name="title_section1">Search</string>
+    <string name="title_section2">Workout Planner</string>
+    <string name="title_section3">My Workout</string>
+	<string name="title_section4">Amigos</string>
+	<string name="title_section5">TestPage</string>
+	<string name="title_section6">Extras</string>
+	<string name="heart_rate">Heart Rate</string>
 	<string name="default_text">--</string>
     
 </resources>
