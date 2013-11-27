@@ -24,25 +24,15 @@ public class testfrag extends Fragment {
 	Button switch_;
 	Button browse_;
 	Button browse2_;
-	MusicPlayer mp_;
-	MusicPlayer mp2_;
+	MusicPlayer player_;
 	boolean ready1;
 	boolean ready2;
-	int state;
-	String path1_;
-	String path2_;
-	boolean pathrdy1_;
-	boolean pathrdy2_;
 	
 	public testfrag() 
 	{
-		mp_ = new MusicPlayer();
-		mp2_ = new MusicPlayer();
+		player_ = new MusicPlayer();
 		ready1 = false;
 		ready2 = false;
-		pathrdy1_ = false;
-		pathrdy2_ = false;
-		state = 0;
 	}
 	
 	@Override
@@ -65,6 +55,20 @@ public class testfrag extends Fragment {
 		return rootView;
 	}
 	
+	@Override
+	public void onPause() 
+	{
+		player_.pause();
+		super.onPause();
+	}
+
+	@Override
+	public void onDestroy() {
+
+		player_.release();
+		super.onDestroy();
+	}
+
 	private void setUpListen()
 	{
 		play_.setOnClickListener(
@@ -76,15 +80,7 @@ public class testfrag extends Fragment {
 						play_.setEnabled(false);
 						stop_.setEnabled(true);
 						switch_.setEnabled(true);
-						if (state == 0 || state == 1)
-						{
-							mp_.start();
-							state = 1;
-						}
-						else if (state == 2)
-						{
-							mp2_.start();
-						}
+						player_.start(0);
 					}
 				}
 		);
@@ -98,9 +94,7 @@ public class testfrag extends Fragment {
 						play_.setEnabled(true);
 						stop_.setEnabled(false);
 						switch_.setEnabled(false);
-						mp_.pause();
-						mp2_.pause();
-						state = 0;
+						player_.pause();
 					}
 				}
 		);
@@ -151,7 +145,6 @@ public class testfrag extends Fragment {
 							}
 						}
 					};
-		mp_.setOnPreparedListener(opl);
 		
 		OnPreparedListener opl2 = new OnPreparedListener()
 					{
@@ -167,40 +160,12 @@ public class testfrag extends Fragment {
 						}
 					};
 		
-		mp2_.setOnPreparedListener(opl2);
-	}
-	
-	private void init()
-	{
-		mp_.reset();
-		mp2_.reset();
-		mp_.setData(path1_);
-		mp2_.setData(path2_);
-		play_.setEnabled(false);
-		stop_.setEnabled(false);
-		test_.setText("ready to play");
+		player_.setOnPreparedListener(opl, opl2);
 	}
 	
 	private void switchMP()
 	{
-		if (state == 1)
-		{
-			test_.setText("state = 2");
-			state = 2;
-			mp_.pause();
-			mp2_.start();
-		}
-		else if (state == 2)
-		{
-			test_.setText("state = 1");
-			state = 1;
-			mp2_.pause();
-			mp_.start();
-		}
-		else
-		{
-			test_.setText(state);
-		}
+		player_.switchSongs();
 	}
 	
 	@Override
@@ -210,23 +175,13 @@ public class testfrag extends Fragment {
 		
 		if (requestCode == 1)
 		{
-			pathrdy1_ = true;
 			test_.setText(data.getStringExtra("path"));
-			path1_ = data.getStringExtra("path");
+			player_.setFirstPath(data.getStringExtra("path"));
 		}
 		else if (requestCode == 2)
 		{
-			pathrdy2_ = true;
 			test_.setText(data.getStringExtra("path"));
-			path2_ = data.getStringExtra("path");
-		}
-		
-		if (pathrdy1_ && pathrdy2_)
-		{
-			init();
-			pathrdy1_ = false;
-			pathrdy2_ = false;
-			play_.setEnabled(true);
+			player_.setSecondPath(data.getStringExtra("path"));
 		}
 	}
 
