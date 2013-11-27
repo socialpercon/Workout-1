@@ -23,6 +23,8 @@ import android.widget.TextView;
 
 public class FileExplore extends Activity {
 
+	TextView text_;
+	
 	// Stores names of traversed directories
 	ArrayList<String> str = new ArrayList<String>();
 
@@ -42,7 +44,7 @@ public class FileExplore extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-
+		setContentView(R.layout.fragment_filebrowse);
 		loadFileList();
 
 		showDialog(DIALOG_LOAD_FILE);
@@ -154,6 +156,7 @@ public class FileExplore extends Activity {
 		case DIALOG_LOAD_FILE:
 			builder.setTitle("Choose your file");
 			builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					chosenFile = fileList[which].file;
@@ -213,4 +216,11 @@ public class FileExplore extends Activity {
 		return dialog;
 	}
 
+	@Override
+	public void onBackPressed() {
+		Intent output = new Intent();
+		output.putExtra("path", "");
+		setResult(RESULT_OK, output);
+		finish();
+	}
 }

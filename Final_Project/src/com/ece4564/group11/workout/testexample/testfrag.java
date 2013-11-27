@@ -172,16 +172,18 @@ public class testfrag extends Fragment {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) 
 	{
 		super.onActivityResult(requestCode, resultCode, data);
+		this.getActivity().finishActivity(1);
+		this.getActivity().finishActivity(2);
+		String result = data.getStringExtra("path");
+		test_.setText(result);
 		
-		if (requestCode == 1)
+		if (requestCode == 1 && result.length() > 0)
 		{
-			test_.setText(data.getStringExtra("path"));
-			player_.setFirstPath(data.getStringExtra("path"));
+			player_.setFirstPath(result);
 		}
-		else if (requestCode == 2)
+		else if (requestCode == 2 && result.length() > 0)
 		{
-			test_.setText(data.getStringExtra("path"));
-			player_.setSecondPath(data.getStringExtra("path"));
+			player_.setSecondPath(result);
 		}
 	}
 
