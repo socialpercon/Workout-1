@@ -1,7 +1,5 @@
 package com.ece4564.group11.workout.media;
 
-import java.io.File;
-
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
@@ -28,26 +26,16 @@ public class MusicPlayer {
 		mp_.setOnPreparedListener(opl);
 	}
 	
-	public boolean setData(String path)
+	public void setData(String path)
 	{
-		File file = new File(path);
-		if (file.exists())
+		try 
 		{
-			try 
-			{
-				mp_.setDataSource(path);
-				mp_.prepareAsync();
-				return true;
-			} 
-			catch (Exception e) 
-			{
-				e.printStackTrace();
-				return false;
-			}
-		}
-		else
+			mp_.setDataSource(path);
+			mp_.prepareAsync();
+		} 
+		catch (Exception e) 
 		{
-			return false;
+			e.printStackTrace();
 		}
 	}
 	

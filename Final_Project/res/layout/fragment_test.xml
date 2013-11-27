@@ -23,15 +23,21 @@
         android:text="Stop" />
 
     <Button
-        android:id="@+id/init"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Setup" />
-
-    <Button
         android:id="@+id/Switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Switch" />
+
+    <Button
+        android:id="@+id/browse1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select First" />
+
+    <Button
+        android:id="@+id/browse2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Second" />
 
 </LinearLayout>
