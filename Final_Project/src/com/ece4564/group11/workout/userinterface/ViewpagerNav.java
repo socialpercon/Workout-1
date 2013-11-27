@@ -15,6 +15,7 @@ import com.ece4564.group11.workout.sensor.GPS;
 import com.ece4564.group11.workout.sensor.HeartRateMonitor;
 import com.ece4564.group11.workout.testexample.DummySectionFragment;
 import com.ece4564.group11.workout.testexample.SearchFragment;
+import com.ece4564.group11.workout.testexample.testfrag;
 import com.example.final_project.R;
 
 import android.app.ActionBar;
@@ -125,20 +126,23 @@ public class ViewpagerNav extends FragmentActivity implements
 			Fragment fragment = new DummySectionFragment();
 			switch (position) {
 			case 0:
-				fragment = new HeartRateMonitor();
-				break;
+					fragment = new HeartRateMonitor();
+					break;
 			case 1:
-				fragment = new SearchFragment();
-				break;
+					fragment = new SearchFragment();
+					break;
 			case 2:
-				fragment = new PlannerFragment();
-				break;
+					fragment = new PlannerFragment();
+					break;
 			case 3:
-				fragment = new WorkoutFragment();
-				break;
+					fragment = new WorkoutFragment();
+					break;
 			case 4:
-				fragment = new GPS();
-				break;
+					fragment = new GPS();
+					break;
+			case 5:
+					fragment = new testfrag();
+					break;
 
 			}
 
@@ -157,7 +161,7 @@ public class ViewpagerNav extends FragmentActivity implements
 			/***************************************/
 			// update this number when you add a new frag
 			/***************************************/
-			return 5;
+			return 6;
 		}
 
 		@Override
@@ -174,6 +178,8 @@ public class ViewpagerNav extends FragmentActivity implements
 				return getString(R.string.title_section4).toUpperCase(l);
 			case 4:
 				return getString(R.string.title_section5).toUpperCase(l);
+			case 5:
+				return getString(R.string.title_section6).toUpperCase(l);
 				/***************************************/
 				// add new names here and in strings.xml
 				/***************************************/
