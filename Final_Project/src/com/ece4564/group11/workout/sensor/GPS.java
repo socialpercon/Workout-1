@@ -3,7 +3,7 @@ package com.ece4564.group11.workout.sensor;
 import java.util.UUID;
 
 
-import com.ece4564.group11.workout.network.NetworkTask;
+import com.ece4564.group11.workout.network.LocationNetworkTask;
 import com.example.final_project.R;
 
 import android.location.Criteria;
@@ -29,7 +29,7 @@ public class GPS extends Fragment implements LocationListener{
 	TextView status_;
 	Button add_;
 	Button remove_;
-	NetworkTask nt_;
+	LocationNetworkTask nt_;
 	UUID uuid_;
 	EditText name_;
 	
@@ -103,7 +103,6 @@ public class GPS extends Fragment implements LocationListener{
 					public void onClick(View arg0) 
 					{
 						sendServer("leave");
-						add_.setEnabled(true);
 					}
 				}
 		);
@@ -165,7 +164,7 @@ public class GPS extends Fragment implements LocationListener{
 		}
 		
 		add_.setEnabled(false);
-		nt_ = new NetworkTask(locData_, 
+		nt_ = new LocationNetworkTask(locData_, 
 							  	  uuid_, 
 							  	  "http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com",
 							  	  name_.getText().toString());

@@ -19,7 +19,7 @@ import com.ece4564.group11.workout.sensor.LocationPackage;
 import android.os.AsyncTask;
 import android.widget.TextView;
 
-public class NetworkTask extends AsyncTask<String, Integer, HttpEntity>{
+public class LocationNetworkTask extends AsyncTask<String, Integer, HttpEntity>{
 
 	LocationPackage location_;
 	UUID unique_id;
@@ -29,7 +29,7 @@ public class NetworkTask extends AsyncTask<String, Integer, HttpEntity>{
 	TextView friend_;
 	int statuscode_;
 	
-	public NetworkTask(LocationPackage l, UUID u, String addr, String n)
+	public LocationNetworkTask(LocationPackage l, UUID u, String addr, String n)
 	{
 		location_ = l;
 		unique_id = u;
@@ -38,7 +38,7 @@ public class NetworkTask extends AsyncTask<String, Integer, HttpEntity>{
 		statuscode_ = 0;
 	}
 	
-	public NetworkTask(UUID u, String addr)
+	public LocationNetworkTask(UUID u, String addr)
 	{
 		unique_id = u;
 		address_ = addr;

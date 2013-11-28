@@ -2,6 +2,7 @@ package com.ece4564.group11.workout.userinterface;
 
 import java.util.Random;
 
+import com.ece4564.group11.workout.network.QuoteNetworkTask;
 import com.example.final_project.R;
 
 import android.os.Bundle;
@@ -10,7 +11,6 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -41,6 +41,7 @@ public class SplashScreen extends Activity {
 		workoutButton_ = (ImageButton) findViewById(R.id.imageButton5);
 		
 		quote_ = (TextView) findViewById(R.id.textView1);
+		getQuote();
 		
 		setUpClickListeners();
 	}
@@ -140,4 +141,11 @@ public class SplashScreen extends Activity {
 		startActivity(intent);
 	}
 
+	private void getQuote()
+	{
+		QuoteNetworkTask qnt = new QuoteNetworkTask(
+											 "http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
+											 quote_);
+		qnt.execute();
+	}
 }
