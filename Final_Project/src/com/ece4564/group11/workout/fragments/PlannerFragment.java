@@ -118,6 +118,7 @@ public class PlannerFragment extends Fragment {
 		// createSuggestedExerciseListView();
 		createPlannedWorkoutListView();
 		addListPopupWindow();
+		retrievePlannerWorkoutList();
 
 		return rootView;
 	}
@@ -274,6 +275,47 @@ public class PlannerFragment extends Fragment {
 	}
 
 	public void retrievePlannerWorkoutList() {
+		OnClickListener listener = new OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				final Dialog dialog = new Dialog(getActivity());
+				dialog.setContentView(R.layout.popup_planner_retrieve);
+				dialog.setTitle("Retrieve");
+				retrieveDialogRetrieveButton_ = (Button) dialog
+						.findViewById(R.id.retrievepopup_retrieveButton);
+				retrieveDialogWorkoutName_ = (EditText) dialog
+						.findViewById(R.id.retrievepopup_nameField);
+				retrieveDialogCancelButton_ = (Button) dialog
+						.findViewById(R.id.retrievepopup_cancelButton);
+
+				OnClickListener retrieveButtonListener = new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+
+						dialog.dismiss();
+					}
+
+				};
+
+				retrieveDialogRetrieveButton_
+						.setOnClickListener(retrieveButtonListener);
+
+				OnClickListener cancelButtonListener = new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+
+				};
+				retrieveDialogCancelButton_
+						.setOnClickListener(cancelButtonListener);
+				dialog.show();
+			}
+		};
+
+		retrieveListButton_.setOnClickListener(listener);
 	}
 }
