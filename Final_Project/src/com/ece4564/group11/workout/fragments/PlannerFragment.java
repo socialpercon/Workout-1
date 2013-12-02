@@ -43,13 +43,6 @@ public class PlannerFragment extends Fragment {
 	private Button addListCreateButton_;
 	private Button addListCancelButton_;
 
-	// editlist dialog variables
-	private EditText editListWorkoutName_;
-	private EditText editListTime_;
-	private EditText editListSets_;
-	private Button editListEditButton_;
-	private Button editListCancelButton_;
-
 	// save workout list dialog variables
 	private EditText saveWorkoutName_;
 	private EditText saveWorkoutTag_;
@@ -263,56 +256,6 @@ public class PlannerFragment extends Fragment {
 		workoutAdapter_ = new ArrayAdapter<String>(getActivity(),
 				android.R.layout.simple_list_item_1, workoutList_);
 		plannedWorkoutList_.setAdapter(workoutAdapter_);
-
-		plannedWorkoutList_.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parentAdapter, View v,
-					int position, long id) {
-				final Dialog dialog = new Dialog(getActivity());
-				dialog.setContentView(R.layout.popup_planner_editlist);
-				dialog.setTitle("Edit");
-				editListEditButton_ = (Button) dialog
-						.findViewById(R.id.editlistpop_EditButton);
-				editListWorkoutName_ = (EditText) dialog
-						.findViewById(R.id.editlistpop_workoutNameField);
-				editListTime_ = (EditText) dialog
-						.findViewById(R.id.editlistpop_timeField);
-				editListSets_ = (EditText) dialog
-						.findViewById(R.id.editlistpop_setsField);
-
-				editListCancelButton_ = (Button) dialog
-						.findViewById(R.id.editlistpop_CancelButton);
-				String selectedTitle = plannedWorkoutList_.getItemAtPosition(
-						position).toString();
-				Log.d("Selected to edit:", selectedTitle);
-				OnClickListener editButtonListener = new OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-
-						workoutList_.add(getWorkoutPlanName());
-						workoutAdapter_.notifyDataSetChanged();
-
-						dialog.dismiss();
-					}
-
-				};
-
-				editListEditButton_.setOnClickListener(editButtonListener);
-
-				OnClickListener cancelButtonListener = new OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						dialog.dismiss();
-					}
-
-				};
-				editListCancelButton_.setOnClickListener(cancelButtonListener);
-				dialog.show();
-			}
-		});
 	}
 
 	public void savePlannedWorkoutList() {
