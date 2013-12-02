@@ -35,6 +35,8 @@ public class PlannerFragment extends Fragment {
 	private ListView suggestedExercisesList_;
 	private ListView plannedWorkoutList_;
 	private Button addListButton_;
+	private Button saveListButton_;
+	private Button retrieveListButton_;
 
 	// addlist dialog variables
 	private EditText addListWorkoutName_;
@@ -44,10 +46,15 @@ public class PlannerFragment extends Fragment {
 	private Button addListCancelButton_;
 
 	// save workout list dialog variables
-	private EditText saveWorkoutName_;
-	private EditText saveWorkoutTag_;
+	private EditText saveDialogWorkoutName_;
+	private EditText saveDialogWorkoutTag_;
 	private Button saveDialogSaveButton_;
 	private Button saveDialogCancelButton_;
+
+	// retrieve workout list dialog variables
+	private EditText retrieveDialogWorkoutName_;
+	private Button retrieveDialogRetrieveButton_;
+	private Button retrieveDialogCancelButton_;
 
 	// workout list variables
 	private String workoutName_;
@@ -71,6 +78,10 @@ public class PlannerFragment extends Fragment {
 				.findViewById(R.id.planner_list_suggestedExercises);
 		addListButton_ = (Button) rootView
 				.findViewById(R.id.planner_ListPopupButton);
+		saveListButton_ = (Button) rootView
+				.findViewById(R.id.planner_saveListButton);
+		retrieveListButton_ = (Button) rootView
+				.findViewById(R.id.planner_retrieveListButton);
 		plannedWorkoutList_ = (ListView) rootView
 				.findViewById(R.id.planner_list_plannedWorkout);
 
@@ -259,6 +270,10 @@ public class PlannerFragment extends Fragment {
 	}
 
 	public void savePlannedWorkoutList() {
+
+	}
+
+	public void retrievePlannerWorkoutList() {
 
 	}
 }
