@@ -64,14 +64,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="3dp" >
+        android:layout_gravity="center" >
 
         <Button
             android:id="@+id/planner_ListPopupButton"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Add to List" />
 
         <Button
@@ -79,7 +79,16 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Save" />
+
+        <Button
+            android:id="@+id/planner_retrieveListButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Retrieve" />
     </LinearLayout>
 
 </LinearLayout>
