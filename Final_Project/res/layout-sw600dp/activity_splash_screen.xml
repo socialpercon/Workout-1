@@ -70,4 +70,13 @@
         android:background="#00000000"
         android:src="@drawable/plannerbutton_600" />
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_marginBottom="17dp"
+        android:layout_toLeftOf="@+id/imageButton4"
+        android:src="@drawable/logo_600" />
+
 </RelativeLayout>
