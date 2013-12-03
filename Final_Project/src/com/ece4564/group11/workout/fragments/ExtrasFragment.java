@@ -5,7 +5,7 @@ import java.util.UUID;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.ece4564.group11.workout.network.DataNetworkTask;
+import com.ece4564.group11.workout.network.StoreDataNetworkTask;
 import com.ece4564.group11.workout.sensor.DeviceUuidFactory;
 import com.ece4564.group11.workout.sensor.HeartRateMonitor;
 import com.example.final_project.R;
@@ -105,7 +105,7 @@ public class ExtrasFragment extends Fragment{
 		}
 		
 		String uuid = new DeviceUuidFactory(this.getView().getContext()).getDeviceUuid().toString();
-		DataNetworkTask dnt = new DataNetworkTask(j.toString(),
+		StoreDataNetworkTask dnt = new StoreDataNetworkTask(j.toString(),
 												  "http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/", 
 												  "test",
 												  uuid);

@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.ece4564.group11.workout.network.DataNetworkTask;
+import com.ece4564.group11.workout.network.StoreDataNetworkTask;
 import com.ece4564.group11.workout.network.GetHtml;
 import com.ece4564.group11.workout.sensor.DeviceUuidFactory;
 import com.example.final_project.R;
@@ -350,7 +350,7 @@ public class PlannerFragment extends Fragment {
 								.println("Workout plan being sent to the server: "
 										+ j.toString());
 
-						DataNetworkTask dnt = new DataNetworkTask(
+						StoreDataNetworkTask dnt = new StoreDataNetworkTask(
 								j.toString(),
 								"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
 								"test",

@@ -17,7 +17,7 @@ import com.ece4564.group11.workout.sensor.DeviceUuidFactory;
 
 import android.os.AsyncTask;
 
-public class DataNetworkTask extends AsyncTask<String, Integer, Boolean>{
+public class StoreDataNetworkTask extends AsyncTask<String, Integer, Boolean>{
 
 	JSONObject jObject_;
 	String jString_;
@@ -25,7 +25,7 @@ public class DataNetworkTask extends AsyncTask<String, Integer, Boolean>{
 	String identifier_;
 	String uuid_;
 	
-	public DataNetworkTask()
+	public StoreDataNetworkTask()
 	{
 		jObject_ = null;
 		jString_ = null;
@@ -34,7 +34,7 @@ public class DataNetworkTask extends AsyncTask<String, Integer, Boolean>{
 		uuid_ = null;
 	}
 	
-	public DataNetworkTask(JSONObject jOb, String addr, String name, String uuid)
+	public StoreDataNetworkTask(JSONObject jOb, String addr, String name, String uuid)
 	{
 		jObject_ = jOb;
 		jString_ = jObject_.toString();
@@ -44,7 +44,7 @@ public class DataNetworkTask extends AsyncTask<String, Integer, Boolean>{
 		
 	}
 	
-	public DataNetworkTask(String jStr, String addr, String name, String uuid)
+	public StoreDataNetworkTask(String jStr, String addr, String name, String uuid)
 	{	
 		try 
 		{
