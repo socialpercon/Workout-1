@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.ece4564.group11.workout.network.GetDataNetworkTask;
 import com.ece4564.group11.workout.network.StoreDataNetworkTask;
 import com.ece4564.group11.workout.network.GetHtml;
 import com.ece4564.group11.workout.sensor.DeviceUuidFactory;
@@ -422,6 +423,11 @@ public class PlannerFragment extends Fragment {
 						.findViewById(R.id.retrievepopup_list);
 				retrieveDialogCancelButton_ = (Button) dialog
 						.findViewById(R.id.retrievepopup_cancelButton);
+				GetDataNetworkTask gdnt = new GetDataNetworkTask(
+						"text",
+						"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
+						uuid_);
+				gdnt.execute();
 				retrievedFromServerList_ = new ArrayList<String>();
 				retrieveAdapter_ = new ArrayAdapter<String>(getActivity(),
 						android.R.layout.simple_list_item_1,
@@ -441,6 +447,7 @@ public class PlannerFragment extends Fragment {
 								// Retrieve JSON Object here
 								// When the user selects previous workout plan,
 								// it will start workout
+
 							}
 						});
 
@@ -459,6 +466,12 @@ public class PlannerFragment extends Fragment {
 		};
 
 		retrieveListButton_.setOnClickListener(listener);
+	}
+
+	public void getDataNetworkTaskResult(String result) {
+		retrievedFromServerList_.add(result);
+		retrieveAdapter_.notifyDataSetChanged();
+		Log.d("Retrieved list", result);
 	}
 
 	private class RetrieveHTMLString extends AsyncTask<String, Void, String> {

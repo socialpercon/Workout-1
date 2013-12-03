@@ -1,64 +1,92 @@
 package com.ece4564.group11.workout.network;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.simple.parser.ContainerFactory;
+import org.json.simple.parser.JSONParser;
+
+import com.ece4564.group11.workout.fragments.PlannerFragment;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
-public class GetDataNetworkTask extends AsyncTask<String, Integer, String>{
-
+public class GetDataNetworkTask extends AsyncTask<Void, Integer, String> {
+	private PlannerFragment pf_;
 	String address_;
 	String name_;
 	String uuid_;
-	
-	public GetDataNetworkTask()
-	{
+	HashMap<String, List<String>> cache_;
+
+	public GetDataNetworkTask() {
 		address_ = null;
 		name_ = null;
 		uuid_ = null;
 	}
-	
-	public GetDataNetworkTask(String name, String address, String uuid)
-	{
+
+	public GetDataNetworkTask(String name, String address, String uuid) {
 		name_ = name;
 		uuid_ = uuid;
 		address_ = address;
 	}
-	
+
 	@Override
-	protected String doInBackground(String... arg0) 
-	{
+	protected String doInBackground(Void... params) {
 		HttpClient client = new DefaultHttpClient();
-		HttpGet httpget = new HttpGet(address_ + "store?name=" + name_ + "&uuid=" + uuid_);
-		
-		try 
-		{
+		HttpGet httpget = new HttpGet(address_ + "store?name=" + name_
+				+ "&uuid=" + uuid_);
+		String returnKey = "";
+		try {
 			HttpResponse response = client.execute(httpget);
-			return EntityUtils.toString(response.getEntity());
-		} 
-		catch (Exception e) 
-		{
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					response.getEntity().getContent()));
+			Log.d("Get status:", response.getStatusLine().toString());
+			JSONParser parser = new JSONParser();
+			ContainerFactory containerFactory = new ContainerFactory() {
+				public List creatArrayContainer() {
+					return new LinkedList();
+				}
+
+				public Map createObjectContainer() {
+					return new LinkedHashMap();
+				}
+			};
+			Map json = (Map) parser.parse(reader, containerFactory);
+			Iterator iter = json.entrySet().iterator();
+			cache_ = new HashMap<String, List<String>>();
+			System.out.println("==iterate result==");
+
+			Map.Entry<String, List<String>> entry = null;
+			while (iter.hasNext()) {
+				entry = (Map.Entry<String, List<String>>) iter.next();
+				Log.d("VALUES: ", entry.getKey() + "=>" + entry.getValue());
+				List<String> values = entry.getValue();
+				cache_.put(entry.getKey(), values);
+				System.out.println(cache_);
+				returnKey = entry.getKey().toString();
+				System.out.println("What key was retrieved? " + returnKey);
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			returnKey = "";
 		}
+		return returnKey;
 	}
 
 	@Override
-	protected void onPostExecute(String result)
-	{
-		if (result == null)
-		{
-			System.out.println("GETTING WORKOUT FAILED");
-		}
-		else
-		{
-			System.out.println(result);
-		}
+	protected void onPostExecute(String result) {
+		pf_.getDataNetworkTaskResult(result);
 	}
-	
-	
 
 }
