@@ -257,7 +257,7 @@ public class PlannerFragment extends Fragment {
 		exerciseAdapter_ = new ArrayAdapter<String>(getActivity(),
 				android.R.layout.simple_list_item_1, selectedMuscleGrpList_);
 		suggestedExercisesList_.setAdapter(exerciseAdapter_);
-		exerciseAdapter_.notifyDataSetChanged();
+		
 
 	}
 
@@ -449,10 +449,16 @@ public class PlannerFragment extends Fragment {
 			Matcher matcher = name_Pattern.matcher(htmlStrings);
 			while (matcher.find()) {
 				tempString = matcher.group(1);
-				selectedMuscleGrpList_.add(tempString);
-				System.out.println("\nSUGGESTED LIST: " + tempString);
+				exerciseResultReceived(tempString);
+
 			}
 		}
 
+	}
+
+	private void exerciseResultReceived(String result) {
+		selectedMuscleGrpList_.add(result);
+		exerciseAdapter_.notifyDataSetChanged();
+		System.out.println("\nSUGGESTED LIST: " + result);
 	}
 }
