@@ -354,7 +354,7 @@ public class PlannerFragment extends Fragment {
 						StoreDataNetworkTask dnt = new StoreDataNetworkTask(
 								j.toString(),
 								"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
-								"test", uuid_);
+								planName, uuid_);
 						dnt.execute();
 
 						int totalWorkoutPlanTime = 0;
@@ -430,7 +430,6 @@ public class PlannerFragment extends Fragment {
 						retrievedFromServerList_);
 				retrievedList_.setAdapter(retrieveAdapter_);
 				GetDataNetworkTask gdnt = new GetDataNetworkTask(
-						"test",
 						"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
 						uuid_, pf_);
 				gdnt.execute();
