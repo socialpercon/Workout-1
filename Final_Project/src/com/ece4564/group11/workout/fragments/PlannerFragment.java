@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import com.ece4564.group11.workout.network.GetHtml;
 import com.example.final_project.R;
 
 import android.support.v4.app.Fragment;
@@ -75,6 +78,10 @@ public class PlannerFragment extends Fragment {
 	public boolean FirstLoad = true;
 	private List<String> muscleGrpList_;
 	private String selectedMuscleGrp_;
+	private String asyncSelectedMuscleGrp_;
+	List<String> selectedMuscleGrpList_ = new ArrayList<String>();
+	
+	private String htmlStrings = "";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -97,8 +104,7 @@ public class PlannerFragment extends Fragment {
 		muscleGrpList_ = createSpinnerList();
 
 		/*
-		 * Listener links the muscleGroupSpinner and the suggestedExercises
-		 * listView
+		 * Listener links the muscleGroupSpinner and the suggestedExercises listView
 		 */
 		muscleGrpSpinner_
 				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -113,9 +119,6 @@ public class PlannerFragment extends Fragment {
 						createSuggestedExerciseListView(selectedMuscleGrp_);
 						// System.out.println("\nSELECTED MUSCLE : " +
 						// SpinnerChoice);
-						// Toast.makeText(muscleGrpSpinner_.getContext(),
-						// "You selected..." + SpinnerChoice,
-						// Toast.LENGTH_LONG).show();
 					}
 
 					public void onNothingSelected(AdapterView<?> adapterView) {
@@ -232,16 +235,18 @@ public class PlannerFragment extends Fragment {
 
 	// Need to improve this function after finishing the pop-up
 	public void createSuggestedExerciseListView(String spinnerSelectedMuscleGrp) {
-		List<String> list = new ArrayList<String>();
-		// temporary list population
-		int i = 1;
-		while (i < 11) {
-			list.add("ex" + i);
-			i++;
+		//System.out.println("\nSELECTED MUSCLE: " + spinnerSelectedMuscleGrp);
+		asyncSelectedMuscleGrp_ = spinnerSelectedMuscleGrp;
+		try{
+			new RetrieveHTMLString().execute();
+		}catch (Exception e){
+			System.err.println("DEBUG: Exception caught");
+			return;
 		}
 
 		suggestedExercisesList_.setAdapter(new ArrayAdapter<String>(
-				getActivity(), android.R.layout.simple_list_item_1, list));
+				getActivity(), android.R.layout.simple_list_item_1, selectedMuscleGrpList_));
+		/*
 		suggestedExercisesList_
 				.setOnItemClickListener(new OnItemClickListener() {
 
@@ -251,6 +256,7 @@ public class PlannerFragment extends Fragment {
 
 					}
 				});
+				*/
 	}
 
 	// Need to improve this function after finishing the pop-up
@@ -398,5 +404,36 @@ public class PlannerFragment extends Fragment {
 		};
 
 		retrieveListButton_.setOnClickListener(listener);
+	}
+	
+	private class RetrieveHTMLString extends AsyncTask<String, Void, String> {
+		protected String doInBackground(String... urls) {
+			String htmlString;
+			GetHtml test = new GetHtml();
+			try {
+				htmlString = test.getHtmlStrings(asyncSelectedMuscleGrp_);
+				return htmlString;
+			} catch (Exception e) {
+				return null;
+			}
+		}
+		protected void onPostExecute(String response) {
+			String tempString = "";
+			htmlStrings = response;
+			selectedMuscleGrpList_.clear();
+			
+			//System.out.println("[DEBUG]" +  htmlStrings);
+			
+			// Parsing
+			// store suggested workout names
+			Pattern name_Pattern = Pattern.compile("<span class='summary' style='display:none;'>(.*?)</span><span class=");
+			Matcher matcher = name_Pattern.matcher(htmlStrings);
+			while (matcher.find()) {
+				tempString = matcher.group(1);
+				selectedMuscleGrpList_.add(tempString);
+				System.out.println("\nSUGGESTED LIST: " + tempString);
+			}
+		}
+		
 	}
 }
