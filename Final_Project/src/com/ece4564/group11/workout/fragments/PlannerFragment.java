@@ -50,13 +50,13 @@ public class PlannerFragment extends Fragment {
 	private Button addListCancelButton_;
 
 	// save workout list dialog variables
-	private EditText saveDialogWorkoutName_;
+	private EditText saveDialogPlanName_;
 	private EditText saveDialogWorkoutTag_;
 	private Button saveDialogSaveButton_;
 	private Button saveDialogCancelButton_;
 
 	// retrieve workout list dialog variables
-	private EditText retrieveDialogWorkoutName_;
+	private EditText retrieveDialogPlanName_;
 	private Button retrieveDialogRetrieveButton_;
 	private Button retrieveDialogCancelButton_;
 
@@ -304,7 +304,51 @@ public class PlannerFragment extends Fragment {
 	}
 
 	public void savePlannedWorkoutList() {
+		OnClickListener listener = new OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				final Dialog dialog = new Dialog(getActivity());
+				dialog.setContentView(R.layout.popup_planner_save);
+				dialog.setTitle("Save");
+				saveDialogSaveButton_ = (Button) dialog
+						.findViewById(R.id.savepopup_saveButton);
+				saveDialogPlanName_ = (EditText) dialog
+						.findViewById(R.id.savepopup_nameField);
+				saveDialogCancelButton_ = (Button) dialog
+						.findViewById(R.id.savepopup_cancelButton);
+
+				OnClickListener saveButtonListener = new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						String planName = saveDialogPlanName_.getText()
+								.toString();
+						Log.d("Saving plan", planName);
+						// JSONSTUFF HERE
+
+						dialog.dismiss();
+					}
+
+				};
+
+				saveDialogSaveButton_.setOnClickListener(saveButtonListener);
+
+				OnClickListener cancelButtonListener = new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+
+				};
+				saveDialogCancelButton_
+						.setOnClickListener(cancelButtonListener);
+				dialog.show();
+			}
+		};
+
+		saveListButton_.setOnClickListener(listener);
 	}
 
 	public void retrievePlannerWorkoutList() {
@@ -317,7 +361,7 @@ public class PlannerFragment extends Fragment {
 				dialog.setTitle("Retrieve");
 				retrieveDialogRetrieveButton_ = (Button) dialog
 						.findViewById(R.id.retrievepopup_retrieveButton);
-				retrieveDialogWorkoutName_ = (EditText) dialog
+				retrieveDialogPlanName_ = (EditText) dialog
 						.findViewById(R.id.retrievepopup_nameField);
 				retrieveDialogCancelButton_ = (Button) dialog
 						.findViewById(R.id.retrievepopup_cancelButton);
@@ -326,6 +370,10 @@ public class PlannerFragment extends Fragment {
 
 					@Override
 					public void onClick(View v) {
+						String retrievePlan = retrieveDialogPlanName_.getText()
+								.toString();
+						Log.d("Retrieving plan", retrievePlan);
+						// JSON STUFF HERE
 
 						dialog.dismiss();
 					}
