@@ -430,10 +430,11 @@ public class PlannerFragment extends Fragment {
 						retrievedFromServerList_);
 				retrievedList_.setAdapter(retrieveAdapter_);
 				GetDataNetworkTask gdnt = new GetDataNetworkTask(
-						"text",
+						"test",
 						"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
 						uuid_);
 				gdnt.execute();
+				retrieveAdapter_.notifyDataSetChanged();
 				retrievedList_
 						.setOnItemClickListener(new OnItemClickListener() {
 
@@ -469,10 +470,11 @@ public class PlannerFragment extends Fragment {
 		retrieveListButton_.setOnClickListener(listener);
 	}
 
-	public void getDataNetworkTaskResult(String result) {
+	public void getDataNetworkTaskResult(final String result) {
+		Log.d("Retrieved list", result);
 		retrievedFromServerList_.add(result);
 		retrieveAdapter_.notifyDataSetChanged();
-		Log.d("Retrieved list", result);
+		
 	}
 
 	private class RetrieveHTMLString extends AsyncTask<String, Void, String> {

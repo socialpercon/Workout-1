@@ -13,7 +13,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 import org.json.simple.parser.ContainerFactory;
 import org.json.simple.parser.JSONParser;
 
@@ -22,12 +21,13 @@ import com.ece4564.group11.workout.fragments.PlannerFragment;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class GetDataNetworkTask extends AsyncTask<Void, Integer, String> {
+public class GetDataNetworkTask extends AsyncTask<Void, Void, String> {
 	private PlannerFragment pf_;
 	String address_;
 	String name_;
 	String uuid_;
-	HashMap<String, List<String>> cache_;
+	HashMap<String, String> cache_;
+	private String returnKey_ = "";
 
 	public GetDataNetworkTask() {
 		address_ = null;
@@ -46,7 +46,7 @@ public class GetDataNetworkTask extends AsyncTask<Void, Integer, String> {
 		HttpClient client = new DefaultHttpClient();
 		HttpGet httpget = new HttpGet(address_ + "store?name=" + name_
 				+ "&uuid=" + uuid_);
-		String returnKey = "";
+
 		try {
 			HttpResponse response = client.execute(httpget);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -64,28 +64,30 @@ public class GetDataNetworkTask extends AsyncTask<Void, Integer, String> {
 			};
 			Map json = (Map) parser.parse(reader, containerFactory);
 			Iterator iter = json.entrySet().iterator();
-			cache_ = new HashMap<String, List<String>>();
+			cache_ = new HashMap<String, String>();
 			System.out.println("==iterate result==");
 
-			Map.Entry<String, List<String>> entry = null;
+			Map.Entry<String, String> entry = null;
 			while (iter.hasNext()) {
-				entry = (Map.Entry<String, List<String>>) iter.next();
-				Log.d("VALUES: ", entry.getKey() + "=>" + entry.getValue());
-				List<String> values = entry.getValue();
-				cache_.put(entry.getKey(), values);
+				entry = (Map.Entry<String, String>) iter.next();
+				String value = entry.getValue();
+				Log.d("VALUES: ", entry.getKey() + "=>" + value);
+
+				cache_.put(entry.getKey(), value);
 				System.out.println(cache_);
-				returnKey = entry.getKey().toString();
-				System.out.println("What key was retrieved? " + returnKey);
+				returnKey_ = entry.getKey().toString();
+				System.out.println("What key was retrieved? " + returnKey_);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			returnKey = "";
 		}
-		return returnKey;
+		Log.d("RETURN KEY", returnKey_);
+		return returnKey_;
 	}
 
 	@Override
 	protected void onPostExecute(String result) {
+		System.out.println("RESULT " + result);
 		pf_.getDataNetworkTaskResult(result);
 	}
 
