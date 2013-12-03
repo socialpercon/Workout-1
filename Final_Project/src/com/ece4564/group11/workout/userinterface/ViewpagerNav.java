@@ -135,22 +135,22 @@ public class ViewpagerNav extends FragmentActivity implements
 
 			Fragment fragment = new DummySectionFragment();
 			switch (position) {
+		//	case 0:
+		//			fragment = new SearchFragment();
+		//			break;
 			case 0:
-					fragment = new SearchFragment();
-					break;
-			case 1:
 					fragment = new PlannerFragment();
 					break;
-			case 2:
+			case 1:
 					fragment = new WorkoutFragment();
 					break;
-			case 3:
+			case 2:
 					fragment = new GPS();
 					break;
-			case 4:
+			case 3:
 					fragment = new testfrag();
 					break;
-			case 5:
+			case 4:
 					fragment = new ExtrasFragment();
 					break;
 
@@ -171,24 +171,24 @@ public class ViewpagerNav extends FragmentActivity implements
 			/***************************************/
 			// update this number when you add a new frag
 			/***************************************/
-			return 6;
+			return 5;
 		}
 
 		@Override
 		public CharSequence getPageTitle(int position) {
 			Locale l = Locale.getDefault();
 			switch (position) {
+		//	case 0:
+		//		return getString(R.string.title_section1).toUpperCase(l);
 			case 0:
-				return getString(R.string.title_section1).toUpperCase(l);
-			case 1:
 				return getString(R.string.title_section2).toUpperCase(l);
-			case 2:
+			case 1:
 				return getString(R.string.title_section3).toUpperCase(l);
-			case 3:
+			case 2:
 				return getString(R.string.title_section4).toUpperCase(l);
-			case 4:
+			case 3:
 				return getString(R.string.title_section5).toUpperCase(l);
-			case 5:
+			case 4:
 				return getString(R.string.title_section6).toUpperCase(l);
 				/***************************************/
 				// add new names here and in strings.xml
