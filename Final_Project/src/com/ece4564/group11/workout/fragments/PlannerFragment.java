@@ -115,10 +115,10 @@ public class PlannerFragment extends Fragment {
 				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 					public void onItemSelected(AdapterView<?> adapterView,
 							View view, int i, long l) {
-//						if (FirstLoad) {
-//							FirstLoad = false;
-//							return;
-//						}
+						// if (FirstLoad) {
+						// FirstLoad = false;
+						// return;
+						// }
 						String selectedMuscleGrp_ = muscleGrpSpinner_
 								.getItemAtPosition(i).toString();
 						createSuggestedExerciseListView(selectedMuscleGrp_);
@@ -371,10 +371,9 @@ public class PlannerFragment extends Fragment {
 
 								Log.d("WorkoutTime",
 										Integer.toString(totalWorkoutTime));
-
+								totalWorkoutPlanTime = totalWorkoutPlanTime
+										+ totalWorkoutTime;
 							}
-							// NEED TO FIX THIS ADDITION!!!!!!
-							totalWorkoutPlanTime = totalWorkoutTime;
 							Log.d("Total Workout Time",
 									Integer.toString(totalWorkoutPlanTime));
 							intent.putExtra("workoutTime",
