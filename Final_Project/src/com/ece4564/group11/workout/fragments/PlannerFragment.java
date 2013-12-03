@@ -30,14 +30,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class PlannerFragment extends Fragment {
 	// fragment variables
@@ -58,14 +56,12 @@ public class PlannerFragment extends Fragment {
 
 	// save workout list dialog variables
 	private EditText saveDialogPlanName_;
-	private EditText saveDialogWorkoutTag_;
 	private Button saveDialogSaveButton_;
 	private Button saveDialogCancelButton_;
 
 	// retrieve workout list dialog variables
-	private EditText retrieveDialogPlanName_;
-	private Button retrieveDialogRetrieveButton_;
 	private Button retrieveDialogCancelButton_;
+	private ListView retrievedList_;
 
 	// plan data dialog variables
 	private TextView dataDialogWorkoutName_;
@@ -77,8 +73,9 @@ public class PlannerFragment extends Fragment {
 	// workout list variables
 	private ArrayList<String> workoutList_;
 	private ArrayAdapter<String> workoutAdapter_;
-	private ArrayList<String> exerciseList_;
 	private ArrayAdapter<String> exerciseAdapter_;
+	private ArrayList<String> retrievedFromServerList_;
+	private ArrayAdapter<String> retrieveAdapter_;
 	private Map<String, List<String>> planMap_ = new HashMap<String, List<String>>();
 
 	public boolean FirstLoad = true;
@@ -257,7 +254,6 @@ public class PlannerFragment extends Fragment {
 		exerciseAdapter_ = new ArrayAdapter<String>(getActivity(),
 				android.R.layout.simple_list_item_1, selectedMuscleGrpList_);
 		suggestedExercisesList_.setAdapter(exerciseAdapter_);
-		
 
 	}
 
@@ -333,7 +329,6 @@ public class PlannerFragment extends Fragment {
 						String planName = saveDialogPlanName_.getText()
 								.toString();
 						Log.d("Saving plan", planName);
-						// JSONSTUFF HERE
 
 						JSONObject j = new JSONObject();
 						try {
@@ -382,29 +377,31 @@ public class PlannerFragment extends Fragment {
 				final Dialog dialog = new Dialog(getActivity());
 				dialog.setContentView(R.layout.popup_planner_retrieve);
 				dialog.setTitle("Retrieve");
-				retrieveDialogRetrieveButton_ = (Button) dialog
-						.findViewById(R.id.retrievepopup_retrieveButton);
-				retrieveDialogPlanName_ = (EditText) dialog
-						.findViewById(R.id.retrievepopup_nameField);
+				retrievedList_ = (ListView) dialog
+						.findViewById(R.id.retrievepopup_list);
 				retrieveDialogCancelButton_ = (Button) dialog
 						.findViewById(R.id.retrievepopup_cancelButton);
+				retrievedFromServerList_ = new ArrayList<String>();
+				retrieveAdapter_ = new ArrayAdapter<String>(getActivity(),
+						android.R.layout.simple_list_item_1,
+						retrievedFromServerList_);
+				retrievedList_.setAdapter(retrieveAdapter_);
+				retrievedList_
+						.setOnItemClickListener(new OnItemClickListener() {
 
-				OnClickListener retrieveButtonListener = new OnClickListener() {
+							@Override
+							public void onItemClick(
+									AdapterView<?> parentAdapter, View v,
+									int position, long id) {
+								String selectedTitle = retrievedList_
+										.getItemAtPosition(position).toString();
+								Log.d("Selected retrieve plan", selectedTitle);
 
-					@Override
-					public void onClick(View v) {
-						String retrievePlan = retrieveDialogPlanName_.getText()
-								.toString();
-						Log.d("Retrieving plan", retrievePlan);
-						// JSON STUFF HERE
-
-						dialog.dismiss();
-					}
-
-				};
-
-				retrieveDialogRetrieveButton_
-						.setOnClickListener(retrieveButtonListener);
+								// Retrieve JSON Object here
+								// When the user selects previous workout plan,
+								// it will start workout
+							}
+						});
 
 				OnClickListener cancelButtonListener = new OnClickListener() {
 
@@ -459,6 +456,6 @@ public class PlannerFragment extends Fragment {
 	private void exerciseResultReceived(String result) {
 		selectedMuscleGrpList_.add(result);
 		exerciseAdapter_.notifyDataSetChanged();
-		System.out.println("\nSUGGESTED LIST: " + result);
+		Log.d("SUGGESTED LIST", result);
 	}
 }

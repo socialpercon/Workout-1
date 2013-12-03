@@ -11,40 +11,25 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Plan Name"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/retrievepopup_nameField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" >
+    <ListView
+        android:id="@+id/retrievepopup_list"
+        android:layout_width="248dp"
+        android:layout_height="195dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="7dp"
+        android:scrollbars="vertical" >
+    </ListView>
 
-        <requestFocus />
-    </EditText>
-
-    <LinearLayout
+    <Button
+        android:id="@+id/retrievepopup_cancelButton"
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="7dp"
-        android:layout_weight="1" >
-
-        <Button
-            android:id="@+id/retrievepopup_retrieveButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="Retrieve" />
-
-        <Button
-            android:id="@+id/retrievepopup_cancelButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Cancel" />
-    </LinearLayout>
+        android:text="Cancel" />
 
 </LinearLayout>
