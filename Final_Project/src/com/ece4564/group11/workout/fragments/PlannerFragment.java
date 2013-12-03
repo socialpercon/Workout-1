@@ -29,6 +29,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class PlannerFragment extends Fragment {
@@ -58,6 +59,13 @@ public class PlannerFragment extends Fragment {
 	private EditText retrieveDialogWorkoutName_;
 	private Button retrieveDialogRetrieveButton_;
 	private Button retrieveDialogCancelButton_;
+
+	// plan data dialog variables
+	private TextView dataDialogWorkoutName_;
+	private TextView dataDialogWorkoutTime_;
+	private TextView dataDialogRestTime_;
+	private TextView dataDialogSets_;
+	private Button dataDialogOKButton_;
 
 	// workout list variables
 	private ArrayList<String> workoutList_;
@@ -251,6 +259,48 @@ public class PlannerFragment extends Fragment {
 		workoutAdapter_ = new ArrayAdapter<String>(getActivity(),
 				android.R.layout.simple_list_item_1, workoutList_);
 		plannedWorkoutList_.setAdapter(workoutAdapter_);
+		plannedWorkoutList_.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parentAdapter, View v,
+					int position, long id) {
+				final Dialog dialog = new Dialog(getActivity());
+				dialog.setContentView(R.layout.popup_planner_plandata);
+				dialog.setTitle("Plan Details");
+				dataDialogWorkoutName_ = (TextView) dialog
+						.findViewById(R.id.plandata_name);
+				dataDialogWorkoutTime_ = (TextView) dialog
+						.findViewById(R.id.plandata_workoutTime);
+				dataDialogRestTime_ = (TextView) dialog
+						.findViewById(R.id.plandata_restTime);
+				dataDialogSets_ = (TextView) dialog
+						.findViewById(R.id.plandata_sets);
+				dataDialogOKButton_ = (Button) dialog
+						.findViewById(R.id.plandata_OKButton);
+				String selectedTitle = plannedWorkoutList_.getItemAtPosition(
+						position).toString();
+				Log.d("Selected to view:", selectedTitle);
+
+				List<String> values = planMap_.get(selectedTitle);
+				dataDialogWorkoutName_.setText("Plan Name: " + selectedTitle);
+				dataDialogWorkoutTime_.setText("Workout Time: "
+						+ values.get(0).toString());
+				dataDialogRestTime_.setText("Rest Time: "
+						+ values.get(1).toString());
+				dataDialogSets_.setText("Sets: " + values.get(2).toString());
+				OnClickListener okButtonListener = new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+
+						dialog.dismiss();
+					}
+
+				};
+				dataDialogOKButton_.setOnClickListener(okButtonListener);
+				dialog.show();
+			}
+		});
 	}
 
 	public void savePlannedWorkoutList() {
