@@ -6,7 +6,9 @@ package com.ece4564.group11.workout.fragments;
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.example.final_project.R;
 
@@ -40,7 +42,8 @@ public class PlannerFragment extends Fragment {
 
 	// addlist dialog variables
 	private EditText addListWorkoutName_;
-	private EditText addListTime_;
+	private EditText addListWorkoutTime_;
+	private EditText addListRestTime_;
 	private EditText addListSets_;
 	private Button addListCreateButton_;
 	private Button addListCancelButton_;
@@ -57,11 +60,9 @@ public class PlannerFragment extends Fragment {
 	private Button retrieveDialogCancelButton_;
 
 	// workout list variables
-	private String workoutName_;
-	private String workoutTime_;
-	private String workoutSets_;
 	private ArrayList<String> workoutList_;
 	private ArrayAdapter<String> workoutAdapter_;
+	private Map<String, List<String>> planMap_ = new HashMap<String, List<String>>();
 
 	public boolean FirstLoad = true;
 	private List<String> muscleGrpList_;
@@ -135,8 +136,10 @@ public class PlannerFragment extends Fragment {
 						.findViewById(R.id.addlistpop_CreateButton);
 				addListWorkoutName_ = (EditText) dialog
 						.findViewById(R.id.addlistpop_workoutNameField);
-				addListTime_ = (EditText) dialog
-						.findViewById(R.id.addlistpop_timeField);
+				addListWorkoutTime_ = (EditText) dialog
+						.findViewById(R.id.addlistpop_workouttimeField);
+				addListRestTime_ = (EditText) dialog
+						.findViewById(R.id.addlistpop_resttimeField);
 				addListSets_ = (EditText) dialog
 						.findViewById(R.id.addlistpop_setsField);
 
@@ -146,20 +149,24 @@ public class PlannerFragment extends Fragment {
 
 					@Override
 					public void onClick(View v) {
-						Log.d("Add List Pop Workout Name", addListWorkoutName_
-								.getText().toString());
-						setWorkoutPlanName(addListWorkoutName_.getText()
-								.toString());
+						String name = addListWorkoutName_.getText().toString();
+						String workoutTime = addListWorkoutTime_.getText()
+								.toString();
+						String restTime = addListRestTime_.getText().toString();
+						String sets = addListSets_.getText().toString();
 
-						Log.d("Add List Pop Time", addListTime_.getText()
-								.toString());
-						setWorkoutPlanTime(addListTime_.getText().toString());
+						Log.d("Add List Pop Workout Name", name);
+						Log.d("Add List Workout Time", workoutTime);
+						Log.d("Add List Rest Time", restTime);
+						Log.d("Add List Pop Sets", sets);
 
-						Log.d("Add List Pop Sets", addListSets_.getText()
-								.toString());
-						setWorkoutPlanSets(addListSets_.getText().toString());
+						List<String> values = new ArrayList<String>();
+						values.add(workoutTime);
+						values.add(restTime);
+						values.add(sets);
+						planMap_.put(name, values);
 
-						workoutList_.add(getWorkoutPlanName());
+						workoutList_.add(name);
 						workoutAdapter_.notifyDataSetChanged();
 
 						dialog.dismiss();
@@ -184,30 +191,6 @@ public class PlannerFragment extends Fragment {
 
 		addListButton_.setOnClickListener(listener);
 
-	}
-
-	public void setWorkoutPlanName(String name) {
-		workoutName_ = name;
-	}
-
-	public String getWorkoutPlanName() {
-		return workoutName_;
-	}
-
-	public void setWorkoutPlanTime(String time) {
-		workoutTime_ = time;
-	}
-
-	public String getWorkoutPlanTime() {
-		return workoutTime_;
-	}
-
-	public void setWorkoutPlanSets(String sets) {
-		workoutSets_ = sets;
-	}
-
-	public String getWorkoutPlanSets() {
-		return workoutSets_;
 	}
 
 	public List<String> createSpinnerList() {
