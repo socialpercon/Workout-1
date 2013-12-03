@@ -77,6 +77,8 @@ public class PlannerFragment extends Fragment {
 	// workout list variables
 	private ArrayList<String> workoutList_;
 	private ArrayAdapter<String> workoutAdapter_;
+	private ArrayList<String> exerciseList_;
+	private ArrayAdapter<String> exerciseAdapter_;
 	private Map<String, List<String>> planMap_ = new HashMap<String, List<String>>();
 
 	public boolean FirstLoad = true;
@@ -242,6 +244,7 @@ public class PlannerFragment extends Fragment {
 	// Need to improve this function after finishing the pop-up
 	public void createSuggestedExerciseListView(String spinnerSelectedMuscleGrp) {
 		// System.out.println("\nSELECTED MUSCLE: " + spinnerSelectedMuscleGrp);
+
 		asyncSelectedMuscleGrp_ = spinnerSelectedMuscleGrp;
 		try {
 			new RetrieveHTMLString().execute();
@@ -250,18 +253,12 @@ public class PlannerFragment extends Fragment {
 			return;
 		}
 
-		suggestedExercisesList_.setAdapter(new ArrayAdapter<String>(
-				getActivity(), android.R.layout.simple_list_item_1,
-				selectedMuscleGrpList_));
-		/*
-		 * suggestedExercisesList_ .setOnItemClickListener(new
-		 * OnItemClickListener() {
-		 * 
-		 * @Override public void onItemClick(AdapterView<?> arg0, View arg1, int
-		 * arg2, long arg3) {
-		 * 
-		 * } });
-		 */
+		// exerciseList_ = new ArrayList<String>();
+		exerciseAdapter_ = new ArrayAdapter<String>(getActivity(),
+				android.R.layout.simple_list_item_1, selectedMuscleGrpList_);
+		suggestedExercisesList_.setAdapter(exerciseAdapter_);
+		exerciseAdapter_.notifyDataSetChanged();
+
 	}
 
 	// Need to improve this function after finishing the pop-up
