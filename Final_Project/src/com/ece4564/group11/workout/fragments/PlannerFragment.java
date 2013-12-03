@@ -217,8 +217,8 @@ public class PlannerFragment extends Fragment {
 		list.add("Glutes");
 		list.add("Hamstrings");
 		list.add("Lats");
-		list.add("Lower Back");
-		list.add("Middle Back");
+		list.add("Lower-Back");
+		list.add("Middle-Back");
 		list.add("Neck");
 		list.add("Quadriceps");
 		list.add("Shoulders");
