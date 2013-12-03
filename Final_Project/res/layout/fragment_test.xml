@@ -5,39 +5,71 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/test"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_gravity="center"
+        android:text="My Workout"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/playbutton"
+    <TextView
+        android:id="@+id/path1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play" />
+        android:layout_gravity="center"
+        android:text="==================" />
 
-    <Button
-        android:id="@+id/stopbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stop" />
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/Switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Switch" />
 
-    <Button
-        android:id="@+id/browse1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select First" />
 
-    <Button
-        android:id="@+id/browse2"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Second" />
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/browse1"
+            android:layout_width="143dp"
+            android:layout_height="wrap_content"
+            android:text="Lift Song" />
+
+        <Button
+            android:id="@+id/browse2"
+            android:layout_width="153dp"
+            android:layout_height="wrap_content"
+            android:text="Break Song" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" >
+
+        <Button
+            android:id="@+id/playbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play" />
+
+        <Button
+            android:id="@+id/stopbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stop" />
+
+        <Button
+            android:id="@+id/Switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Switch" />
+
+    </LinearLayout>
 
 </LinearLayout>

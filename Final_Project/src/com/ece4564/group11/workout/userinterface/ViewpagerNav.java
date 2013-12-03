@@ -83,7 +83,7 @@ public class ViewpagerNav extends FragmentActivity implements
 		/***************************************/
 		if (stringExtra.equals("heart")) 
 		{
-			ab.setSelectedNavigationItem(4);
+			ab.setSelectedNavigationItem(3);
 			Intent intent = new Intent(this, HeartRateMonitor.class);
 			startActivity(intent);
 		} 
