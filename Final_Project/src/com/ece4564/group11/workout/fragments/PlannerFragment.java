@@ -380,9 +380,9 @@ public class PlannerFragment extends Fragment {
 								totalWorkoutPlanTime = totalWorkoutPlanTime
 										+ totalWorkoutTime;
 							}
-							WorkoutFragment.getTimeValue(totalWorkoutPlanTime);
-							Log.d("Total Workout Time",
-									Integer.toString(totalWorkoutPlanTime));
+							//WorkoutFragment.getTimeValue(totalWorkoutPlanTime);
+							//Log.d("Total Workout Time",
+							//		Integer.toString(totalWorkoutPlanTime));
 
 						}
 
