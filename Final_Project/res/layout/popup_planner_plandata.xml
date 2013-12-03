@@ -11,8 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Plan name"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/plandata_workoutTime"
@@ -44,6 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="7dp"
         android:text="OK" />
 
 </LinearLayout>
