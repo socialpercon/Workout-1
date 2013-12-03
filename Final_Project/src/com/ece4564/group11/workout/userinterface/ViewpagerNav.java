@@ -142,15 +142,15 @@ public class ViewpagerNav extends FragmentActivity implements
 					fragment = new PlannerFragment();
 					break;
 			case 1:
-					fragment = new WorkoutFragment();
+					fragment = new testfrag();
 					break;
 			case 2:
 					fragment = new GPS();
 					break;
+		//	case 3:
+		//			fragment = new WorkoutFragment();
+		//			break;
 			case 3:
-					fragment = new testfrag();
-					break;
-			case 4:
 					fragment = new ExtrasFragment();
 					break;
 
@@ -171,7 +171,7 @@ public class ViewpagerNav extends FragmentActivity implements
 			/***************************************/
 			// update this number when you add a new frag
 			/***************************************/
-			return 5;
+			return 4;
 		}
 
 		@Override
@@ -180,16 +180,16 @@ public class ViewpagerNav extends FragmentActivity implements
 			switch (position) {
 		//	case 0:
 		//		return getString(R.string.title_section1).toUpperCase(l);
-			case 0:
+			case 0:	// Workout Planner
 				return getString(R.string.title_section2).toUpperCase(l);
-			case 1:
+			case 1:	// My Workout
 				return getString(R.string.title_section3).toUpperCase(l);
-			case 2:
+			case 2:	// Amigos
 				return getString(R.string.title_section4).toUpperCase(l);
-			case 3:
-				return getString(R.string.title_section5).toUpperCase(l);
-			case 4:
+			case 3:	// Extras
 				return getString(R.string.title_section6).toUpperCase(l);
+		//	case 4:
+		//		return getString(R.string.title_section6).toUpperCase(l);
 				/***************************************/
 				// add new names here and in strings.xml
 				/***************************************/
