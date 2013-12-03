@@ -41,7 +41,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class PlannerFragment extends Fragment {
-
+	private final PlannerFragment pf_ = this;
 	String uuid_;
 
 	// fragment variables
@@ -432,7 +432,7 @@ public class PlannerFragment extends Fragment {
 				GetDataNetworkTask gdnt = new GetDataNetworkTask(
 						"test",
 						"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
-						uuid_);
+						uuid_, pf_);
 				gdnt.execute();
 				retrieveAdapter_.notifyDataSetChanged();
 				retrievedList_
@@ -470,11 +470,11 @@ public class PlannerFragment extends Fragment {
 		retrieveListButton_.setOnClickListener(listener);
 	}
 
-	public void getDataNetworkTaskResult(final String result) {
+	public void getDataNetworkTaskResult(String result) {
 		Log.d("Retrieved list", result);
 		retrievedFromServerList_.add(result);
 		retrieveAdapter_.notifyDataSetChanged();
-		
+
 	}
 
 	private class RetrieveHTMLString extends AsyncTask<String, Void, String> {

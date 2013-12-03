@@ -35,10 +35,13 @@ public class GetDataNetworkTask extends AsyncTask<Void, Void, String> {
 		uuid_ = null;
 	}
 
-	public GetDataNetworkTask(String name, String address, String uuid) {
+	public GetDataNetworkTask(String name, String address, String uuid,
+			PlannerFragment pf) {
 		name_ = name;
 		uuid_ = uuid;
 		address_ = address;
+
+		pf_ = pf;
 	}
 
 	@Override

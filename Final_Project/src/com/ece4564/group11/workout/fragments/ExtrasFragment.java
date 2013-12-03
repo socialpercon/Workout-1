@@ -21,84 +21,72 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ExtrasFragment extends Fragment{
+public class ExtrasFragment extends Fragment {
 
 	Button heart_;
 	Button uuidBtn_;
 	TextView display_;
 	Button test_;
 
-	public ExtrasFragment()
-	{		
+	public ExtrasFragment() {
 	}
-	
+
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		
-		View rootView = inflater.inflate(R.layout.fragment_extras, container, false);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+
+		View rootView = inflater.inflate(R.layout.fragment_extras, container,
+				false);
 		heart_ = (Button) rootView.findViewById(R.id.heartOn);
 		uuidBtn_ = (Button) rootView.findViewById(R.id.viewID);
 		display_ = (TextView) rootView.findViewById(R.id.extraText);
 		test_ = (Button) rootView.findViewById(R.id.testButton);
-		
+
 		setUpListeners();
-		
+
 		return rootView;
 	}
-	
-	private void setUpListeners()
-	{
-		heart_.setOnClickListener(
-				new OnClickListener()
-				{
-					@Override
-					public void onClick(View arg0) 
-					{
-						startHRM();
-					}
-				}
-		);
-		
-		uuidBtn_.setOnClickListener(
-				new OnClickListener()
-				{
-					@Override
-					public void onClick(View arg0) 
-					{
-						viewUUID();
-					}
-				}
-		);
-		
-		test_.setOnClickListener(
-				new OnClickListener()
-				{
-					@Override
-					public void onClick(View arg0) 
-					{
-						doTest();
-					}
-				}
-		);
+
+	private void setUpListeners() {
+		heart_.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				startHRM();
+			}
+		});
+
+		uuidBtn_.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				viewUUID();
+			}
+		});
+
+		test_.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// doTest();
+			}
+		});
 	}
-	
-	public void startHRM()
-	{
+
+	public void startHRM() {
 		Intent intent = new Intent(getActivity(), HeartRateMonitor.class);
 		this.startActivity(intent);
 	}
-	
-	private void viewUUID()
-	{
-		UUID id = new DeviceUuidFactory(this.getView().getContext()).getDeviceUuid();
+
+	private void viewUUID() {
+		UUID id = new DeviceUuidFactory(this.getView().getContext())
+				.getDeviceUuid();
 		String s = "Your Unique ID is: \n" + id.toString();
 		display_.setText(s);
 	}
-	
-	private void doTest()
-	{
-		String uuid = new DeviceUuidFactory(this.getView().getContext()).getDeviceUuid().toString();
-		GetDataNetworkTask gdnt = new GetDataNetworkTask("test","http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/", uuid);
-		gdnt.execute();
-	}
+	/*
+	 * private void doTest() { String uuid = new
+	 * DeviceUuidFactory(this.getView()
+	 * .getContext()).getDeviceUuid().toString(); GetDataNetworkTask gdnt = new
+	 * GetDataNetworkTask
+	 * ("test","http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
+	 * uuid); gdnt.execute(); }
+	 */
 }
