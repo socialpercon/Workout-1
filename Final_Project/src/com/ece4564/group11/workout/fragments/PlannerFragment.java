@@ -7,6 +7,7 @@ package com.ece4564.group11.workout.fragments;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -21,6 +22,7 @@ import com.example.final_project.R;
 
 import android.support.v4.app.Fragment;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -77,6 +79,7 @@ public class PlannerFragment extends Fragment {
 	private ArrayList<String> retrievedFromServerList_;
 	private ArrayAdapter<String> retrieveAdapter_;
 	private Map<String, List<String>> planMap_ = new HashMap<String, List<String>>();
+	private Map<String, Map<String, List<String>>> masterPlanMap_ = new HashMap<String, Map<String, List<String>>>();
 
 	public boolean FirstLoad = true;
 	private List<String> muscleGrpList_;
@@ -292,6 +295,7 @@ public class PlannerFragment extends Fragment {
 				dataDialogRestTime_.setText("Rest Time: "
 						+ values.get(1).toString());
 				dataDialogSets_.setText("Sets: " + values.get(2).toString());
+
 				OnClickListener okButtonListener = new OnClickListener() {
 
 					@Override
@@ -328,7 +332,8 @@ public class PlannerFragment extends Fragment {
 					public void onClick(View v) {
 						String planName = saveDialogPlanName_.getText()
 								.toString();
-						Log.d("Saving plan", planName);
+						masterPlanMap_.put(planName, planMap_);
+						Log.d("Saving plan", masterPlanMap_.toString());
 
 						JSONObject j = new JSONObject();
 						try {
@@ -336,14 +341,47 @@ public class PlannerFragment extends Fragment {
 						} catch (JSONException e) {
 							e.printStackTrace();
 						}
-						System.out.println(j.toString());
+						System.out
+								.println("Workout plan being sent to the server: "
+										+ j.toString());
 
 						DataNetworkTask dnt = new DataNetworkTask(
 								j.toString(),
 								"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
 								"test");
-
 						dnt.execute();
+
+						int totalWorkoutPlanTime = 0;
+						int totalWorkoutTime = 0;
+						Intent intent = new Intent(getActivity()
+								.getBaseContext(), WorkoutFragment.class);
+						Iterator it = masterPlanMap_.entrySet().iterator();
+						while (it.hasNext()) {
+							Map.Entry<String, HashMap<String, List<String>>> pairs = (Map.Entry<String, HashMap<String, List<String>>>) it
+									.next();
+							HashMap<String, List<String>> map = pairs
+									.getValue();
+							Iterator hashIt = map.entrySet().iterator();
+							while (hashIt.hasNext()) {
+								Map.Entry<String, List<String>> hashPairs = (Map.Entry<String, List<String>>) hashIt
+										.next();
+								List<String> values = hashPairs.getValue();
+								totalWorkoutTime = (Integer.parseInt(values
+										.get(0)) + Integer.parseInt(values
+										.get(1)))
+										* Integer.parseInt(values.get(2));
+
+								Log.d("WorkoutTime",
+										Integer.toString(totalWorkoutTime));
+
+							}
+							// NEED TO FIX THIS ADDITION!!!!!!
+							totalWorkoutPlanTime = totalWorkoutTime;
+							Log.d("Total Workout Time",
+									Integer.toString(totalWorkoutPlanTime));
+							intent.putExtra("workoutTime",
+									Integer.toString(totalWorkoutPlanTime));
+						}
 
 						dialog.dismiss();
 					}
