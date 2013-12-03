@@ -12,6 +12,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.ece4564.group11.workout.network.DataNetworkTask;
 import com.ece4564.group11.workout.network.GetHtml;
 import com.example.final_project.R;
 
@@ -80,7 +84,7 @@ public class PlannerFragment extends Fragment {
 	private String selectedMuscleGrp_;
 	private String asyncSelectedMuscleGrp_;
 	List<String> selectedMuscleGrpList_ = new ArrayList<String>();
-	
+
 	private String htmlStrings = "";
 
 	@Override
@@ -104,7 +108,8 @@ public class PlannerFragment extends Fragment {
 		muscleGrpList_ = createSpinnerList();
 
 		/*
-		 * Listener links the muscleGroupSpinner and the suggestedExercises listView
+		 * Listener links the muscleGroupSpinner and the suggestedExercises
+		 * listView
 		 */
 		muscleGrpSpinner_
 				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -130,6 +135,7 @@ public class PlannerFragment extends Fragment {
 		// createSuggestedExerciseListView();
 		createPlannedWorkoutListView();
 		addListPopupWindow();
+		savePlannedWorkoutList();
 		retrievePlannerWorkoutList();
 
 		return rootView;
@@ -235,28 +241,27 @@ public class PlannerFragment extends Fragment {
 
 	// Need to improve this function after finishing the pop-up
 	public void createSuggestedExerciseListView(String spinnerSelectedMuscleGrp) {
-		//System.out.println("\nSELECTED MUSCLE: " + spinnerSelectedMuscleGrp);
+		// System.out.println("\nSELECTED MUSCLE: " + spinnerSelectedMuscleGrp);
 		asyncSelectedMuscleGrp_ = spinnerSelectedMuscleGrp;
-		try{
+		try {
 			new RetrieveHTMLString().execute();
-		}catch (Exception e){
+		} catch (Exception e) {
 			System.err.println("DEBUG: Exception caught");
 			return;
 		}
 
 		suggestedExercisesList_.setAdapter(new ArrayAdapter<String>(
-				getActivity(), android.R.layout.simple_list_item_1, selectedMuscleGrpList_));
+				getActivity(), android.R.layout.simple_list_item_1,
+				selectedMuscleGrpList_));
 		/*
-		suggestedExercisesList_
-				.setOnItemClickListener(new OnItemClickListener() {
-
-					@Override
-					public void onItemClick(AdapterView<?> arg0, View arg1,
-							int arg2, long arg3) {
-
-					}
-				});
-				*/
+		 * suggestedExercisesList_ .setOnItemClickListener(new
+		 * OnItemClickListener() {
+		 * 
+		 * @Override public void onItemClick(AdapterView<?> arg0, View arg1, int
+		 * arg2, long arg3) {
+		 * 
+		 * } });
+		 */
 	}
 
 	// Need to improve this function after finishing the pop-up
@@ -333,6 +338,21 @@ public class PlannerFragment extends Fragment {
 						Log.d("Saving plan", planName);
 						// JSONSTUFF HERE
 
+						JSONObject j = new JSONObject();
+						try {
+							j.put(planName, planMap_);
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+						System.out.println(j.toString());
+
+						DataNetworkTask dnt = new DataNetworkTask(
+								j.toString(),
+								"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
+								"test");
+
+						dnt.execute();
+
 						dialog.dismiss();
 					}
 
@@ -405,7 +425,7 @@ public class PlannerFragment extends Fragment {
 
 		retrieveListButton_.setOnClickListener(listener);
 	}
-	
+
 	private class RetrieveHTMLString extends AsyncTask<String, Void, String> {
 		protected String doInBackground(String... urls) {
 			String htmlString;
@@ -417,16 +437,18 @@ public class PlannerFragment extends Fragment {
 				return null;
 			}
 		}
+
 		protected void onPostExecute(String response) {
 			String tempString = "";
 			htmlStrings = response;
 			selectedMuscleGrpList_.clear();
-			
-			//System.out.println("[DEBUG]" +  htmlStrings);
-			
+
+			// System.out.println("[DEBUG]" + htmlStrings);
+
 			// Parsing
 			// store suggested workout names
-			Pattern name_Pattern = Pattern.compile("<span class='summary' style='display:none;'>(.*?)</span><span class=");
+			Pattern name_Pattern = Pattern
+					.compile("<span class='summary' style='display:none;'>(.*?)</span><span class=");
 			Matcher matcher = name_Pattern.matcher(htmlStrings);
 			while (matcher.find()) {
 				tempString = matcher.group(1);
@@ -434,6 +456,6 @@ public class PlannerFragment extends Fragment {
 				System.out.println("\nSUGGESTED LIST: " + tempString);
 			}
 		}
-		
+
 	}
 }
