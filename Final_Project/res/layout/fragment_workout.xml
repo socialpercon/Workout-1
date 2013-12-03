@@ -30,4 +30,34 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" />
 
+    <Button
+        android:id="@+id/browse1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Song1" />
+
+    <Button
+        android:id="@+id/browse2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Song2" />
+
+    <Button
+        android:id="@+id/playbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play" />
+
+    <Button
+        android:id="@+id/stopbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop" />
+
+    <Button
+        android:id="@+id/switchbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Switch" />
+
 </LinearLayout>
