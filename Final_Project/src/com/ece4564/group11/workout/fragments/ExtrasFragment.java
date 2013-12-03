@@ -2,6 +2,10 @@ package com.ece4564.group11.workout.fragments;
 
 import java.util.UUID;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.ece4564.group11.workout.network.DataNetworkTask;
 import com.ece4564.group11.workout.sensor.DeviceUuidFactory;
 import com.ece4564.group11.workout.sensor.HeartRateMonitor;
 import com.example.final_project.R;
@@ -21,6 +25,7 @@ public class ExtrasFragment extends Fragment{
 	Button heart_;
 	Button uuidBtn_;
 	TextView display_;
+	Button test_;
 
 	public ExtrasFragment()
 	{		
@@ -33,6 +38,8 @@ public class ExtrasFragment extends Fragment{
 		heart_ = (Button) rootView.findViewById(R.id.heartOn);
 		uuidBtn_ = (Button) rootView.findViewById(R.id.viewID);
 		display_ = (TextView) rootView.findViewById(R.id.extraText);
+		
+		test_ = (Button) rootView.findViewById(R.id.testButton);
 		
 		setUpListeners();
 		
@@ -62,6 +69,17 @@ public class ExtrasFragment extends Fragment{
 					}
 				}
 		);
+		
+		test_.setOnClickListener(
+				new OnClickListener()
+				{
+					@Override
+					public void onClick(View arg0) 
+					{
+						doTest();
+					}
+				}
+		);
 	}
 	
 	public void startHRM()
@@ -75,5 +93,18 @@ public class ExtrasFragment extends Fragment{
 		UUID id = new DeviceUuidFactory(this.getView().getContext()).getDeviceUuid();
 		String s = "Your Unique ID is: \n" + id.toString();
 		display_.setText(s);
+	}
+	
+	private void doTest()
+	{
+		JSONObject j = new JSONObject();
+		try {
+			j.put("asdnsajdsn", "sjdnakjsnds");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DataNetworkTask dnt = new DataNetworkTask(j.toString(),"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/", "test");
+		dnt.execute();
 	}
 }

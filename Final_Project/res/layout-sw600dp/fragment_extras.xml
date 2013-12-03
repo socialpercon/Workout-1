@@ -36,4 +36,13 @@
         android:layout_gravity="center"
         android:text="" />
 
+    <Button
+        android:id="@+id/testButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/viewID"
+        android:layout_below="@+id/viewID"
+        android:layout_marginTop="98dp"
+        android:text="PUSH ME" />
+
 </RelativeLayout>
