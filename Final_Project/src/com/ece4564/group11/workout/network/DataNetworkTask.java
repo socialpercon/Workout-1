@@ -46,6 +46,7 @@ public class DataNetworkTask extends AsyncTask<String, Integer, Boolean>{
 			jObject_ = new JSONObject(jStr);
 			jString_ = jStr;
 			identifier_ = name;
+			address_ = addr;
 		} 
 		catch (JSONException e) 
 		{
@@ -66,12 +67,11 @@ public class DataNetworkTask extends AsyncTask<String, Integer, Boolean>{
 		else
 		{
 			HttpClient httpclient = new DefaultHttpClient();
-			HttpPost httppost = new HttpPost(address_+"/store");
+			HttpPost httppost = new HttpPost(address_+"store");
 			List<NameValuePair> nameValuePairs;
 			nameValuePairs = new ArrayList<NameValuePair>(1);
 	        nameValuePairs.add(new BasicNameValuePair("id", identifier_));
 	        nameValuePairs.add(new BasicNameValuePair("data", jString_));
-	        
 	        HttpResponse response = null;
 	        try 
 	        {
