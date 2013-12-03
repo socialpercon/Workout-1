@@ -381,9 +381,9 @@ public class PlannerFragment extends Fragment {
 								totalWorkoutPlanTime = totalWorkoutPlanTime
 										+ totalWorkoutTime;
 							}
-							//WorkoutFragment.getTimeValue(totalWorkoutPlanTime);
-							//Log.d("Total Workout Time",
-							//		Integer.toString(totalWorkoutPlanTime));
+							// WorkoutFragment.getTimeValue(totalWorkoutPlanTime);
+							// Log.d("Total Workout Time",
+							// Integer.toString(totalWorkoutPlanTime));
 
 						}
 
@@ -423,16 +423,17 @@ public class PlannerFragment extends Fragment {
 						.findViewById(R.id.retrievepopup_list);
 				retrieveDialogCancelButton_ = (Button) dialog
 						.findViewById(R.id.retrievepopup_cancelButton);
-				GetDataNetworkTask gdnt = new GetDataNetworkTask(
-						"text",
-						"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
-						uuid_);
-				gdnt.execute();
+
 				retrievedFromServerList_ = new ArrayList<String>();
 				retrieveAdapter_ = new ArrayAdapter<String>(getActivity(),
 						android.R.layout.simple_list_item_1,
 						retrievedFromServerList_);
 				retrievedList_.setAdapter(retrieveAdapter_);
+				GetDataNetworkTask gdnt = new GetDataNetworkTask(
+						"text",
+						"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
+						uuid_);
+				gdnt.execute();
 				retrievedList_
 						.setOnItemClickListener(new OnItemClickListener() {
 
