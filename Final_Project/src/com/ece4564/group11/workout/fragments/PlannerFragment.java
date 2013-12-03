@@ -23,7 +23,6 @@ import com.example.final_project.R;
 
 import android.support.v4.app.Fragment;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,9 +40,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class PlannerFragment extends Fragment {
-	
+
 	String uuid_;
-	
+
 	// fragment variables
 	private Spinner muscleGrpSpinner_;
 	private ListView suggestedExercisesList_;
@@ -96,9 +95,10 @@ public class PlannerFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_planner, container,
 				false);
-		
-		uuid_ = new DeviceUuidFactory(rootView.getContext()).getDeviceUuid().toString();
-		
+
+		uuid_ = new DeviceUuidFactory(rootView.getContext()).getDeviceUuid()
+				.toString();
+
 		muscleGrpSpinner_ = (Spinner) rootView
 				.findViewById(R.id.planner_muscleGroupSpinner);
 		suggestedExercisesList_ = (ListView) rootView
@@ -353,14 +353,12 @@ public class PlannerFragment extends Fragment {
 						StoreDataNetworkTask dnt = new StoreDataNetworkTask(
 								j.toString(),
 								"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
-								"test",
-								uuid_);
+								"test", uuid_);
 						dnt.execute();
 
 						int totalWorkoutPlanTime = 0;
 						int totalWorkoutTime = 0;
-						Intent intent = new Intent(getActivity()
-								.getBaseContext(), WorkoutFragment.class);
+
 						Iterator it = masterPlanMap_.entrySet().iterator();
 						while (it.hasNext()) {
 							Map.Entry<String, HashMap<String, List<String>>> pairs = (Map.Entry<String, HashMap<String, List<String>>>) it
@@ -382,10 +380,10 @@ public class PlannerFragment extends Fragment {
 								totalWorkoutPlanTime = totalWorkoutPlanTime
 										+ totalWorkoutTime;
 							}
+							WorkoutFragment.getTimeValue(totalWorkoutPlanTime);
 							Log.d("Total Workout Time",
 									Integer.toString(totalWorkoutPlanTime));
-							intent.putExtra("workoutTime",
-									Integer.toString(totalWorkoutPlanTime));
+
 						}
 
 						dialog.dismiss();
