@@ -82,8 +82,6 @@ public class PlannerFragment extends Fragment {
 	private Map<String, Map<String, List<String>>> masterPlanMap_ = new HashMap<String, Map<String, List<String>>>();
 
 	public boolean FirstLoad = true;
-	private List<String> muscleGrpList_;
-	private String selectedMuscleGrp_;
 	private String asyncSelectedMuscleGrp_;
 	List<String> selectedMuscleGrpList_ = new ArrayList<String>();
 
@@ -107,7 +105,7 @@ public class PlannerFragment extends Fragment {
 		plannedWorkoutList_ = (ListView) rootView
 				.findViewById(R.id.planner_list_plannedWorkout);
 
-		muscleGrpList_ = createSpinnerList();
+		createSpinnerList();
 
 		/*
 		 * Listener links the muscleGroupSpinner and the suggestedExercises
@@ -117,10 +115,10 @@ public class PlannerFragment extends Fragment {
 				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 					public void onItemSelected(AdapterView<?> adapterView,
 							View view, int i, long l) {
-						if (FirstLoad) {
-							FirstLoad = false;
-							return;
-						}
+//						if (FirstLoad) {
+//							FirstLoad = false;
+//							return;
+//						}
 						String selectedMuscleGrp_ = muscleGrpSpinner_
 								.getItemAtPosition(i).toString();
 						createSuggestedExerciseListView(selectedMuscleGrp_);
