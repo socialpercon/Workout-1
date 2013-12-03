@@ -38,7 +38,6 @@ public class ExtrasFragment extends Fragment{
 		heart_ = (Button) rootView.findViewById(R.id.heartOn);
 		uuidBtn_ = (Button) rootView.findViewById(R.id.viewID);
 		display_ = (TextView) rootView.findViewById(R.id.extraText);
-		
 		test_ = (Button) rootView.findViewById(R.id.testButton);
 		
 		setUpListeners();
@@ -104,7 +103,12 @@ public class ExtrasFragment extends Fragment{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DataNetworkTask dnt = new DataNetworkTask(j.toString(),"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/", "test");
+		
+		String uuid = new DeviceUuidFactory(this.getView().getContext()).getDeviceUuid().toString();
+		DataNetworkTask dnt = new DataNetworkTask(j.toString(),
+												  "http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/", 
+												  "test",
+												  uuid);
 		dnt.execute();
 	}
 }

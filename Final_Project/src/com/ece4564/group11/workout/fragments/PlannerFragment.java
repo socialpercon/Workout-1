@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import com.ece4564.group11.workout.network.DataNetworkTask;
 import com.ece4564.group11.workout.network.GetHtml;
+import com.ece4564.group11.workout.sensor.DeviceUuidFactory;
 import com.example.final_project.R;
 
 import android.support.v4.app.Fragment;
@@ -40,6 +41,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class PlannerFragment extends Fragment {
+	
+	String uuid_;
+	
 	// fragment variables
 	private Spinner muscleGrpSpinner_;
 	private ListView suggestedExercisesList_;
@@ -92,6 +96,9 @@ public class PlannerFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_planner, container,
 				false);
+		
+		uuid_ = new DeviceUuidFactory(rootView.getContext()).getDeviceUuid().toString();
+		
 		muscleGrpSpinner_ = (Spinner) rootView
 				.findViewById(R.id.planner_muscleGroupSpinner);
 		suggestedExercisesList_ = (ListView) rootView
@@ -346,7 +353,8 @@ public class PlannerFragment extends Fragment {
 						DataNetworkTask dnt = new DataNetworkTask(
 								j.toString(),
 								"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
-								"test");
+								"test",
+								uuid_);
 						dnt.execute();
 
 						int totalWorkoutPlanTime = 0;

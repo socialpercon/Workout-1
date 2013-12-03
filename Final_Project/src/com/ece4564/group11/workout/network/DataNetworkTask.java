@@ -13,6 +13,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.ece4564.group11.workout.sensor.DeviceUuidFactory;
+
 import android.os.AsyncTask;
 
 public class DataNetworkTask extends AsyncTask<String, Integer, Boolean>{
@@ -21,6 +23,7 @@ public class DataNetworkTask extends AsyncTask<String, Integer, Boolean>{
 	String jString_;
 	String address_;
 	String identifier_;
+	String uuid_;
 	
 	public DataNetworkTask()
 	{
@@ -28,18 +31,20 @@ public class DataNetworkTask extends AsyncTask<String, Integer, Boolean>{
 		jString_ = null;
 		address_ = null;
 		identifier_ = null;
+		uuid_ = null;
 	}
 	
-	public DataNetworkTask(JSONObject jOb, String addr, String name)
+	public DataNetworkTask(JSONObject jOb, String addr, String name, String uuid)
 	{
 		jObject_ = jOb;
 		jString_ = jObject_.toString();
 		address_ = addr;
 		identifier_ = name;
+		uuid_ = uuid;
 		
 	}
 	
-	public DataNetworkTask(String jStr, String addr, String name)
+	public DataNetworkTask(String jStr, String addr, String name, String uuid)
 	{	
 		try 
 		{
@@ -47,12 +52,14 @@ public class DataNetworkTask extends AsyncTask<String, Integer, Boolean>{
 			jString_ = jStr;
 			identifier_ = name;
 			address_ = addr;
+			uuid_ = uuid;
 		} 
 		catch (JSONException e) 
 		{
 			jObject_ = null;
 			jString_ = null;
 			address_ = null;
+			uuid = null;
 			e.printStackTrace();
 		}
 	}
@@ -60,7 +67,7 @@ public class DataNetworkTask extends AsyncTask<String, Integer, Boolean>{
 	@Override
 	protected Boolean doInBackground(String... arg0) 
 	{
-		if (jString_ == null || address_ == null || identifier_ == null)
+		if (jString_ == null || address_ == null || identifier_ == null || uuid_ == null)
 		{
 			return false;
 		}
@@ -69,9 +76,12 @@ public class DataNetworkTask extends AsyncTask<String, Integer, Boolean>{
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(address_+"store");
 			List<NameValuePair> nameValuePairs;
-			nameValuePairs = new ArrayList<NameValuePair>(1);
+			
+			nameValuePairs = new ArrayList<NameValuePair>(3);
 	        nameValuePairs.add(new BasicNameValuePair("id", identifier_));
 	        nameValuePairs.add(new BasicNameValuePair("data", jString_));
+	        nameValuePairs.add(new BasicNameValuePair("uuid", uuid_));
+	        
 	        HttpResponse response = null;
 	        try 
 	        {
