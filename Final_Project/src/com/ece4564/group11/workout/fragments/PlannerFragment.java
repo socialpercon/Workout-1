@@ -499,9 +499,14 @@ public class PlannerFragment extends Fragment {
 		retrieveListButton_.setOnClickListener(listener);
 	}
 
-	public void getDataNetworkTaskResult(String result) {
-		Log.d("Retrieved list", result);
-		retrievedFromServerList_.add(result);
+	public void getDataNetworkTaskResult(List<String> result) {
+		Log.d("Retrieved list", result.toString());
+		Iterator<String> it = result.iterator();
+		while (it.hasNext()) {
+			String title = it.next();
+			retrievedFromServerList_.add(title);
+		}
+
 		retrieveAdapter_.notifyDataSetChanged();
 
 	}

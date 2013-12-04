@@ -2,6 +2,7 @@ package com.ece4564.group11.workout.network;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -22,8 +23,8 @@ import com.ece4564.group11.workout.fragments.PlannerFragment;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class GetDataNetworkTask extends AsyncTask<Void, Void, String> {
-	
+public class GetDataNetworkTask extends AsyncTask<Void, Void, List<String>> {
+
 	private PlannerFragment pf_;
 	String address_;
 	String uuid_;
@@ -35,8 +36,7 @@ public class GetDataNetworkTask extends AsyncTask<Void, Void, String> {
 		uuid_ = null;
 	}
 
-	public GetDataNetworkTask(String address, String uuid,
-			PlannerFragment pf) {
+	public GetDataNetworkTask(String address, String uuid, PlannerFragment pf) {
 		uuid_ = uuid;
 		address_ = address;
 
@@ -44,16 +44,13 @@ public class GetDataNetworkTask extends AsyncTask<Void, Void, String> {
 	}
 
 	@Override
-	protected String doInBackground(Void... params) {
+	protected List<String> doInBackground(Void... params) {
 		HttpClient client = new DefaultHttpClient();
 		HttpGet httpget = new HttpGet(address_ + "store?" + "uuid=" + uuid_);
-
+		List<String> result = new ArrayList<String>();
 		try {
 			HttpResponse response = client.execute(httpget);
-			
-			System.out.println("ASDosdojhsjodnasjodnasiudhasuodhasuidhasoudhasuodas");
-			System.out.println(EntityUtils.toString(response.getEntity()));
-			
+
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					response.getEntity().getContent()));
 			Log.d("Get status:", response.getStatusLine().toString());
@@ -80,18 +77,20 @@ public class GetDataNetworkTask extends AsyncTask<Void, Void, String> {
 
 				cache_.put(entry.getKey(), value);
 				System.out.println(cache_);
-				returnKey_ = entry.getKey().toString();
+				result.add(entry.getKey().toString());
+				
+				
 				System.out.println("What key was retrieved? " + returnKey_);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		Log.d("RETURN KEY", returnKey_);
-		return returnKey_;
+		return result;
 	}
 
 	@Override
-	protected void onPostExecute(String result) {
+	protected void onPostExecute(List<String> result) {
 		System.out.println("RESULT " + result);
 		pf_.getDataNetworkTaskResult(result);
 	}
