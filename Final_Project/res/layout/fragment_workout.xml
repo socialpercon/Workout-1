@@ -20,18 +20,16 @@
         android:layout_gravity="center"
         android:text="==================" />
 
-        <ProgressBar
-            android:id="@+id/progressBar1"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_gravity="center" >
 
         <Button
             android:id="@+id/browse1"
@@ -44,7 +42,6 @@
             android:layout_width="153dp"
             android:layout_height="wrap_content"
             android:text="Break Song" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -69,7 +66,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Switch" />
-
     </LinearLayout>
 
 </LinearLayout>

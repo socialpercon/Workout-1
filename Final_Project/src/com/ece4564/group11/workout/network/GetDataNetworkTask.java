@@ -77,8 +77,7 @@ public class GetDataNetworkTask extends AsyncTask<Void, Void, List<String>> {
 				cache_.put(entry.getKey(), value);
 				System.out.println(cache_);
 				result.add(entry.getKey().toString());
-				
-				
+
 				System.out.println("What key was retrieved? " + returnKey_);
 			}
 		} catch (Exception e) {

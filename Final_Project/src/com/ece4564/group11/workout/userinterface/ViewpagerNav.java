@@ -1,4 +1,5 @@
 package com.ece4564.group11.workout.userinterface;
+
 import java.util.Locale;
 
 import com.ece4564.group11.workout.fragments.ExtrasFragment;
@@ -67,23 +68,16 @@ public class ViewpagerNav extends FragmentActivity implements
 	}
 
 	private void setStartup(String stringExtra, ActionBar ab) {
-		
-		if (stringExtra.equals("heart")) 
-		{
+
+		if (stringExtra.equals("heart")) {
 			ab.setSelectedNavigationItem(3);
 			Intent intent = new Intent(this, HeartRateMonitor.class);
 			startActivity(intent);
-		} 
-		else if (stringExtra.equals("planner")) 
-		{
+		} else if (stringExtra.equals("planner")) {
 			ab.setSelectedNavigationItem(0);
-		} 
-		else if (stringExtra.equals("buddy")) 
-		{
+		} else if (stringExtra.equals("buddy")) {
 			ab.setSelectedNavigationItem(2);
-		} 
-		else if (stringExtra.equals("workout")) 
-		{
+		} else if (stringExtra.equals("workout")) {
 			ab.setSelectedNavigationItem(1);
 		}
 
@@ -123,17 +117,17 @@ public class ViewpagerNav extends FragmentActivity implements
 			Fragment fragment = null;
 			switch (position) {
 			case 0:
-					fragment = new PlannerFragment();
-					break;
+				fragment = new PlannerFragment();
+				break;
 			case 1:
-					fragment = new WorkoutFragment();
-					break;
+				fragment = new WorkoutFragment();
+				break;
 			case 2:
-					fragment = new GPS();
-					break;
+				fragment = new GPS();
+				break;
 			case 3:
-					fragment = new ExtrasFragment();
-					break;
+				fragment = new ExtrasFragment();
+				break;
 
 			}
 
@@ -149,13 +143,13 @@ public class ViewpagerNav extends FragmentActivity implements
 		public CharSequence getPageTitle(int position) {
 			Locale l = Locale.getDefault();
 			switch (position) {
-			case 0:	// Workout Planner
+			case 0: // Workout Planner
 				return getString(R.string.title_section2).toUpperCase(l);
-			case 1:	// My Workout
+			case 1: // My Workout
 				return getString(R.string.title_section3).toUpperCase(l);
-			case 2:	// Amigos
+			case 2: // Amigos
 				return getString(R.string.title_section4).toUpperCase(l);
-			case 3:	// Extras
+			case 3: // Extras
 				return getString(R.string.title_section6).toUpperCase(l);
 			}
 			return null;

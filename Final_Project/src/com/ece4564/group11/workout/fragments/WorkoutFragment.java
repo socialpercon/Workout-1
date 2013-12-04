@@ -43,7 +43,7 @@ public class WorkoutFragment extends Fragment {
 				false);
 
 		path1_ = (TextView) rootView.findViewById(R.id.path1);
-		//path2_ = (TextView) rootView.findViewById(R.id.path2);
+		// path2_ = (TextView) rootView.findViewById(R.id.path2);
 		play_ = (Button) rootView.findViewById(R.id.playbutton);
 		play_.setEnabled(false);
 		stop_ = (Button) rootView.findViewById(R.id.stopbutton);
@@ -147,10 +147,10 @@ public class WorkoutFragment extends Fragment {
 		this.getActivity().finishActivity(1);
 		this.getActivity().finishActivity(2);
 		String result = data.getStringExtra("path");
-		
+
 		path1_.setText(result);
-//		path2_.setText(result);
-		
+		// path2_.setText(result);
+
 		if (requestCode == 1 && result.length() > 0) {
 			player_.setFirstPath(result);
 		} else if (requestCode == 2 && result.length() > 0) {

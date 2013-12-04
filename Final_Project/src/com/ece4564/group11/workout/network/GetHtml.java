@@ -12,44 +12,50 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 public class GetHtml {
-	public String getHtmlStrings(String muscleGroup) throws IOException, URISyntaxException {
+	public String getHtmlStrings(String muscleGroup) throws IOException,
+			URISyntaxException {
 		BufferedReader in = null;
 		String data = null;
-		try{
+		try {
 			HttpClient client = new DefaultHttpClient();
-			//http://www.bodybuilding.com/exercises/list/muscle/selected/<MUSCLE_GROUP>
-			//URI website = new URI("http://www.bodybuilding.com/exercises/list/muscle/selected/"+ muscleGroup);
-			URI website = new URI("http://www.bodybuilding.com/exercises/list/muscle/selected/" + muscleGroup);
+			// http://www.bodybuilding.com/exercises/list/muscle/selected/<MUSCLE_GROUP>
+			// URI website = new
+			// URI("http://www.bodybuilding.com/exercises/list/muscle/selected/"+
+			// muscleGroup);
+			URI website = new URI(
+					"http://www.bodybuilding.com/exercises/list/muscle/selected/"
+							+ muscleGroup);
 			HttpGet request = new HttpGet();
 			request.setURI(website);
 			HttpResponse response = null;
-			
+
 			try {
 				response = client.execute(request);
-				//System.out.println("after execute");
+				// System.out.println("after execute");
 			} catch (IOException e) {
 				System.err.println("DEBUG: IOexception called");
 			} finally {
-				//System.out.println("DEBUG: Http Response Returned");
+				// System.out.println("DEBUG: Http Response Returned");
 			}
-			
-			in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-			
+
+			in = new BufferedReader(new InputStreamReader(response.getEntity()
+					.getContent()));
+
 			StringBuffer sb = new StringBuffer("");
 			String l = "";
 			String nl = System.getProperty("line.separator");
-			while ((l=in.readLine()) !=null){
+			while ((l = in.readLine()) != null) {
 				sb.append(l + nl);
 			}
 			in.close();
 			data = sb.toString();
 			return data;
-		} finally{
-			if (in != null){
-				try{
+		} finally {
+			if (in != null) {
+				try {
 					in.close();
 					return data;
-				}catch (Exception e){
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
