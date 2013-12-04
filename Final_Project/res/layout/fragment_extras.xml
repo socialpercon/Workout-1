@@ -35,13 +35,4 @@
         android:layout_marginLeft="42dp"
         android:text="" />
 
-    <Button
-        android:id="@+id/testButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/viewID"
-        android:layout_below="@+id/viewID"
-        android:layout_marginTop="22dp"
-        android:text="Push Me" />
-
 </RelativeLayout>

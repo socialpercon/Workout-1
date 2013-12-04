@@ -1,12 +1,4 @@
 package com.ece4564.group11.workout.userinterface;
-
-/***************************************/
-//To peoples:
-//ignore all comments except ones that are in
-//boxes like this unless you wanna learn
-//how stuff works.
-/***************************************/
-
 import java.util.Locale;
 
 import com.ece4564.group11.workout.fragments.ExtrasFragment;
@@ -14,9 +6,6 @@ import com.ece4564.group11.workout.fragments.PlannerFragment;
 import com.ece4564.group11.workout.fragments.WorkoutFragment;
 import com.ece4564.group11.workout.sensor.GPS;
 import com.ece4564.group11.workout.sensor.HeartRateMonitor;
-import com.ece4564.group11.workout.testexample.DummySectionFragment;
-import com.ece4564.group11.workout.testexample.SearchFragment;
-import com.ece4564.group11.workout.testexample.testfrag;
 import com.example.final_project.R;
 
 import android.app.ActionBar;
@@ -78,9 +67,7 @@ public class ViewpagerNav extends FragmentActivity implements
 	}
 
 	private void setStartup(String stringExtra, ActionBar ab) {
-		/***************************************/
-		// add cases here for first screen
-		/***************************************/
+		
 		if (stringExtra.equals("heart")) 
 		{
 			ab.setSelectedNavigationItem(3);
@@ -133,44 +120,28 @@ public class ViewpagerNav extends FragmentActivity implements
 		@Override
 		public Fragment getItem(int position) {
 
-			Fragment fragment = new DummySectionFragment();
+			Fragment fragment = null;
 			switch (position) {
-		//	case 0:
-		//			fragment = new SearchFragment();
-		//			break;
 			case 0:
 					fragment = new PlannerFragment();
 					break;
 			case 1:
-					fragment = new testfrag();
+					fragment = new WorkoutFragment();
 					break;
 			case 2:
 					fragment = new GPS();
 					break;
-		//	case 3:
-		//			fragment = new WorkoutFragment();
-		//			break;
 			case 3:
 					fragment = new ExtrasFragment();
 					break;
 
 			}
 
-			/***************************************/
-			// add new retrieval statements here
-			/***************************************/
-
-			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-			fragment.setArguments(args);
 			return fragment;
 		}
 
 		@Override
 		public int getCount() {
-			/***************************************/
-			// update this number when you add a new frag
-			/***************************************/
 			return 4;
 		}
 
@@ -178,8 +149,6 @@ public class ViewpagerNav extends FragmentActivity implements
 		public CharSequence getPageTitle(int position) {
 			Locale l = Locale.getDefault();
 			switch (position) {
-		//	case 0:
-		//		return getString(R.string.title_section1).toUpperCase(l);
 			case 0:	// Workout Planner
 				return getString(R.string.title_section2).toUpperCase(l);
 			case 1:	// My Workout
@@ -188,11 +157,6 @@ public class ViewpagerNav extends FragmentActivity implements
 				return getString(R.string.title_section4).toUpperCase(l);
 			case 3:	// Extras
 				return getString(R.string.title_section6).toUpperCase(l);
-		//	case 4:
-		//		return getString(R.string.title_section6).toUpperCase(l);
-				/***************************************/
-				// add new names here and in strings.xml
-				/***************************************/
 			}
 			return null;
 		}

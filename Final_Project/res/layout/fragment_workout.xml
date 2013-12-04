@@ -14,50 +14,62 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/path1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Time Elapsed"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:text="==================" />
 
-    <ProgressBar
-        android:id="@+id/workout_progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" />
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/browse1"
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Song1" />
+        android:layout_gravity="center">
 
-    <Button
-        android:id="@+id/browse2"
+        <Button
+            android:id="@+id/browse1"
+            android:layout_width="143dp"
+            android:layout_height="wrap_content"
+            android:text="Lift Song" />
+
+        <Button
+            android:id="@+id/browse2"
+            android:layout_width="153dp"
+            android:layout_height="wrap_content"
+            android:text="Break Song" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Song2" />
+        android:layout_gravity="center" >
 
-    <Button
-        android:id="@+id/playbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Play" />
+        <Button
+            android:id="@+id/playbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play" />
 
-    <Button
-        android:id="@+id/stopbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stop" />
+        <Button
+            android:id="@+id/stopbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stop" />
 
-    <Button
-        android:id="@+id/switchbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Switch" />
+        <Button
+            android:id="@+id/Switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Switch" />
+
+    </LinearLayout>
 
 </LinearLayout>

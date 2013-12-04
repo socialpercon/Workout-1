@@ -5,11 +5,9 @@
     <string name="action_settings"></string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_viewpager_nav">Get Ripped Like Ryan</string>
-    <string name="title_section1">Search</string>
     <string name="title_section2">Workout Planner</string>
     <string name="title_section3">My Workout</string>
 	<string name="title_section4">Amigos</string>
-	<string name="title_section5">TestFrag</string>
 	<string name="title_section6">Extras</string>
 	<string name="heart_rate">Heart Rate</string>
 	<string name="default_text">--</string>

@@ -13,8 +13,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.ece4564.group11.workout.sensor.DeviceUuidFactory;
-
 import android.os.AsyncTask;
 
 public class StoreDataNetworkTask extends AsyncTask<String, Integer, Boolean>{
