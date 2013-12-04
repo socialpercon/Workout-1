@@ -149,6 +149,36 @@ public class PlannerFragment extends Fragment {
 		return rootView;
 	}
 
+	@Override
+	public void onPause() {
+		super.onPause();
+		for (String key : masterPlanMap_.keySet()) {
+			if (key.length() > 0) {
+				masterPlanMap_.remove(key);
+			}
+		}
+		for (String key : planMap_.keySet()) {
+			if (key.length() > 0) {
+				planMap_.remove(key);
+			}
+		}
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		for (String key : masterPlanMap_.keySet()) {
+			if (key.length() > 0) {
+				masterPlanMap_.remove(key);
+			}
+		}
+		for (String key : planMap_.keySet()) {
+			if (key.length() > 0) {
+				planMap_.remove(key);
+			}
+		}
+	}
+
 	public void addListPopupWindow() {
 		OnClickListener listener = new OnClickListener() {
 
