@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -84,6 +85,14 @@ public class PlannerFragment extends Fragment {
 	private ArrayAdapter<String> retrieveAdapter_;
 	private Map<String, List<String>> planMap_ = new HashMap<String, List<String>>();
 	private Map<String, Map<String, List<String>>> masterPlanMap_ = new HashMap<String, Map<String, List<String>>>();
+
+	// JSON variables
+	private JSONObject workoutTime_;
+	private JSONObject restTime_;
+	private JSONObject workoutSets_;
+	private JSONArray jsonWorkoutArray_;
+	private JSONObject jsonWorkoutName_ = new JSONObject();
+	private JSONObject jsonPlan_ = new JSONObject();
 
 	public boolean FirstLoad = true;
 	private String asyncSelectedMuscleGrp_;
@@ -157,10 +166,17 @@ public class PlannerFragment extends Fragment {
 				masterPlanMap_.remove(key);
 			}
 		}
+		/*
 		for (String key : planMap_.keySet()) {
 			if (key.length() > 0) {
 				planMap_.remove(key);
 			}
+		}
+*/
+		Iterator iter = jsonPlan_.keys();
+		while (iter.hasNext()) {
+			String key = (String) iter.next();
+			jsonPlan_.remove(key);
 		}
 	}
 
@@ -172,10 +188,17 @@ public class PlannerFragment extends Fragment {
 				masterPlanMap_.remove(key);
 			}
 		}
+		/*
 		for (String key : planMap_.keySet()) {
 			if (key.length() > 0) {
 				planMap_.remove(key);
 			}
+		}
+		*/
+		Iterator iter = jsonPlan_.keys();
+		while (iter.hasNext()) {
+			String key = (String) iter.next();
+			jsonPlan_.remove(key);
 		}
 	}
 
@@ -221,7 +244,30 @@ public class PlannerFragment extends Fragment {
 						values.add(sets);
 						planMap_.put(name, values);
 
+						workoutTime_ = new JSONObject();
+						restTime_ = new JSONObject();
+						workoutSets_ = new JSONObject();
+						jsonWorkoutArray_ = new JSONArray();
+						try {
+							workoutTime_.put("Workout Time", workoutTime);
+							restTime_.put("Rest time", restTime);
+							workoutSets_.put("Sets", sets);
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+
 						workoutList_.add(name);
+						jsonWorkoutArray_.put(workoutTime_);
+						jsonWorkoutArray_.put(restTime_);
+						jsonWorkoutArray_.put(workoutSets_);
+
+						try {
+							jsonWorkoutName_.put(name, jsonWorkoutArray_);
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+						Log.d("JSON Workout objects",
+								jsonWorkoutName_.toString());
 						workoutAdapter_.notifyDataSetChanged();
 
 						dialog.dismiss();
@@ -237,7 +283,6 @@ public class PlannerFragment extends Fragment {
 					public void onClick(View v) {
 						dialog.dismiss();
 					}
-
 				};
 				addListCancelButton_.setOnClickListener(cancelButtonListener);
 				dialog.show();
@@ -245,7 +290,6 @@ public class PlannerFragment extends Fragment {
 		};
 
 		addListButton_.setOnClickListener(listener);
-
 	}
 
 	public List<String> createSpinnerList() {
@@ -325,6 +369,7 @@ public class PlannerFragment extends Fragment {
 				Log.d("Selected to view:", selectedTitle);
 
 				List<String> values = planMap_.get(selectedTitle);
+
 				dataDialogWorkoutName_.setText("Plan Name: " + selectedTitle);
 				dataDialogWorkoutTime_.setText("Workout Time: "
 						+ values.get(0).toString());
@@ -336,10 +381,8 @@ public class PlannerFragment extends Fragment {
 
 					@Override
 					public void onClick(View v) {
-
 						dialog.dismiss();
 					}
-
 				};
 				dataDialogOKButton_.setOnClickListener(okButtonListener);
 				dialog.show();
@@ -371,18 +414,14 @@ public class PlannerFragment extends Fragment {
 						masterPlanMap_.put(planName, planMap_);
 						Log.d("Saving plan", masterPlanMap_.toString());
 
-						JSONObject j = new JSONObject();
 						try {
-							j.put(planName, planMap_);
+							jsonPlan_.put(planName, jsonWorkoutName_);
+							Log.d("JSON plan names", jsonPlan_.toString());
 						} catch (JSONException e) {
 							e.printStackTrace();
 						}
-						System.out
-								.println("Workout plan being sent to the server: "
-										+ j.toString());
-
 						StoreDataNetworkTask dnt = new StoreDataNetworkTask(
-								j.toString(),
+								jsonPlan_.toString(),
 								"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
 								planName, uuid_);
 						dnt.execute();
@@ -410,16 +449,12 @@ public class PlannerFragment extends Fragment {
 										Integer.toString(totalWorkoutTime));
 								totalWorkoutPlanTime = totalWorkoutPlanTime
 										+ totalWorkoutTime;
+								Log.d("Total WorkoutTime",
+										Integer.toString(totalWorkoutPlanTime));
 							}
-							// WorkoutFragment.getTimeValue(totalWorkoutPlanTime);
-							// Log.d("Total Workout Time",
-							// Integer.toString(totalWorkoutPlanTime));
-
 						}
-
 						dialog.dismiss();
 					}
-
 				};
 
 				saveDialogSaveButton_.setOnClickListener(saveButtonListener);
@@ -430,7 +465,6 @@ public class PlannerFragment extends Fragment {
 					public void onClick(View v) {
 						dialog.dismiss();
 					}
-
 				};
 				saveDialogCancelButton_
 						.setOnClickListener(cancelButtonListener);
