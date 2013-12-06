@@ -42,7 +42,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class PlannerFragment extends Fragment {
-	private final PlannerFragment pf_ = this;
 	String uuid_;
 
 	// fragment variables
@@ -147,9 +146,7 @@ public class PlannerFragment extends Fragment {
 						return;
 					}
 				});
-		//
 
-		// createSuggestedExerciseListView();
 		createPlannedWorkoutListView();
 		addListPopupWindow();
 		savePlannedWorkoutList();
@@ -166,13 +163,7 @@ public class PlannerFragment extends Fragment {
 				masterPlanMap_.remove(key);
 			}
 		}
-		/*
-		for (String key : planMap_.keySet()) {
-			if (key.length() > 0) {
-				planMap_.remove(key);
-			}
-		}
-*/
+
 		Iterator iter = jsonPlan_.keys();
 		while (iter.hasNext()) {
 			String key = (String) iter.next();
@@ -188,13 +179,7 @@ public class PlannerFragment extends Fragment {
 				masterPlanMap_.remove(key);
 			}
 		}
-		/*
-		for (String key : planMap_.keySet()) {
-			if (key.length() > 0) {
-				planMap_.remove(key);
-			}
-		}
-		*/
+
 		Iterator iter = jsonPlan_.keys();
 		while (iter.hasNext()) {
 			String key = (String) iter.next();
@@ -332,8 +317,6 @@ public class PlannerFragment extends Fragment {
 			System.err.println("DEBUG: Exception caught");
 			return;
 		}
-
-		// exerciseList_ = new ArrayList<String>();
 		exerciseAdapter_ = new ArrayAdapter<String>(getActivity(),
 				android.R.layout.simple_list_item_1, selectedMuscleGrpList_);
 		suggestedExercisesList_.setAdapter(exerciseAdapter_);
@@ -495,7 +478,7 @@ public class PlannerFragment extends Fragment {
 				retrievedList_.setAdapter(retrieveAdapter_);
 				GetDataNetworkTask gdnt = new GetDataNetworkTask(
 						"http://ec2-54-212-21-86.us-west-2.compute.amazonaws.com/",
-						uuid_, pf_);
+						uuid_, PlannerFragment.this);
 				gdnt.execute();
 				retrieveAdapter_.notifyDataSetChanged();
 				retrievedList_
