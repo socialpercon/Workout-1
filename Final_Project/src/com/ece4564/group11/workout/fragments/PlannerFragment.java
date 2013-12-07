@@ -21,10 +21,12 @@ import com.ece4564.group11.workout.network.GetDataNetworkTask;
 import com.ece4564.group11.workout.network.StoreDataNetworkTask;
 import com.ece4564.group11.workout.network.GetHtml;
 import com.ece4564.group11.workout.sensor.DeviceUuidFactory;
+import com.ece4564.group11.workout.userinterface.ViewpagerNav;
 import com.example.final_project.R;
 
 import android.support.v4.app.Fragment;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -156,6 +158,7 @@ public class PlannerFragment extends Fragment {
 		addListPopupWindow();
 		savePlannedWorkoutList();
 		retrievePlannerWorkoutList();
+		startWorkout();
 
 		return rootView;
 	}
@@ -566,11 +569,16 @@ public class PlannerFragment extends Fragment {
 	}
 
 	public void startWorkout() {
+		final Intent intent = new Intent(getActivity(), ViewpagerNav.class);
 		OnClickListener startListener = new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+
 				WorkoutFragment.setWorkout(tempMap_);
+
+				intent.putExtra("message", "workout");
+				startActivity(intent);
 			}
 
 		};
