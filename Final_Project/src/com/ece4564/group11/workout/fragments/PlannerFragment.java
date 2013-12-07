@@ -260,7 +260,14 @@ public class PlannerFragment extends Fragment {
 						values.add(restTime);
 						values.add(sets);
 						planMap_.put(name, values);
-
+						
+						for (String key : tempMap_.keySet()) {
+							if (key.length() > 0) {
+								tempMap_.remove(key);
+							}
+						}
+						tempMap_ = planMap_;
+						
 						workoutTime_ = new JSONObject();
 						restTime_ = new JSONObject();
 						workoutSets_ = new JSONObject();
@@ -489,12 +496,6 @@ public class PlannerFragment extends Fragment {
 
 		saveListButton_.setOnClickListener(listener);
 
-		for (String key : tempMap_.keySet()) {
-			if (key.length() > 0) {
-				tempMap_.remove(key);
-			}
-		}
-		tempMap_ = planMap_;
 	}
 
 	public void retrievePlannerWorkoutList() {
