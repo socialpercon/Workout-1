@@ -51,6 +51,7 @@ public class PlannerFragment extends Fragment {
 	private Button addListButton_;
 	private Button saveListButton_;
 	private Button retrieveListButton_;
+	private Button startButton_;
 
 	// addlist dialog variables
 	private EditText addListWorkoutName_;
@@ -82,9 +83,11 @@ public class PlannerFragment extends Fragment {
 	private ArrayAdapter<String> exerciseAdapter_;
 	private ArrayList<String> retrievedFromServerList_;
 	private ArrayAdapter<String> retrieveAdapter_;
-	private Map<String, List<String>> planMap_ = new HashMap<String, List<String>>();
-	private Map<String, Map<String, List<String>>> savedPlanMap_ = new HashMap<String, Map<String, List<String>>>();
+	private HashMap<String, List<String>> planMap_ = new HashMap<String, List<String>>();
+	private HashMap<String, Map<String, List<String>>> savedPlanMap_ = new HashMap<String, Map<String, List<String>>>();
 	private HashMap<String, HashMap<String, List<String>>> retrievedPlanMap_ = new HashMap<String, HashMap<String, List<String>>>();
+	private HashMap<String, List<String>> selectedRetrievedMap_ = new HashMap<String, List<String>>();
+	private HashMap<String, List<String>> tempMap_ = new HashMap<String, List<String>>();
 
 	// JSON variables
 	private JSONObject workoutTime_;
@@ -119,6 +122,7 @@ public class PlannerFragment extends Fragment {
 				.findViewById(R.id.planner_saveListButton);
 		retrieveListButton_ = (Button) rootView
 				.findViewById(R.id.planner_retrieveListButton);
+		startButton_ = (Button) rootView.findViewById(R.id.planner_startButton);
 		plannedWorkoutList_ = (ListView) rootView
 				.findViewById(R.id.planner_list_plannedWorkout);
 
@@ -254,6 +258,11 @@ public class PlannerFragment extends Fragment {
 							e.printStackTrace();
 						}
 
+						for (String key : workoutList_) {
+							if (key.length() > 0) {
+								workoutList_.remove(key);
+							}
+						}
 						workoutList_.add(name);
 						jsonWorkoutArray_.put(workoutTime_);
 						jsonWorkoutArray_.put(restTime_);
@@ -364,7 +373,7 @@ public class PlannerFragment extends Fragment {
 						position).toString();
 				Log.d("Selected to view:", selectedTitle);
 
-				List<String> values = planMap_.get(selectedTitle);
+				List<String> values = tempMap_.get(selectedTitle);
 
 				dataDialogWorkoutName_.setText("Plan Name: " + selectedTitle);
 				dataDialogWorkoutTime_.setText("Workout Time: "
@@ -469,6 +478,13 @@ public class PlannerFragment extends Fragment {
 		};
 
 		saveListButton_.setOnClickListener(listener);
+
+		for (String key : tempMap_.keySet()) {
+			if (key.length() > 0) {
+				tempMap_.remove(key);
+			}
+		}
+		tempMap_ = planMap_;
 	}
 
 	public void retrievePlannerWorkoutList() {
@@ -501,14 +517,35 @@ public class PlannerFragment extends Fragment {
 							public void onItemClick(
 									AdapterView<?> parentAdapter, View v,
 									int position, long id) {
+								for (String key : workoutList_) {
+									if (key.length() > 0) {
+										workoutList_.remove(key);
+									}
+								}
 								String selectedTitle = retrievedList_
 										.getItemAtPosition(position).toString();
 								Log.d("Selected retrieve plan", selectedTitle);
 
-								// Retrieve JSON Object here
-								// When the user selects previous workout plan,
-								// it will start workout
+								selectedRetrievedMap_ = retrievedPlanMap_
+										.get(selectedTitle);
+								Log.d("Selected Retrieved Map",
+										selectedRetrievedMap_.toString());
 
+								Iterator itR = (Iterator) selectedRetrievedMap_
+										.keySet().iterator();
+								while (itR.hasNext()) {
+									String title = (String) itR.next();
+									workoutList_.add(title);
+									Log.d("add retrieved list", title);
+									workoutAdapter_.notifyDataSetChanged();
+									dialog.dismiss();
+								}
+								for (String key : tempMap_.keySet()) {
+									if (key.length() > 0) {
+										tempMap_.remove(key);
+									}
+								}
+								tempMap_ = selectedRetrievedMap_;
 							}
 						});
 
@@ -525,8 +562,19 @@ public class PlannerFragment extends Fragment {
 				dialog.show();
 			}
 		};
-
 		retrieveListButton_.setOnClickListener(listener);
+	}
+
+	public void startWorkout() {
+		OnClickListener startListener = new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				WorkoutFragment.setWorkout(tempMap_);
+			}
+
+		};
+		startButton_.setOnClickListener(startListener);
 	}
 
 	public void getDataNetworkTaskResult(
