@@ -172,12 +172,6 @@ public class PlannerFragment extends Fragment {
 				savedPlanMap_.remove(key);
 			}
 		}
-
-		Iterator iter = jsonPlan_.keys();
-		while (iter.hasNext()) {
-			String key = (String) iter.next();
-			jsonPlan_.remove(key);
-		}
 	}
 
 	@Override
@@ -187,12 +181,6 @@ public class PlannerFragment extends Fragment {
 			if (key.length() > 0) {
 				savedPlanMap_.remove(key);
 			}
-		}
-
-		Iterator iter = jsonPlan_.keys();
-		while (iter.hasNext()) {
-			String key = (String) iter.next();
-			jsonPlan_.remove(key);
 		}
 	}
 
@@ -231,18 +219,17 @@ public class PlannerFragment extends Fragment {
 						Log.d("Add List Workout Time", workoutTime);
 						Log.d("Add List Rest Time", restTime);
 						Log.d("Add List Pop Sets", sets);
-
+						for (String key : tempMap_.keySet()) {
+							if (key.length() > 0) {
+								tempMap_.remove(key);
+							}
+						}
 						List<String> values = new ArrayList<String>();
 						values.add(workoutTime);
 						values.add(restTime);
 						values.add(sets);
 						planMap_.put(name, values);
 
-						for (String key : tempMap_.keySet()) {
-							if (key.length() > 0) {
-								tempMap_.remove(key);
-							}
-						}
 						tempMap_ = planMap_;
 
 						workoutTime_ = new JSONObject();
@@ -587,7 +574,6 @@ public class PlannerFragment extends Fragment {
 			String tempString = "";
 			htmlStrings = response;
 			selectedMuscleGrpList_.clear();
-			// System.out.println("[DEBUG]" + htmlStrings);
 
 			// Parsing to store suggested workout names
 			Pattern name_Pattern = Pattern
@@ -596,10 +582,8 @@ public class PlannerFragment extends Fragment {
 			while (matcher.find()) {
 				tempString = matcher.group(1);
 				exerciseResultReceived(tempString);
-
 			}
 		}
-
 	}
 
 	private void exerciseResultReceived(String result) {

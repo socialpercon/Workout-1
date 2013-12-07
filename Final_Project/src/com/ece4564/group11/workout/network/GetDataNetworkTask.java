@@ -110,7 +110,6 @@ public class GetDataNetworkTask extends
 	@Override
 	protected void onPostExecute(
 			HashMap<String, HashMap<String, List<String>>> result) {
-		System.out.println("RESULT " + result);
 		pf_.getDataNetworkTaskResult(result);
 	}
 
