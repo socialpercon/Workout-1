@@ -83,7 +83,8 @@ public class PlannerFragment extends Fragment {
 	private ArrayList<String> retrievedFromServerList_;
 	private ArrayAdapter<String> retrieveAdapter_;
 	private Map<String, List<String>> planMap_ = new HashMap<String, List<String>>();
-	private Map<String, Map<String, List<String>>> masterPlanMap_ = new HashMap<String, Map<String, List<String>>>();
+	private Map<String, Map<String, List<String>>> savedPlanMap_ = new HashMap<String, Map<String, List<String>>>();
+	private HashMap<String, HashMap<String, List<String>>> retrievedPlanMap_ = new HashMap<String, HashMap<String, List<String>>>();
 
 	// JSON variables
 	private JSONObject workoutTime_;
@@ -158,9 +159,15 @@ public class PlannerFragment extends Fragment {
 	@Override
 	public void onPause() {
 		super.onPause();
-		for (String key : masterPlanMap_.keySet()) {
+		for (String key : savedPlanMap_.keySet()) {
 			if (key.length() > 0) {
-				masterPlanMap_.remove(key);
+				savedPlanMap_.remove(key);
+			}
+		}
+
+		for (String key : retrievedPlanMap_.keySet()) {
+			if (key.length() > 0) {
+				retrievedPlanMap_.remove(key);
 			}
 		}
 
@@ -174,9 +181,15 @@ public class PlannerFragment extends Fragment {
 	@Override
 	public void onStop() {
 		super.onStop();
-		for (String key : masterPlanMap_.keySet()) {
+		for (String key : savedPlanMap_.keySet()) {
 			if (key.length() > 0) {
-				masterPlanMap_.remove(key);
+				savedPlanMap_.remove(key);
+			}
+		}
+
+		for (String key : retrievedPlanMap_.keySet()) {
+			if (key.length() > 0) {
+				retrievedPlanMap_.remove(key);
 			}
 		}
 
@@ -394,8 +407,8 @@ public class PlannerFragment extends Fragment {
 					public void onClick(View v) {
 						String planName = saveDialogPlanName_.getText()
 								.toString();
-						masterPlanMap_.put(planName, planMap_);
-						Log.d("Saving plan", masterPlanMap_.toString());
+						savedPlanMap_.put(planName, planMap_);
+						Log.d("Saving plan", savedPlanMap_.toString());
 
 						try {
 							jsonPlan_.put(planName, jsonWorkoutName_);
@@ -412,7 +425,7 @@ public class PlannerFragment extends Fragment {
 						int totalWorkoutPlanTime = 0;
 						int totalWorkoutTime = 0;
 
-						Iterator it = masterPlanMap_.entrySet().iterator();
+						Iterator it = savedPlanMap_.entrySet().iterator();
 						while (it.hasNext()) {
 							Map.Entry<String, HashMap<String, List<String>>> pairs = (Map.Entry<String, HashMap<String, List<String>>>) it
 									.next();
@@ -518,8 +531,10 @@ public class PlannerFragment extends Fragment {
 
 	public void getDataNetworkTaskResult(
 			HashMap<String, HashMap<String, List<String>>> result) {
-		Log.d("retrieved list", result.toString());
-		Iterator it = result.keySet().iterator();
+		retrievedPlanMap_ = result;
+		Log.d("retrieved list", retrievedPlanMap_.toString());
+
+		Iterator it = retrievedPlanMap_.keySet().iterator();
 		while (it.hasNext()) {
 			String title = (String) it.next();
 			retrievedFromServerList_.add(title);
