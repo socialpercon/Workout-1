@@ -6,25 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ViewpagerNav$DummySectionFragment" >
-
-    <Button
-        android:id="@+id/heartOn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="78dp"
-        android:text="Heart Rate Monitor" />
-
-    <Button
-        android:id="@+id/viewID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/heartOn"
-        android:layout_below="@+id/heartOn"
-        android:layout_marginTop="18dp"
-        android:text="See Your Unique ID" />
+    tools:context=".ViewpagerNav$DummySectionFragment"
+    android:background="@drawable/background_dark_nex7" >
 
     <TextView
         android:id="@+id/extraText"
@@ -34,5 +17,14 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="42dp"
         android:text="" />
+
+    <Button
+        android:id="@+id/heartOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/extraText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="116dp"
+        android:text="Start Heart Rate Monitor" />
 
 </RelativeLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background_dark_nex7" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+        
+        <Button
+            android:id="@+id/goalAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Add Goal" />
+
+        <Button
+            android:id="@+id/goalAddCust"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="Add Custom" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/goalsList"
+        android:layout_width="fill_parent"
+        android:layout_height="193dp"
+        android:layout_weight="0.28"
+        android:background="@android:color/white"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:listSelector="@android:color/transparent"
+        android:padding="7dp"
+        android:scrollbars="vertical"
+        android:textColor="@android:color/black" >
+    </ListView>
+
+</LinearLayout>

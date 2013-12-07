@@ -1,5 +1,8 @@
 package com.ece4564.group11.workout.fragments;
 
+import java.util.HashMap;
+import java.util.List;
+
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
@@ -29,10 +32,13 @@ public class WorkoutFragment extends Fragment {
 	boolean ready1;
 	boolean ready2;
 
+	HashMap<String, List<String>> workout_;
+	
 	public WorkoutFragment() {
 		player_ = new MusicPlayer();
 		ready1 = false;
 		ready2 = false;
+		workout_ = null;
 	}
 
 	@Override
