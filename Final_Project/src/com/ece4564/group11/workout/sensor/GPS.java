@@ -58,7 +58,10 @@ public class GPS extends Fragment implements LocationListener {
 			  @Override
 			  public void run() 
 			  {
-				  getNetworkLocation();
+				  if (locData_ == null)
+				  {
+					  getNetworkLocation();
+				  }
 			  }
 			}, 10000);
 		
@@ -84,9 +87,21 @@ public class GPS extends Fragment implements LocationListener {
 	}
 
 	@Override
-	public void onPause() {
+	public void onPause() 
+	{
 		super.onPause();
 		lManager_.removeUpdates(this);
+		timer_.cancel();
+	}
+
+	
+	
+	@Override
+	public void onStop() 
+	{
+		super.onStop();
+		lManager_.removeUpdates(this);
+		timer_.cancel();
 	}
 
 	@Override
