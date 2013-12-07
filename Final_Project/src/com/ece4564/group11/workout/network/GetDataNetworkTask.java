@@ -5,11 +5,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
@@ -18,7 +14,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
-import org.json.simple.parser.ContainerFactory;
 import org.json.simple.parser.JSONParser;
 
 import com.ece4564.group11.workout.fragments.PlannerFragment;
@@ -31,7 +26,8 @@ public class GetDataNetworkTask extends AsyncTask<Void, Void, List<String>> {
 	private PlannerFragment pf_;
 	String address_;
 	String uuid_;
-	HashMap<String, String> cache_;
+	private HashMap<String, HashMap<String, List<String>>> cache_ = new HashMap<String, HashMap<String, List<String>>>();
+	private HashMap<String, List<String>> workoutPlanMap_;
 	private String returnKey_ = "";
 
 	public GetDataNetworkTask() {
@@ -57,48 +53,62 @@ public class GetDataNetworkTask extends AsyncTask<Void, Void, List<String>> {
 					response.getEntity().getContent()));
 			Log.d("Get status:", response.getStatusLine().toString());
 			JSONParser parser = new JSONParser();
-			try 
-			{
+			try {
 				JSONObject jOb = (JSONObject) parser.parse(reader);
 				Log.d("Parsed JSONObject", jOb.toString());
-				
+
 				Iterator itr = (Iterator) jOb.keySet().iterator();
-				while (itr.hasNext())
-				{
+				while (itr.hasNext()) {
+					workoutPlanMap_ = new HashMap<String, List<String>>();
 					String name = (String) itr.next();
-					JSONObject plan = (JSONObject) parser.parse(jOb.get(name).toString());
-					
+					JSONObject plan = (JSONObject) parser.parse(jOb.get(name)
+							.toString());
+					Log.d("Parsed JSONObject1", plan.toString());
+
+					Iterator planItr = (Iterator) plan.keySet().iterator();
+					while (planItr.hasNext()) {
+						List<String> workoutValues = new ArrayList<String>();
+						String workName = (String) planItr.next();
+						JSONArray workout = (JSONArray) parser.parse(plan.get(
+								workName).toString());
+						Log.d("Parsed JSONObject2", workout.toString());
+
+						JSONObject workoutTimeObj = (JSONObject) workout.get(0);
+						JSONObject restTimeObj = (JSONObject) workout.get(1);
+						JSONObject setObj = (JSONObject) workout.get(2);
+						Log.d("ParsedJSONArray1", workoutTimeObj.toString());
+						Log.d("ParsedJSONArray2", restTimeObj.toString());
+						Log.d("ParsedJSONArray3", setObj.toString());
+						String workoutTimeName = "Workout Time";
+						String restTimeName = "Rest time";
+						String setName = "Sets";
+						String workoutTime = workoutTimeObj
+								.get(workoutTimeName).toString();
+						String restTime = restTimeObj.get(restTimeName)
+								.toString();
+						String set = setObj.get(setName).toString();
+						Log.d("JSON workout time", workoutTime);
+						Log.d("JSON rest time", restTime);
+						Log.d("JSON set", set);
+						workoutValues.add(workoutTime);
+						workoutValues.add(restTime);
+						workoutValues.add(set);
+						Log.d("Workout Array", workoutValues.toString());
+						workoutPlanMap_.put(workName, workoutValues);
+					}
+					cache_.put(name, workoutPlanMap_);
+					result.add(name);
 				}
-			} 
-			catch (ParseException e) 
-			{
+				Log.d("WorkoutPlanMap", workoutPlanMap_.toString());
+				Log.d("Cache", cache_.toString());
+			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			/*
-			 * ContainerFactory containerFactory = new ContainerFactory() {
-			 * public List creatArrayContainer() { return new LinkedList(); }
-			 * 
-			 * public Map createObjectContainer() { return new LinkedHashMap();
-			 * } }; Map json = (Map) parser.parse(reader, containerFactory);
-			 * Iterator iter = json.entrySet().iterator(); cache_ = new
-			 * HashMap<String, String>();
-			 * System.out.println("==iterate result==");
-			 * 
-			 * Map.Entry<String, String> entry = null; while (iter.hasNext()) {
-			 * entry = (Map.Entry<String, String>) iter.next(); String value =
-			 * entry.getValue(); Log.d("VALUES: ", entry.getKey() + "=>" +
-			 * value);
-			 * 
-			 * cache_.put(entry.getKey(), value); System.out.println(cache_);
-			 * result.add(entry.getKey().toString());
-			 * 
-			 * System.out.println("What key was retrieved? " + returnKey_); }
-			 */
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Log.d("RETURN KEY", returnKey_);
+		Log.d("RETURN KEY", result.toString());
 		return result;
 	}
 
