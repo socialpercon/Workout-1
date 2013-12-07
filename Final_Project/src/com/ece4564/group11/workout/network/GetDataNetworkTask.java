@@ -29,7 +29,6 @@ public class GetDataNetworkTask extends
 	String uuid_;
 	private HashMap<String, HashMap<String, List<String>>> cache_ = new HashMap<String, HashMap<String, List<String>>>();
 	private HashMap<String, List<String>> workoutPlanMap_;
-	private String returnKey_ = "";
 
 	public GetDataNetworkTask() {
 		address_ = null;
@@ -65,7 +64,6 @@ public class GetDataNetworkTask extends
 					String name = (String) itr.next();
 					JSONObject plan = (JSONObject) parser.parse(jOb.get(name)
 							.toString());
-					Log.d("Parsed JSONObject1", plan.toString());
 
 					Iterator planItr = (Iterator) plan.keySet().iterator();
 					while (planItr.hasNext()) {
@@ -73,14 +71,11 @@ public class GetDataNetworkTask extends
 						String workName = (String) planItr.next();
 						JSONArray workout = (JSONArray) parser.parse(plan.get(
 								workName).toString());
-						Log.d("Parsed JSONObject2", workout.toString());
 
 						JSONObject workoutTimeObj = (JSONObject) workout.get(0);
 						JSONObject restTimeObj = (JSONObject) workout.get(1);
 						JSONObject setObj = (JSONObject) workout.get(2);
-						Log.d("ParsedJSONArray1", workoutTimeObj.toString());
-						Log.d("ParsedJSONArray2", restTimeObj.toString());
-						Log.d("ParsedJSONArray3", setObj.toString());
+
 						String workoutTimeName = "Workout Time";
 						String restTimeName = "Rest time";
 						String setName = "Sets";
@@ -89,9 +84,7 @@ public class GetDataNetworkTask extends
 						String restTime = restTimeObj.get(restTimeName)
 								.toString();
 						String set = setObj.get(setName).toString();
-						Log.d("JSON workout time", workoutTime);
-						Log.d("JSON rest time", restTime);
-						Log.d("JSON set", set);
+
 						workoutValues.add(workoutTime);
 						workoutValues.add(restTime);
 						workoutValues.add(set);

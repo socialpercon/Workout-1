@@ -21,14 +21,12 @@ import com.ece4564.group11.workout.network.GetDataNetworkTask;
 import com.ece4564.group11.workout.network.StoreDataNetworkTask;
 import com.ece4564.group11.workout.network.GetHtml;
 import com.ece4564.group11.workout.sensor.DeviceUuidFactory;
-import com.ece4564.group11.workout.userinterface.ViewpagerNav;
 import com.example.final_project.R;
 
 import android.support.v4.app.Fragment;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,7 +47,7 @@ public class PlannerFragment extends Fragment {
 	String uuid_;
 
 	ActionBar ab_;
-	
+
 	// fragment variables
 	private Spinner muscleGrpSpinner_;
 	private ListView suggestedExercisesList_;
@@ -108,24 +106,21 @@ public class PlannerFragment extends Fragment {
 	List<String> selectedMuscleGrpList_ = new ArrayList<String>();
 
 	private String htmlStrings = "";
-	
+
 	Activity parentActivity_;
-	
-	public void onAttach(Activity activity)
-	{
+
+	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		parentActivity_ = activity;
 	}
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_planner, container,
 				false);
-
 		uuid_ = new DeviceUuidFactory(rootView.getContext()).getDeviceUuid()
 				.toString();
-
 		muscleGrpSpinner_ = (Spinner) rootView
 				.findViewById(R.id.planner_muscleGroupSpinner);
 		suggestedExercisesList_ = (ListView) rootView
@@ -139,7 +134,7 @@ public class PlannerFragment extends Fragment {
 		startButton_ = (Button) rootView.findViewById(R.id.planner_startButton);
 		plannedWorkoutList_ = (ListView) rootView
 				.findViewById(R.id.planner_list_plannedWorkout);
-		
+
 		createSpinnerList();
 
 		/*
@@ -150,15 +145,9 @@ public class PlannerFragment extends Fragment {
 				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 					public void onItemSelected(AdapterView<?> adapterView,
 							View view, int i, long l) {
-						// if (FirstLoad) {
-						// FirstLoad = false;
-						// return;
-						// }
 						String selectedMuscleGrp_ = muscleGrpSpinner_
 								.getItemAtPosition(i).toString();
 						createSuggestedExerciseListView(selectedMuscleGrp_);
-						// System.out.println("\nSELECTED MUSCLE : " +
-						// SpinnerChoice);
 					}
 
 					public void onNothingSelected(AdapterView<?> adapterView) {
@@ -260,14 +249,14 @@ public class PlannerFragment extends Fragment {
 						values.add(restTime);
 						values.add(sets);
 						planMap_.put(name, values);
-						
+
 						for (String key : tempMap_.keySet()) {
 							if (key.length() > 0) {
 								tempMap_.remove(key);
 							}
 						}
 						tempMap_ = planMap_;
-						
+
 						workoutTime_ = new JSONObject();
 						restTime_ = new JSONObject();
 						workoutSets_ = new JSONObject();
@@ -296,9 +285,7 @@ public class PlannerFragment extends Fragment {
 
 						dialog.dismiss();
 					}
-
 				};
-
 				addListCreateButton_.setOnClickListener(createButtonListener);
 
 				OnClickListener cancelButtonListener = new OnClickListener() {
@@ -345,10 +332,7 @@ public class PlannerFragment extends Fragment {
 		return list;
 	}
 
-	// Need to improve this function after finishing the pop-up
 	public void createSuggestedExerciseListView(String spinnerSelectedMuscleGrp) {
-		// System.out.println("\nSELECTED MUSCLE: " + spinnerSelectedMuscleGrp);
-
 		asyncSelectedMuscleGrp_ = spinnerSelectedMuscleGrp;
 		try {
 			new RetrieveHTMLString().execute();
@@ -359,10 +343,8 @@ public class PlannerFragment extends Fragment {
 		exerciseAdapter_ = new ArrayAdapter<String>(getActivity(),
 				android.R.layout.simple_list_item_1, selectedMuscleGrpList_);
 		suggestedExercisesList_.setAdapter(exerciseAdapter_);
-
 	}
 
-	// Need to improve this function after finishing the pop-up
 	public void createPlannedWorkoutListView() {
 		workoutList_ = new ArrayList<String>();
 		workoutAdapter_ = new ArrayAdapter<String>(getActivity(),
@@ -478,7 +460,6 @@ public class PlannerFragment extends Fragment {
 						dialog.dismiss();
 					}
 				};
-
 				saveDialogSaveButton_.setOnClickListener(saveButtonListener);
 
 				OnClickListener cancelButtonListener = new OnClickListener() {
@@ -495,7 +476,6 @@ public class PlannerFragment extends Fragment {
 		};
 
 		saveListButton_.setOnClickListener(listener);
-
 	}
 
 	public void retrievePlannerWorkoutList() {
@@ -577,7 +557,6 @@ public class PlannerFragment extends Fragment {
 	}
 
 	public void startWorkout() {
-//		final Intent intent = new Intent(getActivity(), ViewpagerNav.class);
 		OnClickListener startListener = new OnClickListener() {
 
 			@Override
@@ -620,11 +599,9 @@ public class PlannerFragment extends Fragment {
 			String tempString = "";
 			htmlStrings = response;
 			selectedMuscleGrpList_.clear();
-
 			// System.out.println("[DEBUG]" + htmlStrings);
 
-			// Parsing
-			// store suggested workout names
+			// Parsing to store suggested workout names
 			Pattern name_Pattern = Pattern
 					.compile("<span class='summary' style='display:none;'>(.*?)</span><span class=");
 			Matcher matcher = name_Pattern.matcher(htmlStrings);
