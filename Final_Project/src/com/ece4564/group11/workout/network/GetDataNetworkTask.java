@@ -21,7 +21,8 @@ import com.ece4564.group11.workout.fragments.PlannerFragment;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class GetDataNetworkTask extends AsyncTask<Void, Void, List<String>> {
+public class GetDataNetworkTask extends
+		AsyncTask<Void, Void, HashMap<String, HashMap<String, List<String>>>> {
 
 	private PlannerFragment pf_;
 	String address_;
@@ -42,7 +43,8 @@ public class GetDataNetworkTask extends AsyncTask<Void, Void, List<String>> {
 	}
 
 	@Override
-	protected List<String> doInBackground(Void... params) {
+	protected HashMap<String, HashMap<String, List<String>>> doInBackground(
+			Void... params) {
 		HttpClient client = new DefaultHttpClient();
 		HttpGet httpget = new HttpGet(address_ + "store?" + "uuid=" + uuid_);
 		List<String> result = new ArrayList<String>();
@@ -109,11 +111,12 @@ public class GetDataNetworkTask extends AsyncTask<Void, Void, List<String>> {
 			e.printStackTrace();
 		}
 		Log.d("RETURN KEY", result.toString());
-		return result;
+		return cache_;
 	}
 
 	@Override
-	protected void onPostExecute(List<String> result) {
+	protected void onPostExecute(
+			HashMap<String, HashMap<String, List<String>>> result) {
 		System.out.println("RESULT " + result);
 		pf_.getDataNetworkTaskResult(result);
 	}

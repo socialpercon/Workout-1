@@ -516,16 +516,15 @@ public class PlannerFragment extends Fragment {
 		retrieveListButton_.setOnClickListener(listener);
 	}
 
-	public void getDataNetworkTaskResult(List<String> result) {
-		Log.d("Retrieved list", result.toString());
-		Iterator<String> it = result.iterator();
+	public void getDataNetworkTaskResult(
+			HashMap<String, HashMap<String, List<String>>> result) {
+		Log.d("retrieved list", result.toString());
+		Iterator it = result.keySet().iterator();
 		while (it.hasNext()) {
-			String title = it.next();
+			String title = (String) it.next();
 			retrievedFromServerList_.add(title);
 		}
-
 		retrieveAdapter_.notifyDataSetChanged();
-
 	}
 
 	private class RetrieveHTMLString extends AsyncTask<String, Void, String> {
