@@ -57,11 +57,21 @@ public class GetDataNetworkTask extends AsyncTask<Void, Void, List<String>> {
 					response.getEntity().getContent()));
 			Log.d("Get status:", response.getStatusLine().toString());
 			JSONParser parser = new JSONParser();
-			try {
+			try 
+			{
 				JSONObject jOb = (JSONObject) parser.parse(reader);
 				Log.d("Parsed JSONObject", jOb.toString());
+				
 				Iterator itr = (Iterator) jOb.keySet().iterator();
-			} catch (ParseException e) {
+				while (itr.hasNext())
+				{
+					String name = (String) itr.next();
+					JSONObject plan = (JSONObject) parser.parse(jOb.get(name).toString());
+					
+				}
+			} 
+			catch (ParseException e) 
+			{
 				e.printStackTrace();
 			}
 			/*
