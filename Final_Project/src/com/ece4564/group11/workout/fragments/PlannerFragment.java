@@ -261,11 +261,6 @@ public class PlannerFragment extends Fragment {
 							e.printStackTrace();
 						}
 
-						for (String key : workoutList_) {
-							if (key.length() > 0) {
-								workoutList_.remove(key);
-							}
-						}
 						workoutList_.add(name);
 						jsonWorkoutArray_.put(workoutTime_);
 						jsonWorkoutArray_.put(restTime_);
