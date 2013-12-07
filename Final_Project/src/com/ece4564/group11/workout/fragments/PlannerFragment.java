@@ -25,6 +25,8 @@ import com.ece4564.group11.workout.userinterface.ViewpagerNav;
 import com.example.final_project.R;
 
 import android.support.v4.app.Fragment;
+import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -46,6 +48,8 @@ import android.widget.TextView;
 public class PlannerFragment extends Fragment {
 	String uuid_;
 
+	ActionBar ab_;
+	
 	// fragment variables
 	private Spinner muscleGrpSpinner_;
 	private ListView suggestedExercisesList_;
@@ -104,7 +108,15 @@ public class PlannerFragment extends Fragment {
 	List<String> selectedMuscleGrpList_ = new ArrayList<String>();
 
 	private String htmlStrings = "";
-
+	
+	Activity parentActivity_;
+	
+	public void onAttach(Activity activity)
+	{
+		super.onAttach(activity);
+		parentActivity_ = activity;
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -127,7 +139,7 @@ public class PlannerFragment extends Fragment {
 		startButton_ = (Button) rootView.findViewById(R.id.planner_startButton);
 		plannedWorkoutList_ = (ListView) rootView
 				.findViewById(R.id.planner_list_plannedWorkout);
-
+		
 		createSpinnerList();
 
 		/*
@@ -564,16 +576,14 @@ public class PlannerFragment extends Fragment {
 	}
 
 	public void startWorkout() {
-		final Intent intent = new Intent(getActivity(), ViewpagerNav.class);
+//		final Intent intent = new Intent(getActivity(), ViewpagerNav.class);
 		OnClickListener startListener = new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 
 				WorkoutFragment.setWorkout(tempMap_);
-
-				intent.putExtra("message", "workout");
-				startActivity(intent);
+				parentActivity_.getActionBar().setSelectedNavigationItem(1);
 			}
 
 		};
