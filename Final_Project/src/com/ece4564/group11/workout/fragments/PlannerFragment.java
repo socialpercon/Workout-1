@@ -173,12 +173,6 @@ public class PlannerFragment extends Fragment {
 			}
 		}
 
-		for (String key : retrievedPlanMap_.keySet()) {
-			if (key.length() > 0) {
-				retrievedPlanMap_.remove(key);
-			}
-		}
-
 		Iterator iter = jsonPlan_.keys();
 		while (iter.hasNext()) {
 			String key = (String) iter.next();
@@ -192,12 +186,6 @@ public class PlannerFragment extends Fragment {
 		for (String key : savedPlanMap_.keySet()) {
 			if (key.length() > 0) {
 				savedPlanMap_.remove(key);
-			}
-		}
-
-		for (String key : retrievedPlanMap_.keySet()) {
-			if (key.length() > 0) {
-				retrievedPlanMap_.remove(key);
 			}
 		}
 
