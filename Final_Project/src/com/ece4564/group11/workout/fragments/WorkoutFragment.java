@@ -32,7 +32,7 @@ public class WorkoutFragment extends Fragment {
 	boolean ready1;
 	boolean ready2;
 
-	HashMap<String, List<String>> workout_;
+	static HashMap<String, List<String>> workout_;
 	
 	public WorkoutFragment() {
 		player_ = new MusicPlayer();
@@ -41,6 +41,11 @@ public class WorkoutFragment extends Fragment {
 		workout_ = null;
 	}
 
+	public static void setWorkout(HashMap<String, List<String> > plan)
+	{
+		workout_ = plan;
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
