@@ -1,5 +1,7 @@
 package com.ece4564.group11.workout.sensor;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 import com.ece4564.group11.workout.network.LocationNetworkTask;
@@ -31,6 +33,7 @@ public class GPS extends Fragment implements LocationListener {
 	LocationNetworkTask nt_;
 	UUID uuid_;
 	EditText name_;
+	Timer timer_;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -50,9 +53,24 @@ public class GPS extends Fragment implements LocationListener {
 		init();
 		setUpListeners();
 
+		timer_ = new Timer();
+		timer_.schedule(new TimerTask() {
+			  @Override
+			  public void run() 
+			  {
+				  getNetworkLocation();
+			  }
+			}, 10000);
+		
 		return rootView;
 	}
 
+	private void getNetworkLocation()
+	{
+		lManager_.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10,
+				Criteria.ACCURACY_FINE, this);
+	}
+	
 	private void init() {
 		add_.setEnabled(false);
 		displayLocation(null);
@@ -105,14 +123,13 @@ public class GPS extends Fragment implements LocationListener {
 					+ "\n");
 			coordinates_.append("Altitude: "
 					+ Double.toString(loc.getAltitude()) + "\n");
-			coordinates_.append("Accuracy: " + Float.toString(loc.getAcc())
-					+ "\n");
-			coordinates_.append("GPS Time: " + Float.toString(loc.getTime()));
 		}
 	}
 
 	@Override
-	public void onLocationChanged(Location location) {
+	public void onLocationChanged(Location location) 
+	{
+		
 		locData_ = new LocationPackage();
 		locData_.setLocation(location.getAltitude(), location.getLongitude(),
 				location.getLatitude());
