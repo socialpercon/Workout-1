@@ -1,12 +1,15 @@
 package com.ece4564.group11.workout.fragments;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +24,14 @@ import com.example.final_project.R;
 
 public class WorkoutFragment extends Fragment {
 
+	Handler handler_;
+	Runnable incrementer_;
+	
 	TextView path1_;
 	TextView path2_;
+	TextView counter_;
+	TextView currentEx_;
+	TextView setCounter_;
 	Button play_;
 	Button stop_;
 	Button switch_;
@@ -31,7 +40,16 @@ public class WorkoutFragment extends Fragment {
 	MusicPlayer player_;
 	boolean ready1;
 	boolean ready2;
-
+	
+	List<Integer>routine_;
+	List<String>routineName_;
+	
+	int currentRest_;
+	int currentLift_;
+	int currentSet_;
+	String currentName_;
+	
+	static List<String> allExercises_;
 	static HashMap<String, List<String>> workout_;
 	
 	public WorkoutFragment() {
@@ -39,11 +57,19 @@ public class WorkoutFragment extends Fragment {
 		ready1 = false;
 		ready2 = false;
 		workout_ = null;
+		currentRest_ = 0;
+		currentLift_ = 0;
+		currentSet_ = 0;
+		routine_ = null;
+		currentName_ = null;
 	}
+	
 
 	public static void setWorkout(HashMap<String, List<String> > plan)
 	{
 		workout_ = plan;
+		Set<String> set = workout_.keySet();
+		allExercises_ = new ArrayList<String>(set);
 	}
 	
 	@Override
@@ -63,16 +89,34 @@ public class WorkoutFragment extends Fragment {
 		browse_ = (Button) rootView.findViewById(R.id.browse1);
 		browse2_ = (Button) rootView.findViewById(R.id.browse2);
 		switch_.setEnabled(false);
+		counter_ = (TextView) rootView.findViewById(R.id.textCountdown);
+		currentEx_ = (TextView) rootView.findViewById(R.id.currentEx);
+		setCounter_ = (TextView) rootView.findViewById(R.id.setCounter);
+		
+	
+		setNext();
 		setUpListen();
-
+		
 		return rootView;
 	}
+	
+	@Override
+	public void setMenuVisibility(final boolean menuVisible) 
+	{
+	//	super.setMenuVisibility(menuVisible);
+		if (menuVisible && (currentEx_ != null))
+		{
+			setNext();
+		}
+	}
+
 
 	@Override
 	public void onPause() {
 		player_.pause();
 		super.onPause();
 	}
+
 
 	@Override
 	public void onDestroy() {
@@ -89,16 +133,24 @@ public class WorkoutFragment extends Fragment {
 				stop_.setEnabled(true);
 				switch_.setEnabled(true);
 				player_.start(0);
+				if (workout_ != null && routine_.size() > 0 && routineName_.size() > 0)
+				{
+					startWorkout();
+				}
+				else
+				{
+					setWorkout(workout_);
+					setNext();
+					startWorkout();
+				}
 			}
 		});
 
 		stop_.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				play_.setEnabled(true);
-				stop_.setEnabled(false);
-				switch_.setEnabled(false);
-				player_.pause();
+				stopButtonClicked();
+				handler_.removeCallbacks(incrementer_);
 			}
 		});
 
@@ -177,5 +229,102 @@ public class WorkoutFragment extends Fragment {
 	private void startbrowse2() {
 		Intent intent = new Intent(getActivity(), FileExplore.class);
 		this.startActivityForResult(intent, 2);
+	}
+	
+	private void setNext()
+	{
+		if (workout_ != null && !workout_.isEmpty() && allExercises_.size() != 0)
+		{
+			
+			currentName_ = allExercises_.remove(0);
+			currentEx_.setText(currentName_);
+			
+			List<String> params = workout_.get(currentName_);
+			currentLift_ = Integer.parseInt(params.get(0));
+			currentRest_ = Integer.parseInt(params.get(1));
+			currentSet_ = Integer.parseInt(params.get(2));
+			
+			setCounter_.setText(currentSet_ + " Sets Left");
+			counter_.setText(params.get(0));
+			setRoutine();
+			
+		}
+		else
+		{
+			currentEx_.setText("No Exercises Selected");
+			setCounter_.setText(currentSet_ + " Sets Left");
+		}
+	}
+	
+	private void startWorkout()
+	{
+		handler_ = new Handler();
+		
+		incrementer_ = new Runnable() {
+			    @Override 
+			    public void run() 
+			    {
+			    	
+			    	
+			    	{
+				    	int num = routine_.get(0);
+				    	num --;
+				    	routine_.set(0, num);
+				    	if (num == 0)
+				    	{
+				    		routine_.remove(0);
+				    		routineName_.remove(0);
+				    		
+				    		if (allExercises_.isEmpty() && routineName_.isEmpty() && routine_.isEmpty())
+					    	{
+					    		currentSet_ = 0;
+					    		currentLift_ = 0;
+					    		currentRest_ = 0;
+					    		stopButtonClicked();
+					    		handler_.removeCallbacks(this);
+					    		setNext();
+					    		return;
+					    	}
+				    		
+				    		if (routineName_.size() == 0)
+				    		{
+				    			setNext();
+				    		}
+				    		currentEx_.setText(routineName_.get(0));
+				    		if (routineName_.get(0).equals("Rest"))
+				    		{
+				    			currentSet_--;
+				    			setCounter_.setText(Integer.toString(currentSet_) + " Sets Left");
+				    		}
+				    		player_.switchSongs();
+				    	}
+				    	counter_.setText(Integer.toString(routine_.get(0)));
+				    	handler_.postDelayed(this, 1000);
+			    	}
+			    }
+			  };
+			  
+		incrementer_.run();
+	}
+	
+	private void setRoutine()
+	{
+		routine_ = new ArrayList<Integer>();
+		routineName_ = new ArrayList<String>();
+		for (int i = 0; i < currentSet_; i++)
+		{
+			routineName_.add(currentName_);
+			routine_.add(currentLift_);
+			routineName_.add("Rest");
+			routine_.add(currentRest_);
+		}
+	}
+	
+	private void stopButtonClicked()
+	{
+		play_.setEnabled(true);
+		stop_.setEnabled(false);
+		switch_.setEnabled(false);
+		player_.pause();
 	}
 }

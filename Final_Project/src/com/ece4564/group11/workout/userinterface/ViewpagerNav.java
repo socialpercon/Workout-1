@@ -124,10 +124,10 @@ public class ViewpagerNav extends FragmentActivity implements
 				fragment = new WorkoutFragment();
 				break;
 			case 2:
-				fragment = new GPS();
+				fragment = new ExtrasFragment();
 				break;
 			case 3:
-				fragment = new ExtrasFragment();
+				fragment = new GPS();
 				break;
 			case 4:
 				fragment = new GoalsFragment();

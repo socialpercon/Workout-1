@@ -77,25 +77,25 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="480dp"
+        android:gravity="center" >
 
         <TextView
             android:id="@+id/textCountdown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/seconds"
             android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:text="00"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="70dp" />
+            android:textSize="80dp" />
 
         <TextView
             android:id="@+id/seconds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/textCountdown"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="91dp"
             android:text="seconds left"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -105,9 +105,27 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/textCountdown"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="73dp"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="50dp" />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/setCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 Sets Left"
+            android:textSize="50dp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
 
 </LinearLayout>
