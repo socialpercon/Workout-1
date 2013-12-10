@@ -19,13 +19,34 @@
         android:layout_gravity="center"
         android:text="" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/heartOn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="118dp"
+        android:gravity="center"
+        android:text="1. Hit the Button"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
     <Button
         android:id="@+id/heartOn"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_below="@+id/extraText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="245dp"
+        android:layout_centerVertical="true"
         android:text=" Start Heart Rate Monitor" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="59dp"
+        android:gravity="center"
+        android:text="2. Finger the camera"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
