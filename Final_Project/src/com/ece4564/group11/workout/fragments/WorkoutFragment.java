@@ -212,7 +212,7 @@ public class WorkoutFragment extends Fragment {
 		        if (me.getAction() == MotionEvent.ACTION_DOWN) {
 		        	browse_.setColorFilter(Color.argb(50, 0, 0, 0));
 		        } else if (me.getAction() == MotionEvent.ACTION_UP) {
-		        	browse_.setColorFilter(Color.argb(0, 155, 155, 155)); // or null
+		        	browse_.setColorFilter(Color.argb(0, 155, 155, 155)); 
 		        }
 		        return false;
 		    }
@@ -224,7 +224,7 @@ public class WorkoutFragment extends Fragment {
 		        if (me.getAction() == MotionEvent.ACTION_DOWN) {
 		        	browse2_.setColorFilter(Color.argb(50, 0, 0, 0));
 		        } else if (me.getAction() == MotionEvent.ACTION_UP) {
-		        	browse2_.setColorFilter(Color.argb(0, 155, 155, 155)); // or null
+		        	browse2_.setColorFilter(Color.argb(0, 155, 155, 155));
 		        }
 		        return false;
 		    }

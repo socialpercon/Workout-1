@@ -18,14 +18,15 @@
         android:layout_marginLeft="42dp"
         android:text="" />
 
-    <Button
+    <ImageButton
         android:id="@+id/heartOn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/extraText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="116dp"
-        android:text="Start Heart Rate Monitor" />
+        android:background="#00000000"
+        android:src="@drawable/startheart" />
 
     <TextView
         android:id="@+id/textView1"

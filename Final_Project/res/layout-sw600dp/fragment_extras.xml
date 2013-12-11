@@ -30,13 +30,14 @@
         android:text="1. Hit the Button"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
+    <ImageButton
         android:id="@+id/heartOn"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="110dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text=" Start Heart Rate Monitor" />
+        android:background="#00000000"
+        android:src="@drawable/startheart_600" />
 
     <TextView
         android:id="@+id/textView2"

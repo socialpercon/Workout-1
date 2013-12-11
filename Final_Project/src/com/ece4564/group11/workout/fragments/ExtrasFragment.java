@@ -8,18 +8,22 @@ import com.ece4564.group11.workout.sensor.HeartRateMonitor;
 import com.example.final_project.R;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class ExtrasFragment extends Fragment {
 
-	Button heart_;
+	ImageButton heart_;
 	TextView display_;
 
 	public ExtrasFragment() {
@@ -31,7 +35,7 @@ public class ExtrasFragment extends Fragment {
 
 		View rootView = inflater.inflate(R.layout.fragment_extras, container,
 				false);
-		heart_ = (Button) rootView.findViewById(R.id.heartOn);
+		heart_ = (ImageButton) rootView.findViewById(R.id.heartOn);
 		display_ = (TextView) rootView.findViewById(R.id.extraText);
 
 		setUpListeners();
@@ -45,6 +49,17 @@ public class ExtrasFragment extends Fragment {
 			public void onClick(View arg0) {
 				startHRM();
 			}
+		});
+		heart_.setOnTouchListener(new OnTouchListener() {
+		    @Override
+		    public boolean onTouch(View arg0, MotionEvent me) {
+		        if (me.getAction() == MotionEvent.ACTION_DOWN) {
+		        	heart_.setColorFilter(Color.argb(50, 0, 0, 0));
+		        } else if (me.getAction() == MotionEvent.ACTION_UP) {
+		        	heart_.setColorFilter(Color.argb(0, 155, 155, 155));
+		        }
+		        return false;
+		    }
 		});
 	}
 
