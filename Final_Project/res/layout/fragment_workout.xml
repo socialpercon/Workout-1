@@ -32,17 +32,19 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center" >
 
-        <Button
+        <ImageButton
             android:id="@+id/browse1"
-            android:layout_width="143dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lift Song" />
+            android:background="#00000000"
+            android:src="@drawable/liftbutton" />
 
-        <Button
+        <ImageButton
             android:id="@+id/browse2"
-            android:layout_width="153dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Break Song" />
+            android:background="#00000000"
+            android:src="@drawable/breakbutton" />
     </LinearLayout>
 
     <LinearLayout
