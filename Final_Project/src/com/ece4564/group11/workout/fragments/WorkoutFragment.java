@@ -10,15 +10,18 @@ import java.util.List;
 import java.util.Set;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -124,6 +127,9 @@ public class WorkoutFragment extends Fragment {
 	}
 
 	private void setUpListen() {
+		/*
+		 * OnClickListeners
+		 */
 		play_.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -194,6 +200,35 @@ public class WorkoutFragment extends Fragment {
 		};
 
 		player_.setOnPreparedListener(opl, opl2);
+		
+		
+		/*
+		 * ontouchListeners
+		 */
+		
+		browse_.setOnTouchListener(new OnTouchListener() {
+		    @Override
+		    public boolean onTouch(View arg0, MotionEvent me) {
+		        if (me.getAction() == MotionEvent.ACTION_DOWN) {
+		        	browse_.setColorFilter(Color.argb(50, 0, 0, 0));
+		        } else if (me.getAction() == MotionEvent.ACTION_UP) {
+		        	browse_.setColorFilter(Color.argb(0, 155, 155, 155)); // or null
+		        }
+		        return false;
+		    }
+		});
+		
+		browse2_.setOnTouchListener(new OnTouchListener() {
+		    @Override
+		    public boolean onTouch(View arg0, MotionEvent me) {
+		        if (me.getAction() == MotionEvent.ACTION_DOWN) {
+		        	browse2_.setColorFilter(Color.argb(50, 0, 0, 0));
+		        } else if (me.getAction() == MotionEvent.ACTION_UP) {
+		        	browse2_.setColorFilter(Color.argb(0, 155, 155, 155)); // or null
+		        }
+		        return false;
+		    }
+		});
 	}
 
 	private void switchMP() {
