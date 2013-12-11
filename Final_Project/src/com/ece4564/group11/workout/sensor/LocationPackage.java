@@ -1,5 +1,10 @@
 package com.ece4564.group11.workout.sensor;
 
+/*
+ * Custom location package class which contains the users GPS data.
+ * Should have just used location class instead.
+ */
+
 public class LocationPackage {
 
 	double altitude_;

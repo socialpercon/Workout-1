@@ -2,10 +2,10 @@ package com.ece4564.group11.workout.sensor;
 
 /**
  * Source code written by Justin Wetherell. Remains Unchanged.
+ * Licensed under Apache 2.0
  * 
- * -------------original comments
- * follow----------------------------------------- This abstract class is used
- * to process images.
+ * -------------original comments follow---------------------
+ *  This abstract class is used to process images.
  * 
  * @author Justin Wetherell <phishman3579@gmail.com>
  */

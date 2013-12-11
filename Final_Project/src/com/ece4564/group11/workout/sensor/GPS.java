@@ -1,5 +1,10 @@
 package com.ece4564.group11.workout.sensor;
 
+/**
+ * GPS Fragment which allows the user to send their coordinates to the webserver, as well
+ * as retrieve ant surrounding users.
+ */
+
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;

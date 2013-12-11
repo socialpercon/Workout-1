@@ -1,7 +1,8 @@
 package com.ece4564.group11.workout.userinterface;
 
 /**
- * This class manages the order of fragments.
+ * This class manages the order of fragments. It also contains
+ * the adapter required to make swipe fragments work.
  */
 
 import java.util.Locale;

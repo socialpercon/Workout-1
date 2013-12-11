@@ -1,5 +1,11 @@
 package com.ece4564.group11.workout.media;
 
+/*
+ * This code was adapted from and Android File Explorer implementation written by mburman (on github).
+ * The original code can be found at https://github.com/mburman/Android-File-Explore licensed under
+ * the Apache 2.0 license.
+ */
+
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;

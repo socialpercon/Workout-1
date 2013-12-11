@@ -1,5 +1,10 @@
 package com.ece4564.group11.workout.media;
 
+/*
+ * Music player class which allows selection of 2 files and playing these files one at a time
+ * with the ability to switch between them at any time.
+ */
+
 import java.io.File;
 
 import android.media.AudioManager;

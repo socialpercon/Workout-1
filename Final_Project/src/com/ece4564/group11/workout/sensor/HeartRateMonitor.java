@@ -21,11 +21,10 @@ import android.widget.TextView;
 
 /**
  * Modified from source code written by Justin Wetherell. Adapted to fit into a
- * fragment as well as fixed camera.
+ * fragment as well as fixed camera. Licensed under Apache 2.0
  * 
- * -------------original comments
- * follow----------------------------------------- This class extends Activity
- * to handle a picture preview, process the preview for a red values and
+ * -------------original comments follow----------------------------------------- 
+ * This class extends Activity to handle a picture preview, process the preview for a red values and
  * determine a heart beat.
  * 
  * @author Justin Wetherell <phishman3579@gmail.com>
