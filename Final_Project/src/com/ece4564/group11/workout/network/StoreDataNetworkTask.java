@@ -1,5 +1,9 @@
 package com.ece4564.group11.workout.network;
 
+/**
+ * This class is a AsyncTask inherited class that sends the workout plans stored in server and parse.
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 

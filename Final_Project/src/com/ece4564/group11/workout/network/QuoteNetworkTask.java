@@ -1,5 +1,9 @@
 package com.ece4564.group11.workout.network;
 
+/**
+ * This class deals with quotes.
+ */
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;

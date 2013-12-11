@@ -1,5 +1,9 @@
 package com.ece4564.group11.workout.network;
 
+/**
+ * This class gets the muscle group data for the planner fragment.
+ */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

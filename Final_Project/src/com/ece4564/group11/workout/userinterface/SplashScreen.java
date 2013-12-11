@@ -1,5 +1,9 @@
 package com.ece4564.group11.workout.userinterface;
 
+/**
+ * This is the main page when the user starts the application.
+ */
+
 import java.util.Random;
 
 import com.ece4564.group11.workout.network.QuoteNetworkTask;

@@ -1,5 +1,9 @@
 package com.ece4564.group11.workout.network;
 
+/**
+ * This class sends the GPS location to the server to look for people.
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

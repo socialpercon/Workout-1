@@ -1,5 +1,9 @@
 package com.ece4564.group11.workout.userinterface;
 
+/**
+ * This class manages the order of fragments.
+ */
+
 import java.util.Locale;
 
 import com.ece4564.group11.workout.fragments.ExtrasFragment;

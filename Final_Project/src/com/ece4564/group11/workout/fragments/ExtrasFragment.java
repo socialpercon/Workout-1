@@ -1,5 +1,9 @@
 package com.ece4564.group11.workout.fragments;
 
+/**
+ * ExtrasFragment is the heart rate monitor fragment that displays the start button to start the monitor
+ */
+
 import com.ece4564.group11.workout.sensor.HeartRateMonitor;
 import com.example.final_project.R;
 
@@ -17,7 +21,7 @@ public class ExtrasFragment extends Fragment {
 
 	Button heart_;
 	TextView display_;
-	
+
 	public ExtrasFragment() {
 	}
 

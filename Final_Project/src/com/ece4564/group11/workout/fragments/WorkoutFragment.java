@@ -1,5 +1,9 @@
 package com.ece4564.group11.workout.fragments;
 
+/**
+ * WorkoutFragment is a fragment that counts down the workout time. It also lets the user to start the lift song and break song.
+ */
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +30,7 @@ public class WorkoutFragment extends Fragment {
 
 	Handler handler_;
 	Runnable incrementer_;
-	
+
 	TextView path1_;
 	TextView path2_;
 	TextView counter_;
@@ -40,18 +44,18 @@ public class WorkoutFragment extends Fragment {
 	MusicPlayer player_;
 	boolean ready1;
 	boolean ready2;
-	
-	List<Integer>routine_;
-	List<String>routineName_;
-	
+
+	List<Integer> routine_;
+	List<String> routineName_;
+
 	int currentRest_;
 	int currentLift_;
 	int currentSet_;
 	String currentName_;
-	
+
 	static List<String> allExercises_;
 	static HashMap<String, List<String>> workout_;
-	
+
 	public WorkoutFragment() {
 		player_ = new MusicPlayer();
 		ready1 = false;
@@ -63,15 +67,13 @@ public class WorkoutFragment extends Fragment {
 		routine_ = null;
 		currentName_ = null;
 	}
-	
 
-	public static void setWorkout(HashMap<String, List<String> > plan)
-	{
+	public static void setWorkout(HashMap<String, List<String>> plan) {
 		workout_ = plan;
 		Set<String> set = workout_.keySet();
 		allExercises_ = new ArrayList<String>(set);
 	}
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -92,31 +94,26 @@ public class WorkoutFragment extends Fragment {
 		counter_ = (TextView) rootView.findViewById(R.id.textCountdown);
 		currentEx_ = (TextView) rootView.findViewById(R.id.currentEx);
 		setCounter_ = (TextView) rootView.findViewById(R.id.setCounter);
-		
-	
+
 		setNext();
 		setUpListen();
-		
+
 		return rootView;
 	}
-	
+
 	@Override
-	public void setMenuVisibility(final boolean menuVisible) 
-	{
-	//	super.setMenuVisibility(menuVisible);
-		if (menuVisible && (currentEx_ != null))
-		{
+	public void setMenuVisibility(final boolean menuVisible) {
+		// super.setMenuVisibility(menuVisible);
+		if (menuVisible && (currentEx_ != null)) {
 			setNext();
 		}
 	}
-
 
 	@Override
 	public void onPause() {
 		player_.pause();
 		super.onPause();
 	}
-
 
 	@Override
 	public void onDestroy() {
@@ -133,12 +130,10 @@ public class WorkoutFragment extends Fragment {
 				stop_.setEnabled(true);
 				switch_.setEnabled(true);
 				player_.start(0);
-				if (workout_ != null && routine_.size() > 0 && routineName_.size() > 0)
-				{
+				if (workout_ != null && routine_.size() > 0
+						&& routineName_.size() > 0) {
 					startWorkout();
-				}
-				else
-				{
+				} else {
 					setWorkout(workout_);
 					setNext();
 					startWorkout();
@@ -230,98 +225,87 @@ public class WorkoutFragment extends Fragment {
 		Intent intent = new Intent(getActivity(), FileExplore.class);
 		this.startActivityForResult(intent, 2);
 	}
-	
-	private void setNext()
-	{
-		if (workout_ != null && !workout_.isEmpty() && allExercises_.size() != 0)
-		{
-			
+
+	private void setNext() {
+		if (workout_ != null && !workout_.isEmpty()
+				&& allExercises_.size() != 0) {
+
 			currentName_ = allExercises_.remove(0);
 			currentEx_.setText(currentName_);
-			
+
 			List<String> params = workout_.get(currentName_);
 			currentLift_ = Integer.parseInt(params.get(0));
 			currentRest_ = Integer.parseInt(params.get(1));
 			currentSet_ = Integer.parseInt(params.get(2));
-			
+
 			setCounter_.setText(currentSet_ + " Sets Left");
 			counter_.setText(params.get(0));
 			setRoutine();
-			
-		}
-		else
-		{
+
+		} else {
 			currentEx_.setText("No Exercises Selected");
 			setCounter_.setText(currentSet_ + " Sets Left");
 		}
 	}
-	
-	private void startWorkout()
-	{
+
+	private void startWorkout() {
 		handler_ = new Handler();
-		
+
 		incrementer_ = new Runnable() {
-			    @Override 
-			    public void run() 
-			    {
-			    	
-			    	
-			    	{
-				    	int num = routine_.get(0);
-				    	num --;
-				    	routine_.set(0, num);
-				    	if (num == 0)
-				    	{
-				    		routine_.remove(0);
-				    		routineName_.remove(0);
-				    		
-				    		if (allExercises_.isEmpty() && routineName_.isEmpty() && routine_.isEmpty())
-					    	{
-					    		currentSet_ = 0;
-					    		currentLift_ = 0;
-					    		currentRest_ = 0;
-					    		stopButtonClicked();
-					    		handler_.removeCallbacks(this);
-					    		setNext();
-					    		return;
-					    	}
-				    		
-				    		if (routineName_.size() == 0)
-				    		{
-				    			setNext();
-				    		}
-				    		currentEx_.setText(routineName_.get(0));
-				    		if (routineName_.get(0).equals("Rest"))
-				    		{
-				    			currentSet_--;
-				    			setCounter_.setText(Integer.toString(currentSet_) + " Sets Left");
-				    		}
-				    		player_.switchSongs();
-				    	}
-				    	counter_.setText(Integer.toString(routine_.get(0)));
-				    	handler_.postDelayed(this, 1000);
-			    	}
-			    }
-			  };
-			  
+			@Override
+			public void run() {
+
+				{
+					int num = routine_.get(0);
+					num--;
+					routine_.set(0, num);
+					if (num == 0) {
+						routine_.remove(0);
+						routineName_.remove(0);
+
+						if (allExercises_.isEmpty() && routineName_.isEmpty()
+								&& routine_.isEmpty()) {
+							currentSet_ = 0;
+							currentLift_ = 0;
+							currentRest_ = 0;
+							stopButtonClicked();
+							handler_.removeCallbacks(this);
+							setNext();
+							return;
+						}
+
+						if (routineName_.size() == 0) {
+							setNext();
+						}
+						currentEx_.setText(routineName_.get(0));
+						if (routineName_.get(0).equals("Rest")) {
+							currentSet_--;
+							setCounter_.setText(Integer.toString(currentSet_)
+									+ " Sets Left");
+						}
+						player_.switchSongs();
+					}
+					counter_.setText(Integer.toString(routine_.get(0)));
+					handler_.postDelayed(this, 1000);
+				}
+			}
+		};
+
 		incrementer_.run();
 	}
-	
-	private void setRoutine()
-	{
+
+	private void setRoutine() {
 		routine_ = new ArrayList<Integer>();
 		routineName_ = new ArrayList<String>();
-		for (int i = 0; i < currentSet_; i++)
-		{
+		for (int i = 0; i < currentSet_; i++) {
 			routineName_.add(currentName_);
 			routine_.add(currentLift_);
 			routineName_.add("Rest");
 			routine_.add(currentRest_);
 		}
 	}
-	
-	private void stopButtonClicked()
-	{
+
+	private void stopButtonClicked() {
 		play_.setEnabled(true);
 		stop_.setEnabled(false);
 		switch_.setEnabled(false);
