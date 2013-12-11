@@ -67,12 +67,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Switch" />
-
-        <Button
-            android:id="@+id/customWorkoutGo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Custom" />
     </LinearLayout>
 
     <RelativeLayout
