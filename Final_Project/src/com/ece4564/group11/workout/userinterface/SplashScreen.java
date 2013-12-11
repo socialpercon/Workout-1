@@ -12,9 +12,12 @@ import com.example.final_project.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -39,14 +42,15 @@ public class SplashScreen extends Activity {
 
 		// startButton_ = (Button) findViewById(R.id.button1);
 		heartButton_ = (ImageButton) findViewById(R.id.imageButton1);
+		// heartButton_.setColorFilter(Color.argb(100, 255, 255, 255));
 		plannerButton_ = (ImageButton) findViewById(R.id.imageButton2);
 		buddyButton_ = (ImageButton) findViewById(R.id.imageButton3);
 		settingsButton_ = (ImageButton) findViewById(R.id.imageButton4);
 		workoutButton_ = (ImageButton) findViewById(R.id.imageButton5);
 
+		setUpTouchListeners();
 		quote_ = (TextView) findViewById(R.id.textView1);
 		getQuote();
-
 		setUpClickListeners();
 	}
 
@@ -56,9 +60,66 @@ public class SplashScreen extends Activity {
 		getMenuInflater().inflate(R.menu.splash_screen, menu);
 		return true;
 	}
+	
+	private void setUpTouchListeners() {
+		heartButton_.setOnTouchListener(new OnTouchListener() {
+		    @Override
+		    public boolean onTouch(View arg0, MotionEvent me) {
+		        if (me.getAction() == MotionEvent.ACTION_DOWN) {
+		        	heartButton_.setColorFilter(Color.argb(50, 0, 0, 0));
+		        } else if (me.getAction() == MotionEvent.ACTION_UP) {
+		        	heartButton_.setColorFilter(Color.argb(0, 155, 155, 155)); // or null
+		        }
+		        return false;
+		    }
+		});
+		plannerButton_.setOnTouchListener(new OnTouchListener() {
+		    @Override
+		    public boolean onTouch(View arg0, MotionEvent me) {
+		        if (me.getAction() == MotionEvent.ACTION_DOWN) {
+		        	plannerButton_.setColorFilter(Color.argb(50, 0, 0, 0));
+		        } else if (me.getAction() == MotionEvent.ACTION_UP) {
+		        	plannerButton_.setColorFilter(Color.argb(0, 155, 155, 155));
+		        }
+		        return false;
+		    }
+		});
+		buddyButton_.setOnTouchListener(new OnTouchListener() {
+		    @Override
+		    public boolean onTouch(View arg0, MotionEvent me) {
+		        if (me.getAction() == MotionEvent.ACTION_DOWN) {
+		        	buddyButton_.setColorFilter(Color.argb(50, 0, 0, 0));
+		        } else if (me.getAction() == MotionEvent.ACTION_UP) {
+		        	buddyButton_.setColorFilter(Color.argb(0, 155, 155, 155));
+		        }
+		        return false;
+		    }
+		});
+		settingsButton_.setOnTouchListener(new OnTouchListener() {
+		    @Override
+		    public boolean onTouch(View arg0, MotionEvent me) {
+		        if (me.getAction() == MotionEvent.ACTION_DOWN) {
+		        	settingsButton_.setColorFilter(Color.argb(50, 0, 0, 0));
+		        } else if (me.getAction() == MotionEvent.ACTION_UP) {
+		        	settingsButton_.setColorFilter(Color.argb(0, 155, 155, 155));
+		        }
+		        return false;
+		    }
+		});
+		workoutButton_.setOnTouchListener(new OnTouchListener() {
+		    @Override
+		    public boolean onTouch(View arg0, MotionEvent me) {
+		        if (me.getAction() == MotionEvent.ACTION_DOWN) {
+		        	workoutButton_.setColorFilter(Color.argb(50, 0, 0, 0));
+		        } else if (me.getAction() == MotionEvent.ACTION_UP) {
+		        	workoutButton_.setColorFilter(Color.argb(0, 155, 155, 155));
+		        }
+		        return false;
+		    }
+		});
+	}
 
 	private void setUpClickListeners() {
-
 		heartButton_.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -88,7 +149,6 @@ public class SplashScreen extends Activity {
 				startApp(5);
 			}
 		});
-
 	}
 
 	@SuppressWarnings("unused")
