@@ -3,7 +3,6 @@ package com.ece4564.group11.workout.userinterface;
 import java.util.Locale;
 
 import com.ece4564.group11.workout.fragments.ExtrasFragment;
-import com.ece4564.group11.workout.fragments.GoalsFragment;
 import com.ece4564.group11.workout.fragments.PlannerFragment;
 import com.ece4564.group11.workout.fragments.WorkoutFragment;
 import com.ece4564.group11.workout.sensor.GPS;
@@ -71,13 +70,13 @@ public class ViewpagerNav extends FragmentActivity implements
 	private void setStartup(String stringExtra, ActionBar ab) {
 
 		if (stringExtra.equals("heart")) {
-			ab.setSelectedNavigationItem(3);
+			ab.setSelectedNavigationItem(2);
 			Intent intent = new Intent(this, HeartRateMonitor.class);
 			startActivity(intent);
 		} else if (stringExtra.equals("planner")) {
 			ab.setSelectedNavigationItem(0);
 		} else if (stringExtra.equals("buddy")) {
-			ab.setSelectedNavigationItem(2);
+			ab.setSelectedNavigationItem(3);
 		} else if (stringExtra.equals("workout")) {
 			ab.setSelectedNavigationItem(1);
 		}
@@ -129,8 +128,6 @@ public class ViewpagerNav extends FragmentActivity implements
 			case 3:
 				fragment = new GPS();
 				break;
-			case 4:
-				fragment = new GoalsFragment();
 
 			}
 
@@ -139,7 +136,7 @@ public class ViewpagerNav extends FragmentActivity implements
 
 		@Override
 		public int getCount() {
-			return 5;
+			return 4;
 		}
 
 		@Override
@@ -154,8 +151,6 @@ public class ViewpagerNav extends FragmentActivity implements
 				return getString(R.string.title_section4).toUpperCase(l);
 			case 3: // Extras
 				return getString(R.string.title_section5).toUpperCase(l);
-			case 4:
-				return getString(R.string.title_section6).toUpperCase(l);
 			}
 			return null;
 		}

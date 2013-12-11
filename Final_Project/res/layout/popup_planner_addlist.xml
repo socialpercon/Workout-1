@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="7dp"
-        android:text="Workout Time(min)"
+        android:text="Workout Time(sec)"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <EditText
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="7dp"
-        android:text="Rest Time(min)"
+        android:text="Rest Time(sec)"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <EditText
