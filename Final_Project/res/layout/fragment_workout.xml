@@ -77,7 +77,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="217dp"
+        android:gravity="center" >
 
         <TextView
             android:id="@+id/textCountdown"
@@ -90,24 +91,41 @@
             android:textSize="70dp" />
 
         <TextView
-            android:id="@+id/seconds"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="91dp"
-            android:text="seconds left"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
             android:id="@+id/currentEx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/textCountdown"
             android:layout_centerHorizontal="true"
+            android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="50dp" />
 
+        <TextView
+            android:id="@+id/seconds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="35dp"
+            android:text="seconds left"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
     </RelativeLayout>
+    
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/setCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 Sets Left"
+            android:textSize="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
 
 </LinearLayout>
