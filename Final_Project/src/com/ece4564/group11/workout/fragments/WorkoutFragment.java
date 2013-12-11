@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.ece4564.group11.workout.media.FileExplore;
@@ -39,8 +40,8 @@ public class WorkoutFragment extends Fragment {
 	Button play_;
 	Button stop_;
 	Button switch_;
-	Button browse_;
-	Button browse2_;
+	ImageButton browse_;
+	ImageButton browse2_;
 	MusicPlayer player_;
 	boolean ready1;
 	boolean ready2;
@@ -88,8 +89,8 @@ public class WorkoutFragment extends Fragment {
 		stop_ = (Button) rootView.findViewById(R.id.stopbutton);
 		stop_.setEnabled(false);
 		switch_ = (Button) rootView.findViewById(R.id.Switch);
-		browse_ = (Button) rootView.findViewById(R.id.browse1);
-		browse2_ = (Button) rootView.findViewById(R.id.browse2);
+		browse_ = (ImageButton) rootView.findViewById(R.id.browse1);
+		browse2_ = (ImageButton) rootView.findViewById(R.id.browse2);
 		switch_.setEnabled(false);
 		counter_ = (TextView) rootView.findViewById(R.id.textCountdown);
 		currentEx_ = (TextView) rootView.findViewById(R.id.currentEx);
